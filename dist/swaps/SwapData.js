@@ -6,6 +6,7 @@ class SwapData {
         if (SwapData.deserializers[data.type] != null) {
             return new SwapData.deserializers[data.type](data);
         }
+        throw new Error(`No deserializer found for swap data type: ${data.type}`);
     }
 }
 exports.SwapData = SwapData;
