@@ -8,11 +8,12 @@ export abstract class SwapData implements StorageObject {
     } = {};
 
     static deserialize<T extends SwapData>(data: any): T {
-        if(SwapData.deserializers[data.type]!=null) {
-            return new SwapData.deserializers[data.type](data) as unknown as T;
+        const deserializer = SwapData.deserializers[data.type];
+        if(deserializer != null) {
+            return new deserializer(data) as unknown as T;
         }
+        throw new Error(`No deserializer found for swap data type: ${data.type}`);
     }
-
     abstract getOfferer(): string;
     abstract setOfferer(newOfferer: string): void;
     abstract isOfferer(address: string): boolean;
