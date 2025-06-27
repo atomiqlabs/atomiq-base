@@ -1,6 +1,6 @@
 {
   "name": "@atomiqlabs/base",
-  "version": "9.0.1",
+  "version": "9.1.0",
   "description": "Base classes and interfaces for atomiq protocol",
   "main": "./dist/index.js",
   "types:": "./dist/index.d.ts",
