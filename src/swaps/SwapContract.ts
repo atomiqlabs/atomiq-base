@@ -1,10 +1,10 @@
 import {SwapData} from "./SwapData";
 import {BtcStoredHeader} from "../btcrelay/types/BtcStoredHeader";
-import {SwapCommitStatus} from "./SwapCommitStatus";
 import {ChainSwapType} from "./ChainSwapType";
 import {RelaySynchronizer} from "../btcrelay/synchronizer/RelaySynchronizer";
 import {Buffer} from "buffer";
 import {AbstractSigner, TransactionConfirmationOptions} from "../chains/ChainInterface";
+import {SwapCommitState} from "./SwapCommitState";
 
 export type IntermediaryReputationType = {
     [key in ChainSwapType]: {
@@ -64,12 +64,13 @@ export interface SwapContract<
     /**
      * Returns the unsigned transactions required for initializing a non-payIn swap (BTC -> SC)
      *
+     * @param sender Transaction sender address, must be either offerer or claimer
      * @param swapData Swap to init
      * @param signature Signature data from the offerer
      * @param skipChecks Whether to skip verification of the signature & checking if the swap is already committed
      * @param feeRate Fee rate to use for the transaction
      */
-    txsInit(swapData: T, signature: SignatureData, skipChecks?: boolean, feeRate?: string): Promise<TX[]>;
+    txsInit(sender: string, swapData: T, signature: SignatureData, skipChecks?: boolean, feeRate?: string): Promise<TX[]>;
 
     /**
      * Signs & sends transactions required for claiming an HTLC swap
@@ -229,12 +230,12 @@ export interface SwapContract<
     isCommited(swapData: T): Promise<boolean>;
 
     /**
-     * Returns the full status of the swap, expiry is handler by the isExpired function so also requires a signer
+     * Returns the full status of the swap, expiry is handled by the isExpired function so also requires a signer/sender
      *
      * @param signer
      * @param swapData
      */
-    getCommitStatus(signer: string, swapData: T): Promise<SwapCommitStatus>;
+    getCommitStatus(signer: string, swapData: T): Promise<SwapCommitState>;
 
     /**
      * Checks whether a given swap is refundable by us, i.e. it is already expired, we are offerer & swap is committed on-chain
@@ -269,13 +270,14 @@ export interface SwapContract<
     /**
      * Checks whether a signature is a valid initialization signature for a given swap
      *
+     * @param sender Address of the sender of the transaction (must be either offerer or claimer)
      * @param swapData Swap to initialize
      * @param signature Signature data
      * @param feeRate Fee rate used for the authorization
      * @param preFetchedVerificationData Optional pre-fetched data required for signature validation
      * @returns {Buffer | null} The message being signed if valid or null if invalid signature
      */
-    isValidInitAuthorization(swapData: T, signature: SignatureData, feeRate?: string, preFetchedVerificationData?: PreFetchVerification): Promise<Buffer | null>;
+    isValidInitAuthorization(sender: string, swapData: T, signature: SignatureData, feeRate?: string, preFetchedVerificationData?: PreFetchVerification): Promise<Buffer | null>;
 
     /**
      * Returns the expiry timestamp (UNIX milliseconds) of the authorization

@@ -32,7 +32,7 @@ __exportStar(require("./storage/StorageObject"), exports);
 __exportStar(require("./swaps/SwapContract"), exports);
 __exportStar(require("./swaps/SwapData"), exports);
 __exportStar(require("./swaps/ChainSwapType"), exports);
-__exportStar(require("./swaps/SwapCommitStatus"), exports);
+__exportStar(require("./swaps/SwapCommitState"), exports);
 __exportStar(require("./errors/SignatureVerificationError"), exports);
 __exportStar(require("./errors/CannotInitializeATAError"), exports);
 __exportStar(require("./errors/SwapDataVerificationError"), exports);
