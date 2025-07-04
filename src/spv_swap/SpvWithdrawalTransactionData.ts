@@ -94,6 +94,8 @@ export abstract class SpvWithdrawalTransactionData implements StorageObject {
 
     abstract isRecipient(address: string): boolean;
 
+    abstract getFrontingId(): string;
+
     getOutputWithoutFees(): bigint[] {
         return this.rawAmounts;
     }

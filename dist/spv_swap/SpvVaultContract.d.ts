@@ -104,6 +104,14 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
      */
     createVaultData(owner: string, vaultId: bigint, utxo: string, confirmations: number, tokenData: SpvVaultTokenData[]): Promise<Data>;
     /**
+     * Returns the party which currently fronted the withdrawal transaction
+     *
+     * @param owner Owner of the vault
+     * @param vaultId Vault ID
+     * @param withdrawal Withdrawal transaction to check the fronting for
+     */
+    getFronterAddress(owner: string, vaultId: bigint, withdrawal: WithdrawalTX): Promise<string | null>;
+    /**
      * Returns current vault data
      *
      * @param owner Owner of the vault
