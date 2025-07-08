@@ -36,3 +36,6 @@ export * from "./events/types/spv_vault/SpvVaultClaimEvent";
 export * from "./events/types/spv_vault/SpvVaultDepositEvent";
 export * from "./events/types/spv_vault/SpvVaultOpenEvent";
 export * from "./events/types/spv_vault/SpvVaultFrontEvent";
+export * from "./messaging/Messenger";
+export * from "./messaging/messages/Message";
+export * from "./messaging/messages/SwapClaimWitnessMessage";

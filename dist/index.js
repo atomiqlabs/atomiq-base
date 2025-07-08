@@ -52,3 +52,6 @@ __exportStar(require("./events/types/spv_vault/SpvVaultClaimEvent"), exports);
 __exportStar(require("./events/types/spv_vault/SpvVaultDepositEvent"), exports);
 __exportStar(require("./events/types/spv_vault/SpvVaultOpenEvent"), exports);
 __exportStar(require("./events/types/spv_vault/SpvVaultFrontEvent"), exports);
+__exportStar(require("./messaging/Messenger"), exports);
+__exportStar(require("./messaging/messages/Message"), exports);
+__exportStar(require("./messaging/messages/SwapClaimWitnessMessage"), exports);
