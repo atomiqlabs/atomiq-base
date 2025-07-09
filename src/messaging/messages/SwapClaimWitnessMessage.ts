@@ -29,3 +29,5 @@ export class SwapClaimWitnessMessage<T extends SwapData> extends Message {
     }
 
 }
+
+Message.deserializers[MessageType.SWAP_CLAIM_WITNESS] = SwapClaimWitnessMessage.deserialize;

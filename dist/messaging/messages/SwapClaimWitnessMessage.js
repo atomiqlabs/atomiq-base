@@ -24,3 +24,4 @@ class SwapClaimWitnessMessage extends Message_1.Message {
     }
 }
 exports.SwapClaimWitnessMessage = SwapClaimWitnessMessage;
+Message_1.Message.deserializers[Message_1.MessageType.SWAP_CLAIM_WITNESS] = SwapClaimWitnessMessage.deserialize;

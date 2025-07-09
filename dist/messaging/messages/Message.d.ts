@@ -3,6 +3,9 @@ export declare enum MessageType {
 }
 export declare abstract class Message {
     abstract type: MessageType;
+    static deserializers: {
+        [type: number]: (obj: any) => Message;
+    };
     serialize(): any;
-    static deserialize(message: any): any;
+    static deserialize(message: any): Message;
 }
