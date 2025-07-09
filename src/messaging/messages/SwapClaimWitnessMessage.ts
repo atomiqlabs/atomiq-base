@@ -16,6 +16,7 @@ export class SwapClaimWitnessMessage<T extends SwapData> extends Message {
 
     serialize() {
         return {
+            ...super.serialize(),
             swapData: this.swapData.serialize(),
             witness: this.witness
         }

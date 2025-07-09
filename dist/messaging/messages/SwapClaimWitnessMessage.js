@@ -12,6 +12,7 @@ class SwapClaimWitnessMessage extends Message_1.Message {
     }
     serialize() {
         return {
+            ...super.serialize(),
             swapData: this.swapData.serialize(),
             witness: this.witness
         };

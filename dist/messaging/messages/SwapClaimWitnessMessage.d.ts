@@ -5,9 +5,6 @@ export declare class SwapClaimWitnessMessage<T extends SwapData> extends Message
     swapData: T;
     witness: string;
     constructor(swapData: T, witness: string);
-    serialize(): {
-        swapData: any;
-        witness: string;
-    };
+    serialize(): any;
     static deserialize(obj: any): SwapClaimWitnessMessage<SwapData>;
 }
