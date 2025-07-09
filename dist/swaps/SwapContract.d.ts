@@ -33,6 +33,7 @@ export interface SwapContract<T extends SwapData = SwapData, TX = any, PreFetchD
     readonly claimWithSecretTimeout: number;
     readonly claimWithTxDataTimeout: number;
     readonly refundTimeout: number;
+    readonly supportsInitWithoutClaimer?: boolean;
     /**
      * Initializes the swap contract
      */

@@ -44,6 +44,7 @@ export interface SwapContract<
     readonly claimWithSecretTimeout: number;
     readonly claimWithTxDataTimeout: number;
     readonly refundTimeout: number;
+    readonly supportsInitWithoutClaimer?: boolean;
 
     /**
      * Initializes the swap contract
