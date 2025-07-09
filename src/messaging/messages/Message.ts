@@ -8,7 +8,7 @@ export abstract class Message {
 
     abstract type: MessageType;
 
-    static deserializers: {[type: number]: (obj: any) => Message}
+    static deserializers: {[type: number]: (obj: any) => Message} = {};
 
     serialize(): any {
         return {

@@ -19,3 +19,4 @@ class Message {
     }
 }
 exports.Message = Message;
+Message.deserializers = {};
