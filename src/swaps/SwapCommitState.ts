@@ -29,6 +29,7 @@ export type SwapCommitedState = {
 export type SwapPaidState = {
     type: SwapCommitStateType.PAID,
     getClaimTxId: () => Promise<string>,
+    getClaimResult: () => Promise<string>,
     getTxBlock: () => Promise<{blockHeight: number, blockTime: number}>
 };
 
