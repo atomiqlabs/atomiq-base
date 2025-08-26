@@ -5,7 +5,9 @@ export type TransactionConfirmationOptions = {
 };
 
 export type AbstractSigner = {
-    getAddress: () => string
+    getAddress: () => string,
+    init?: () => Promise<void>,
+    stop?: () => Promise<void>
 };
 
 export interface ChainInterface<
