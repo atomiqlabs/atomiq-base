@@ -6,7 +6,8 @@
     "outDir": "./dist",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "strictNullChecks": true
   },
   "include": [
     "./src/**/*"

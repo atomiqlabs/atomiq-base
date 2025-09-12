@@ -109,7 +109,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
      * @param owner Owner of the vault
      * @param vaultId Vault ID
      */
-    getVaultData(owner: string, vaultId: bigint): Promise<Data>;
+    getVaultData(owner: string, vaultId: bigint): Promise<Data | null>;
     /**
      * Returns all currently opened vaults
      * NOTE: This will take a long time, since the implementation will have to go through all the prior events
@@ -150,7 +150,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
     fromOpReturnData(data: Buffer): {
         recipient: string;
         rawAmounts: bigint[];
-        executionHash: string;
+        executionHash?: string;
     };
     /**
      * Returns the fee in native token base units to claim the swap

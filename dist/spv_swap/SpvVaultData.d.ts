@@ -22,7 +22,7 @@ export declare abstract class SpvVaultData<T extends SpvWithdrawalTransactionDat
     abstract getVaultId(): bigint;
     abstract getTokenData(): SpvVaultTokenData[];
     abstract getBalances(): SpvVaultTokenBalance[];
-    abstract getUtxo(): string;
+    abstract getUtxo(): string | null;
     abstract getConfirmations(): number;
     abstract getWithdrawalCount(): number;
     abstract getDepositCount(): number;

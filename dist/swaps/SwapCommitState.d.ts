@@ -7,19 +7,19 @@ export declare enum SwapCommitStateType {
 }
 export type SwapNotCommitedState = {
     type: SwapCommitStateType.NOT_COMMITED;
-    getRefundTxId?: () => Promise<string>;
+    getRefundTxId?: () => Promise<string | null>;
     getTxBlock?: () => Promise<{
         blockHeight: number;
         blockTime: number;
-    }>;
+    } | null>;
 };
 export type SwapExpiredState = {
     type: SwapCommitStateType.EXPIRED;
-    getRefundTxId?: () => Promise<string>;
+    getRefundTxId?: () => Promise<string | null>;
     getTxBlock?: () => Promise<{
         blockHeight: number;
         blockTime: number;
-    }>;
+    } | null>;
 };
 export type SwapRefundableState = {
     type: SwapCommitStateType.REFUNDABLE;
@@ -29,11 +29,11 @@ export type SwapCommitedState = {
 };
 export type SwapPaidState = {
     type: SwapCommitStateType.PAID;
-    getClaimTxId: () => Promise<string>;
-    getClaimResult: () => Promise<string>;
+    getClaimTxId: () => Promise<string | null>;
+    getClaimResult: () => Promise<string | null>;
     getTxBlock: () => Promise<{
         blockHeight: number;
         blockTime: number;
-    }>;
+    } | null>;
 };
 export type SwapCommitState = SwapNotCommitedState | SwapExpiredState | SwapRefundableState | SwapCommitedState | SwapPaidState;

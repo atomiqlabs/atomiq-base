@@ -6,6 +6,7 @@ class SpvVaultData {
         if (SpvVaultData.deserializers[data.type] != null) {
             return new SpvVaultData.deserializers[data.type](data);
         }
+        throw new Error("No deserializer found for spv vault data type: " + data?.type);
     }
     calculateStateAfter(priorWithdrawalTxs) {
         const balances = [...this.getBalances()];

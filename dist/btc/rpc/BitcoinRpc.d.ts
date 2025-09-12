@@ -51,7 +51,7 @@ export interface BitcoinRpc<T extends BtcBlock> {
         merkle: Buffer[];
         blockheight: number;
     }>;
-    getTransaction(txId: string): Promise<BtcTx>;
+    getTransaction(txId: string): Promise<BtcTx | null>;
     getBlockhash(height: number): Promise<string>;
     getBlockWithTransactions(blockhash: string): Promise<BtcBlockWithTxs>;
     sendRawTransaction(rawTx: string): Promise<string>;

@@ -133,7 +133,7 @@ export interface SpvVaultContract<
      * @param owner Owner of the vault
      * @param vaultId Vault ID
      */
-    getVaultData(owner: string, vaultId: bigint): Promise<Data>;
+    getVaultData(owner: string, vaultId: bigint): Promise<Data | null>;
 
     /**
      * Returns all currently opened vaults
@@ -177,7 +177,7 @@ export interface SpvVaultContract<
      *
      * @param data data as specified in the OP_RETURN output of the transaction
      */
-    fromOpReturnData(data: Buffer): {recipient: string, rawAmounts: bigint[], executionHash: string};
+    fromOpReturnData(data: Buffer): {recipient: string, rawAmounts: bigint[], executionHash?: string};
 
     /**
      * Returns the fee in native token base units to claim the swap

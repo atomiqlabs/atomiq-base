@@ -17,9 +17,10 @@ export abstract class SpvWithdrawalTransactionData implements StorageObject {
         if (SpvWithdrawalTransactionData.deserializers[data.type] != null) {
             return new SpvWithdrawalTransactionData.deserializers[data.type](data) as unknown as T;
         }
+        throw new Error("No deserializer found for spv withdrawal transaction data type: "+data?.type);
     }
 
-    protected abstract fromOpReturnData(data: Buffer): {recipient: string, rawAmounts: bigint[], executionHash: string};
+    protected abstract fromOpReturnData(data: Buffer): {recipient: string, rawAmounts: bigint[], executionHash?: string};
 
     readonly recipient: string;
     readonly rawAmounts: bigint[];
@@ -28,8 +29,8 @@ export abstract class SpvWithdrawalTransactionData implements StorageObject {
     readonly executionFeeRate: bigint;
     readonly frontingFeeRate: bigint;
 
-    readonly executionHash: string;
-    readonly executionExpiry: number;
+    readonly executionHash?: string;
+    readonly executionExpiry?: number;
 
     readonly btcTx: BtcTx;
 
@@ -54,14 +55,18 @@ export abstract class SpvWithdrawalTransactionData implements StorageObject {
         const opReturnData = Buffer.from(opReturnOutput.scriptPubKey.hex, "hex");
         if(opReturnData.length===0) throw new Error("Output 1 empty script");
         if(opReturnData.at(0)!==0x6a) throw new Error("Output 1 is not OP_RETURN");
-        if(opReturnData.at(1)===0) throw new Error("Output 1 OP_RETURN followed by OP_0");
+
+        const opCode1 = opReturnData.at(1);
+        if(opCode1==null) throw new Error("Output 1 OP_RETURN without any additional opcode");
+        if(opCode1===0) throw new Error("Output 1 OP_RETURN followed by OP_0");
         let data: Buffer;
-        if(opReturnData.at(1) === 0x4c) { //OP_PUSHDATA1
+        if(opCode1 === 0x4c) { //OP_PUSHDATA1
             const dataLength = opReturnData.at(2);
+            if(dataLength==null) throw new Error("Output 1 OP_RETURN followed by OP_PUSHDATA1 but without [length] parameter");
             data = opReturnData.subarray(3, 3+dataLength);
             if(data.length !== dataLength) throw new Error("Output 1 OP_RETURN data length mismatch!");
-        } else if(opReturnData.at(1) <= 0x4b) { //OP_PUSH<length>
-            const dataLength = opReturnData.at(1);
+        } else if(opCode1 <= 0x4b) { //OP_PUSH<length>
+            const dataLength = opCode1;
             data = opReturnData.subarray(2, 2+dataLength);
             if(data.length !== dataLength) throw new Error("Output 1 OP_RETURN data length mismatch!");
         } else {
@@ -137,7 +142,7 @@ export abstract class SpvWithdrawalTransactionData implements StorageObject {
     }
 
     getExecutionData(): ExecutionData | null {
-        if(this.executionHash==null) return null;
+        if(this.executionHash==null || this.executionExpiry==null) return null;
         return {
             executionHash: this.executionHash,
             executionExpiry: this.executionExpiry
