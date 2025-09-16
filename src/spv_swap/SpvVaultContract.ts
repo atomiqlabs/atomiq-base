@@ -158,6 +158,13 @@ export interface SpvVaultContract<
     getWithdrawalState(btcTxId: string): Promise<SpvWithdrawalState>;
 
     /**
+     * Returns current state of the withdrawals as specified by the bitcoin transaction IDs
+     *
+     * @param btcTxIds
+     */
+    getWithdrawalStates(btcTxIds: string[]): Promise<{[btcTxId: string]: SpvWithdrawalState}>;
+
+    /**
      * Parses withdrawal data from the parsed bitcoin transaction
      *
      * @param btcTx

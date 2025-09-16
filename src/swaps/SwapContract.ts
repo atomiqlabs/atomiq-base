@@ -239,6 +239,13 @@ export interface SwapContract<
     getCommitStatus(signer: string, swapData: T): Promise<SwapCommitState>;
 
     /**
+     * Returns the full status of the passed swaps, expiry is handled by the isExpired function so also requires a signer/sender
+     *
+     * @param request
+     */
+    getCommitStatuses(request: {signer: string, swapData: T}[]): Promise<{[escrowHash: string]: SwapCommitState}>;
+
+    /**
      * Checks whether a given swap is refundable by us, i.e. it is already expired, we are offerer & swap is committed on-chain
      *
      * @param signer
