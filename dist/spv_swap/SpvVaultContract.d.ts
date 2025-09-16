@@ -149,10 +149,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
      * @param owner Owner of the vault
      * @param vaultId Vault ID
      */
-    getVaultLatestUtxo(owner: string, vaultId: bigint): Promise<{
-        txId: string;
-        vout: number;
-    } | null>;
+    getVaultLatestUtxo(owner: string, vaultId: bigint): Promise<string | null>;
     /**
      * Returns the latest utxos of for multiple vaults (or null if vault closed or not found)
      *
@@ -163,10 +160,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
         vaultId: bigint;
     }[]): Promise<{
         [owner: string]: {
-            [vaultId: string]: {
-                txId: string;
-                vout: number;
-            } | null;
+            [vaultId: string]: string | null;
         };
     }>;
     /**

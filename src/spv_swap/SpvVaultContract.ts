@@ -164,14 +164,14 @@ export interface SpvVaultContract<
      * @param owner Owner of the vault
      * @param vaultId Vault ID
      */
-    getVaultLatestUtxo(owner: string, vaultId: bigint): Promise<{txId: string, vout: number} | null>;
+    getVaultLatestUtxo(owner: string, vaultId: bigint): Promise<string | null>;
 
     /**
      * Returns the latest utxos of for multiple vaults (or null if vault closed or not found)
      *
      * @param vaults Vault data to query
      */
-    getVaultLatestUtxos(vaults: {owner: string, vaultId: bigint}[]): Promise<{[owner: string]: {[vaultId: string]: {txId: string, vout: number} | null}}>;
+    getVaultLatestUtxos(vaults: {owner: string, vaultId: bigint}[]): Promise<{[owner: string]: {[vaultId: string]: string | null}}>;
 
     /**
      * Returns all currently opened vaults
