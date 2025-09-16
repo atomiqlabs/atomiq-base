@@ -137,12 +137,41 @@ export interface SpvVaultContract<
     getFronterAddress(owner: string, vaultId: bigint, withdrawal: WithdrawalTX): Promise<string | null>;
 
     /**
+     * Returns the parties which currently fronted the withdrawal transactions
+     *
+     * @param withdrawals withdrawals to query
+     */
+    getFronterAddresses(withdrawals: {owner: string, vaultId: bigint, withdrawal: WithdrawalTX}[]): Promise<{[btcTxId: string]: string | null}>;
+
+    /**
      * Returns current vault data
      *
      * @param owner Owner of the vault
      * @param vaultId Vault ID
      */
     getVaultData(owner: string, vaultId: bigint): Promise<Data>;
+
+    /**
+     * Returns current vault data for multiple vaults
+     *
+     * @param vaults Vault data to query
+     */
+    getMultipleVaultData(vaults: {owner: string, vaultId: bigint}[]): Promise<{[owner: string]: {[vaultId: string]: Data}}>;
+
+    /**
+     * Returns the latest utxo of a vault (or null if vault closed or not found)
+     *
+     * @param owner Owner of the vault
+     * @param vaultId Vault ID
+     */
+    getVaultLatestUtxo(owner: string, vaultId: bigint): Promise<{txId: string, vout: number} | null>;
+
+    /**
+     * Returns the latest utxos of for multiple vaults (or null if vault closed or not found)
+     *
+     * @param vaults Vault data to query
+     */
+    getVaultLatestUtxos(vaults: {owner: string, vaultId: bigint}[]): Promise<{[owner: string]: {[vaultId: string]: {txId: string, vout: number} | null}}>;
 
     /**
      * Returns all currently opened vaults
