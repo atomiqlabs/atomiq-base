@@ -110,6 +110,12 @@ export interface ChainInterface<
     getTxIdStatus(txId: string): Promise<"not_found" | "pending" | "success" | "reverted">;
 
     /**
+     * Returns the latest known finalized block data (this is a block with 100% certainty of not getting re-org, i.e.
+     *  a block already committed on L1)
+     */
+    getFinalizedBlock(): Promise<{height: number, blockHash: string}>;
+
+    /**
      * Signs, sends a batch of transaction and optionally waits for their confirmation
      *
      * @param signer Signer to use for signing transactions

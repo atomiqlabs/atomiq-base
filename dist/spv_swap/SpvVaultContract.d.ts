@@ -169,17 +169,23 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
      */
     getAllVaults(owner?: string): Promise<Data[]>;
     /**
-     * Returns current state of the withdrawal as specified by the bitcoin transaction ID
+     * Returns current state of the withdrawal, optionally
+     *  only check withdrawals from the provided block height
      *
-     * @param btcTxId
+     * @param withdrawalTx
+     * @param scStartBlockheight
      */
-    getWithdrawalState(btcTxId: string): Promise<SpvWithdrawalState>;
+    getWithdrawalState(withdrawalTx: WithdrawalTX, scStartBlockheight?: number): Promise<SpvWithdrawalState>;
     /**
-     * Returns current state of the withdrawals as specified by the bitcoin transaction IDs
+     * Returns current state of the withdrawals, optionally
+     *  only check withdrawals from the provided block height
      *
-     * @param btcTxIds
+     * @param withdrawalTxs Object with the withdrawal tx to check + an optional start blockheight
      */
-    getWithdrawalStates(btcTxIds: string[]): Promise<{
+    getWithdrawalStates(withdrawalTxs: {
+        withdrawal: WithdrawalTX;
+        scStartBlockheight?: number;
+    }[]): Promise<{
         [btcTxId: string]: SpvWithdrawalState;
     }>;
     /**
