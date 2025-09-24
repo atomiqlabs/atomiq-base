@@ -36,6 +36,7 @@ __exportStar(require("./swaps/SwapCommitState"), exports);
 __exportStar(require("./errors/SignatureVerificationError"), exports);
 __exportStar(require("./errors/CannotInitializeATAError"), exports);
 __exportStar(require("./errors/SwapDataVerificationError"), exports);
+__exportStar(require("./errors/TransactionRevertedError"), exports);
 __exportStar(require("./chains/ChainType"), exports);
 __exportStar(require("./chains/ChainData"), exports);
 __exportStar(require("./utils/BigIntBufferUtils"), exports);

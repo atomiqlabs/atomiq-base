@@ -20,6 +20,7 @@ export * from "./swaps/SwapCommitState";
 export * from "./errors/SignatureVerificationError";
 export * from "./errors/CannotInitializeATAError";
 export * from "./errors/SwapDataVerificationError";
+export * from "./errors/TransactionRevertedError";
 export * from "./chains/ChainType";
 export * from "./chains/ChainData";
 export * from "./utils/BigIntBufferUtils";
