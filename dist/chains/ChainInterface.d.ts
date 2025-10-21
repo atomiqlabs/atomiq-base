@@ -4,9 +4,13 @@ export type TransactionConfirmationOptions = {
     feeRate?: string;
 };
 export type AbstractSigner = {
+    type: "AtomiqAbstractSigner";
     getAddress: () => string;
+    init?: () => Promise<void>;
+    stop?: () => Promise<void>;
 };
-export interface ChainInterface<TX = any, Signer extends AbstractSigner = AbstractSigner, ChainId extends string = string> {
+export declare function isAbstractSigner(val: any): val is AbstractSigner;
+export interface ChainInterface<TX = any, Signer extends AbstractSigner = AbstractSigner, ChainId extends string = string, NativeSigner = any> {
     readonly chainId: ChainId;
     /**
      * Returns the token balance of a specific address
@@ -23,8 +27,15 @@ export interface ChainInterface<TX = any, Signer extends AbstractSigner = Abstra
      * Checks if a given string is a valid wallet address
      *
      * @param address
+     * @param lenient Whether a lenient parsing should be used (i.e. don't strictly enforce the Starknet address lengths)
      */
-    isValidAddress(address: string): boolean;
+    isValidAddress(address: string, lenient?: boolean): boolean;
+    /**
+     * Normalizes a given address i.e. pads it to the specific size
+     *
+     * @param address
+     */
+    normalizeAddress(address: string): string;
     /**
      * Checks if a given string is a valid token identifier
      *
@@ -76,6 +87,14 @@ export interface ChainInterface<TX = any, Signer extends AbstractSigner = Abstra
      */
     getTxIdStatus(txId: string): Promise<"not_found" | "pending" | "success" | "reverted">;
     /**
+     * Returns the latest known finalized block data (this is a block with 100% certainty of not getting re-org, i.e.
+     *  a block already committed on L1)
+     */
+    getFinalizedBlock(): Promise<{
+        height: number;
+        blockHash: string;
+    }>;
+    /**
      * Signs, sends a batch of transaction and optionally waits for their confirmation
      *
      * @param signer Signer to use for signing transactions
@@ -107,4 +126,8 @@ export interface ChainInterface<TX = any, Signer extends AbstractSigner = Abstra
      * Returns randomly generated signer
      */
     randomSigner(): Signer;
+    /**
+     * Wraps a native chain signer object to an atomiq-understandable AbstractSigner
+     */
+    wrapSigner(signer: NativeSigner): Promise<Signer>;
 }

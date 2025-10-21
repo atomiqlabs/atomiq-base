@@ -61,5 +61,9 @@ export abstract class SwapData implements StorageObject {
 
     abstract equals(other: SwapData): boolean;
 
+    hasSuccessAction(): boolean {
+        return false;
+    }
+
 }
 

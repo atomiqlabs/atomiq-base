@@ -21,6 +21,7 @@ export * from "./swaps/SwapCommitState";
 export * from "./errors/SignatureVerificationError";
 export * from "./errors/CannotInitializeATAError"
 export * from "./errors/SwapDataVerificationError";
+export * from "./errors/TransactionRevertedError";
 
 export * from "./chains/ChainType";
 export * from "./chains/ChainData";
@@ -44,3 +45,7 @@ export * from "./events/types/spv_vault/SpvVaultClaimEvent";
 export * from "./events/types/spv_vault/SpvVaultDepositEvent";
 export * from "./events/types/spv_vault/SpvVaultOpenEvent";
 export * from "./events/types/spv_vault/SpvVaultFrontEvent";
+
+export * from "./messaging/Messenger";
+export * from "./messaging/messages/Message";
+export * from "./messaging/messages/SwapClaimWitnessMessage";

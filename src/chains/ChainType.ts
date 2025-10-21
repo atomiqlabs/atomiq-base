@@ -13,9 +13,10 @@ export type ChainType<
     PreFetchVerification = any,
     TXType = any,
     Signer extends AbstractSigner = AbstractSigner,
+    NativeSigner = any,
     T extends SwapData = SwapData,
     C extends SwapContract<T, TXType, PreFetchData, PreFetchVerification, Signer, ChainId> = SwapContract<T, TXType, PreFetchData, PreFetchVerification, Signer, ChainId>,
-    I extends ChainInterface<TXType, Signer, ChainId> = ChainInterface<TXType, Signer, ChainId>,
+    I extends ChainInterface<TXType, Signer, ChainId, NativeSigner> = ChainInterface<TXType, Signer, ChainId, NativeSigner>,
     E extends ChainEvents<T> = ChainEvents<T>,
     B extends BtcRelay<any, TXType, any, Signer> = BtcRelay<any, TXType, any, Signer>,
     SpvData extends SpvVaultData = SpvVaultData,
@@ -34,5 +35,6 @@ export type ChainType<
     BtcRelay: B,
     SpvVaultData: SpvData,
     SpvVaultContract: SpvContract,
-    SpvVaultWithdrawalData: SpvWithdrawalData
+    SpvVaultWithdrawalData: SpvWithdrawalData,
+    NativeSigner: NativeSigner
 }

@@ -28,6 +28,7 @@ export declare abstract class SpvWithdrawalTransactionData implements StorageObj
     serialize(): any;
     getRecipient(): string;
     abstract isRecipient(address: string): boolean;
+    abstract getFrontingId(): string;
     getOutputWithoutFees(): bigint[];
     getCallerFee(): bigint[];
     getFrontingFee(): bigint[];

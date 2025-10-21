@@ -33,6 +33,7 @@ export interface SwapContract<T extends SwapData = SwapData, TX = any, PreFetchD
     readonly claimWithSecretTimeout: number;
     readonly claimWithTxDataTimeout: number;
     readonly refundTimeout: number;
+    readonly supportsInitWithoutClaimer?: boolean;
     /**
      * Initializes the swap contract
      */
@@ -190,6 +191,17 @@ export interface SwapContract<T extends SwapData = SwapData, TX = any, PreFetchD
      */
     getCommitStatus(signer: string, swapData: T): Promise<SwapCommitState>;
     /**
+     * Returns the full status of the passed swaps, expiry is handled by the isExpired function so also requires a signer/sender
+     *
+     * @param request
+     */
+    getCommitStatuses(request: {
+        signer: string;
+        swapData: T;
+    }[]): Promise<{
+        [escrowHash: string]: SwapCommitState;
+    }>;
+    /**
      * Checks whether a given swap is refundable by us, i.e. it is already expired, we are offerer & swap is committed on-chain
      *
      * @param signer
@@ -308,17 +320,19 @@ export interface SwapContract<T extends SwapData = SwapData, TX = any, PreFetchD
     /**
      * Returns the fee in native token base units to commit (initiate) the swap
      *
+     * @param signer
      * @param swapData Swap to initiate
      * @param feeRate Optional fee rate (fetched on-demand if not provided)
      */
-    getCommitFee(swapData: T, feeRate?: string): Promise<bigint>;
+    getCommitFee(signer: string, swapData: T, feeRate?: string): Promise<bigint>;
     /**
      * Returns raw fee (not including any account deposits we might need) for initiating the swap
      *
+     * @param signer
      * @param swapData Swap to initiate
      * @param feeRate Optional fee rate (fetched on-demand if not provided)
      */
-    getRawCommitFee?(swapData: T, feeRate?: string): Promise<bigint>;
+    getRawCommitFee?(signer: string, swapData: T, feeRate?: string): Promise<bigint>;
     /**
      * Returns the fee in native token base units to claim the swap
      *
@@ -338,17 +352,19 @@ export interface SwapContract<T extends SwapData = SwapData, TX = any, PreFetchD
     /**
      * Returns the fee in native token base units to refund the swap
      *
+     * @param signer
      * @param swapData Swap to refund
      * @param feeRate Optional fee rate (fetched on-demand if not provided)
      */
-    getRefundFee(swapData: T, feeRate?: string): Promise<bigint>;
+    getRefundFee(signer: string, swapData: T, feeRate?: string): Promise<bigint>;
     /**
      * Returns raw fee (not including any refunds we might get that would make the getRefundFee negative) for claiming the swap
      *
+     * @param signer
      * @param swapData Swap to claim
      * @param feeRate Optional fee rate (fetched on-demand if not provided)
      */
-    getRawRefundFee?(swapData: T, feeRate?: string): Promise<bigint>;
+    getRawRefundFee?(signer: string, swapData: T, feeRate?: string): Promise<bigint>;
     /**
      * Returns the fee rate for committing (initializing) a payIn swap
      *
