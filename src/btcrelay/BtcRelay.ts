@@ -59,8 +59,8 @@ export interface BtcRelay<
         computedCommitedHeaders: V[]
     }>;
 
-    getMainFeeRate?(signer: string): Promise<string>;
-    getForkFeeRate?(signer: string, forkId: number): Promise<string>;
+    getMainFeeRate(signer: string): Promise<string>;
+    getForkFeeRate(signer: string, forkId: number): Promise<string>;
 
     estimateSynchronizeFee(requiredBlockheight: number, feeRate?: string): Promise<bigint>;
 
