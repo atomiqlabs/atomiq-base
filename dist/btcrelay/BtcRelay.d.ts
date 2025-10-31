@@ -53,8 +53,8 @@ export interface BtcRelay<V extends BtcStoredHeader<any>, T, B extends BtcBlock,
         tx: T;
         computedCommitedHeaders: V[];
     }>;
-    getMainFeeRate?(signer: string): Promise<string>;
-    getForkFeeRate?(signer: string, forkId: number): Promise<string>;
+    getMainFeeRate(signer: string): Promise<string>;
+    getForkFeeRate(signer: string, forkId: number): Promise<string>;
     estimateSynchronizeFee(requiredBlockheight: number, feeRate?: string): Promise<bigint>;
     getFeePerBlock(feeRate?: any): Promise<bigint>;
     sweepForkData?(signer: Signer, lastSweepTimestamp?: number): Promise<number | null>;
