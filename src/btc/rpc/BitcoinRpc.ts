@@ -23,8 +23,8 @@ export type BtcVin = {
 };
 
 export type BtcTx = {
-    blockhash: string,
-    confirmations: number,
+    blockhash?: string,
+    confirmations?: number,
     vsize: number,
     txid: string,
     hex: string,

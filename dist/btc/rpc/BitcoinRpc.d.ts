@@ -20,8 +20,8 @@ export type BtcVin = {
     txinwitness: string[];
 };
 export type BtcTx = {
-    blockhash: string;
-    confirmations: number;
+    blockhash?: string;
+    confirmations?: number;
     vsize: number;
     txid: string;
     hex: string;
