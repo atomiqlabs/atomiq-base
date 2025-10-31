@@ -7,8 +7,8 @@ export declare enum SpvVaultEventType {
     CLOSE = 3,
     FRONT = 4
 }
-export declare class SpvVaultEvent<C extends SpvVaultEventType = SpvVaultEventType> extends ChainEvent<SwapData> {
-    readonly eventType: C;
+export declare abstract class SpvVaultEvent<C extends SpvVaultEventType = SpvVaultEventType> extends ChainEvent<SwapData> {
+    abstract readonly eventType: C;
     owner: string;
     vaultId: bigint;
     constructor(owner: string, vaultId: bigint);

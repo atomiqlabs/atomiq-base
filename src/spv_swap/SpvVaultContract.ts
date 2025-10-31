@@ -149,14 +149,14 @@ export interface SpvVaultContract<
      * @param owner Owner of the vault
      * @param vaultId Vault ID
      */
-    getVaultData(owner: string, vaultId: bigint): Promise<Data>;
+    getVaultData(owner: string, vaultId: bigint): Promise<Data | null>;
 
     /**
      * Returns current vault data for multiple vaults
      *
      * @param vaults Vault data to query
      */
-    getMultipleVaultData(vaults: {owner: string, vaultId: bigint}[]): Promise<{[owner: string]: {[vaultId: string]: Data}}>;
+    getMultipleVaultData(vaults: {owner: string, vaultId: bigint}[]): Promise<{[owner: string]: {[vaultId: string]: Data | null}}>;
 
     /**
      * Returns the latest utxo of a vault (or null if vault closed or not found)
@@ -186,7 +186,7 @@ export interface SpvVaultContract<
      * @param withdrawalTx
      * @param scStartBlockheight
      */
-    getWithdrawalState(withdrawalTx: WithdrawalTX, scStartBlockheight?: number): Promise<SpvWithdrawalState>;
+    getWithdrawalState(withdrawalTx: WithdrawalTX, scStartBlockheight?: number): Promise<SpvWithdrawalState | null>;
 
     /**
      * Returns current state of the withdrawals, optionally
@@ -194,7 +194,7 @@ export interface SpvVaultContract<
      *
      * @param withdrawalTxs Object with the withdrawal tx to check + an optional start blockheight
      */
-    getWithdrawalStates(withdrawalTxs: {withdrawal: WithdrawalTX, scStartBlockheight?: number}[]): Promise<{[btcTxId: string]: SpvWithdrawalState}>;
+    getWithdrawalStates(withdrawalTxs: {withdrawal: WithdrawalTX, scStartBlockheight?: number}[]): Promise<{[btcTxId: string]: SpvWithdrawalState | null}>;
 
     /**
      * Parses withdrawal data from the parsed bitcoin transaction

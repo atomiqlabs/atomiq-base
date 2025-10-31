@@ -24,8 +24,8 @@ export interface BtcRelay<
     retrieveLogAndBlockheight(blockData: {blockhash: string, height: number}, requiredBlockheight?: number): Promise<{
         header: V,
         height: number
-    }>;
-    retrieveLogByCommitHash(commitHash: string, blockData: {blockhash: string, height: number}): Promise<V>;
+    } | null>;
+    retrieveLogByCommitHash(commitHash: string, blockData: {blockhash: string, height: number}): Promise<V | null>;
 
     retrieveLatestKnownBlockLog(): Promise<{
         resultStoredHeader: V,

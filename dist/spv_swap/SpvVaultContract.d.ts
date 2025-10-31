@@ -129,7 +129,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
      * @param owner Owner of the vault
      * @param vaultId Vault ID
      */
-    getVaultData(owner: string, vaultId: bigint): Promise<Data>;
+    getVaultData(owner: string, vaultId: bigint): Promise<Data | null>;
     /**
      * Returns current vault data for multiple vaults
      *
@@ -140,7 +140,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
         vaultId: bigint;
     }[]): Promise<{
         [owner: string]: {
-            [vaultId: string]: Data;
+            [vaultId: string]: Data | null;
         };
     }>;
     /**
@@ -175,7 +175,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
      * @param withdrawalTx
      * @param scStartBlockheight
      */
-    getWithdrawalState(withdrawalTx: WithdrawalTX, scStartBlockheight?: number): Promise<SpvWithdrawalState>;
+    getWithdrawalState(withdrawalTx: WithdrawalTX, scStartBlockheight?: number): Promise<SpvWithdrawalState | null>;
     /**
      * Returns current state of the withdrawals, optionally
      *  only check withdrawals from the provided block height
@@ -186,7 +186,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
         withdrawal: WithdrawalTX;
         scStartBlockheight?: number;
     }[]): Promise<{
-        [btcTxId: string]: SpvWithdrawalState;
+        [btcTxId: string]: SpvWithdrawalState | null;
     }>;
     /**
      * Parses withdrawal data from the parsed bitcoin transaction

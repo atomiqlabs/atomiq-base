@@ -13,10 +13,11 @@ export abstract class SpvWithdrawalTransactionData implements StorageObject {
         [type: string]: new (serialized: any) => any,
     } = {};
 
-    static deserialize<T extends SpvWithdrawalTransactionData>(data: any): T {
+    static deserialize<T extends SpvWithdrawalTransactionData>(data: any): T | null {
         if (SpvWithdrawalTransactionData.deserializers[data.type] != null) {
             return new SpvWithdrawalTransactionData.deserializers[data.type](data) as unknown as T;
         }
+        throw new Error(`No deserializer found for spv withdrawal tx data type: ${data.type}`);
     }
 
     protected abstract fromOpReturnData(data: Buffer): {recipient: string, rawAmounts: bigint[], executionHash: string};
@@ -54,14 +55,17 @@ export abstract class SpvWithdrawalTransactionData implements StorageObject {
         const opReturnData = Buffer.from(opReturnOutput.scriptPubKey.hex, "hex");
         if(opReturnData.length===0) throw new Error("Output 1 empty script");
         if(opReturnData.at(0)!==0x6a) throw new Error("Output 1 is not OP_RETURN");
-        if(opReturnData.at(1)===0) throw new Error("Output 1 OP_RETURN followed by OP_0");
+        const secondByte = opReturnData.at(1);
+        if(secondByte==null) throw new Error("Output 1 OP_RETURN empty");
+        if(secondByte===0) throw new Error("Output 1 OP_RETURN followed by OP_0");
         let data: Buffer;
-        if(opReturnData.at(1) === 0x4c) { //OP_PUSHDATA1
+        if(secondByte === 0x4c) { //OP_PUSHDATA1
             const dataLength = opReturnData.at(2);
+            if(dataLength==null) throw new Error("Output 1 OP_RETURN OP_PUSHDATA1 invalid length!");
             data = opReturnData.subarray(3, 3+dataLength);
             if(data.length !== dataLength) throw new Error("Output 1 OP_RETURN data length mismatch!");
-        } else if(opReturnData.at(1) <= 0x4b) { //OP_PUSH<length>
-            const dataLength = opReturnData.at(1);
+        } else if(secondByte <= 0x4b) { //OP_PUSH<length>
+            const dataLength = secondByte;
             data = opReturnData.subarray(2, 2+dataLength);
             if(data.length !== dataLength) throw new Error("Output 1 OP_RETURN data length mismatch!");
         } else {

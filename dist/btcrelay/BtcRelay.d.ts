@@ -19,11 +19,11 @@ export interface BtcRelay<V extends BtcStoredHeader<any>, T, B extends BtcBlock,
     }, requiredBlockheight?: number): Promise<{
         header: V;
         height: number;
-    }>;
+    } | null>;
     retrieveLogByCommitHash(commitHash: string, blockData: {
         blockhash: string;
         height: number;
-    }): Promise<V>;
+    }): Promise<V | null>;
     retrieveLatestKnownBlockLog(): Promise<{
         resultStoredHeader: V;
         resultBitcoinHeader: B;

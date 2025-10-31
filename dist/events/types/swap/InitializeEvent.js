@@ -5,6 +5,7 @@ const SwapEvent_1 = require("./SwapEvent");
 class InitializeEvent extends SwapEvent_1.SwapEvent {
     constructor(escrowHash, swapType, swapData) {
         super(escrowHash);
+        this.eventType = SwapEvent_1.SwapEventType.INITIALIZE;
         this.swapType = swapType;
         this.swapData = swapData;
     }

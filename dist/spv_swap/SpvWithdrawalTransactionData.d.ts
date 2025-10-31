@@ -10,7 +10,7 @@ export declare abstract class SpvWithdrawalTransactionData implements StorageObj
     static deserializers: {
         [type: string]: new (serialized: any) => any;
     };
-    static deserialize<T extends SpvWithdrawalTransactionData>(data: any): T;
+    static deserialize<T extends SpvWithdrawalTransactionData>(data: any): T | null;
     protected abstract fromOpReturnData(data: Buffer): {
         recipient: string;
         rawAmounts: bigint[];

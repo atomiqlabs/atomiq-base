@@ -387,7 +387,7 @@ export interface SwapContract<
      * @param address
      * @param token
      */
-    getIntermediaryReputation(address: string, token: string): Promise<IntermediaryReputationType>;
+    getIntermediaryReputation(address: string, token: string): Promise<IntermediaryReputationType | null>;
 
     /**
      * Returns the fee in native token base units to commit (initiate) the swap
