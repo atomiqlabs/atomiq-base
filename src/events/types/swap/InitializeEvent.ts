@@ -6,9 +6,9 @@ export class InitializeEvent<T extends SwapData> extends SwapEvent<T, SwapEventT
     readonly eventType: SwapEventType.INITIALIZE = SwapEventType.INITIALIZE;
 
     swapType: ChainSwapType;
-    swapData: () => Promise<T>;
+    swapData: () => Promise<T | null>;
 
-    constructor(escrowHash: string, swapType: ChainSwapType, swapData: () => Promise<T>) {
+    constructor(escrowHash: string, swapType: ChainSwapType, swapData: () => Promise<T | null>) {
         super(escrowHash);
         this.swapType = swapType;
         this.swapData = swapData;

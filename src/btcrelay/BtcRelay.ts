@@ -19,7 +19,7 @@ export interface BtcRelay<
         blockhash: string,
         commitHash: string,
         chainWork: Buffer
-    }>;
+    } | null>;
 
     retrieveLogAndBlockheight(blockData: {blockhash: string, height: number}, requiredBlockheight?: number): Promise<{
         header: V,
@@ -30,7 +30,7 @@ export interface BtcRelay<
     retrieveLatestKnownBlockLog(): Promise<{
         resultStoredHeader: V,
         resultBitcoinHeader: B
-    }>;
+    } | null>;
     //retrieveOnchainTip(): Promise<B>;
 
     saveInitialHeader(signer: string, header: B, epochStart: number, pastBlocksTimestamps: number[], feeRate?: string): Promise<T>;

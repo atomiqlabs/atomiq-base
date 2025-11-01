@@ -12,7 +12,7 @@ export interface BtcRelay<V extends BtcStoredHeader<any>, T, B extends BtcBlock,
         blockhash: string;
         commitHash: string;
         chainWork: Buffer;
-    }>;
+    } | null>;
     retrieveLogAndBlockheight(blockData: {
         blockhash: string;
         height: number;
@@ -27,7 +27,7 @@ export interface BtcRelay<V extends BtcStoredHeader<any>, T, B extends BtcBlock,
     retrieveLatestKnownBlockLog(): Promise<{
         resultStoredHeader: V;
         resultBitcoinHeader: B;
-    }>;
+    } | null>;
     saveInitialHeader(signer: string, header: B, epochStart: number, pastBlocksTimestamps: number[], feeRate?: string): Promise<T>;
     saveMainHeaders(signer: string, mainHeaders: B[], storedHeader: V, feeRate?: string): Promise<{
         forkId: number;

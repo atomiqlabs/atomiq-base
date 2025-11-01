@@ -20,7 +20,7 @@ export abstract class SpvWithdrawalTransactionData implements StorageObject {
         throw new Error(`No deserializer found for spv withdrawal tx data type: ${data.type}`);
     }
 
-    protected abstract fromOpReturnData(data: Buffer): {recipient: string, rawAmounts: bigint[], executionHash: string};
+    protected abstract fromOpReturnData(data: Buffer): {recipient: string, rawAmounts: bigint[], executionHash?: string};
 
     readonly recipient: string;
     readonly rawAmounts: bigint[];
@@ -29,7 +29,7 @@ export abstract class SpvWithdrawalTransactionData implements StorageObject {
     readonly executionFeeRate: bigint;
     readonly frontingFeeRate: bigint;
 
-    readonly executionHash: string;
+    readonly executionHash?: string;
     readonly executionExpiry: number;
 
     readonly btcTx: BtcTx;
