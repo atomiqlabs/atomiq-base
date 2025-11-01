@@ -235,7 +235,7 @@ export interface SpvVaultContract<
      * @param withdrawalData Withdrawal to claim
      * @param feeRate Optional fee rate (fetched on-demand if not provided)
      */
-    getClaimFee(signer: string, vault: Data, withdrawalData: WithdrawalTX, feeRate?: string): Promise<bigint>;
+    getClaimFee(signer: string, vault?: Data, withdrawalData?: WithdrawalTX, feeRate?: string): Promise<bigint>;
 
     /**
      * Returns raw fee (not including any refunds we might get that would make the getClaimFee negative) for claiming the swap
@@ -245,7 +245,7 @@ export interface SpvVaultContract<
      * @param withdrawalData Withdrawal to claim
      * @param feeRate Optional fee rate (fetched on-demand if not provided)
      */
-    getRawClaimFee?(signer: string, vault: Data, withdrawalData: WithdrawalTX, feeRate?: string): Promise<bigint>;
+    getRawClaimFee?(signer: string, vault?: Data, withdrawalData?: WithdrawalTX, feeRate?: string): Promise<bigint>;
 
     /**
      * Returns the fee in native token base units to claim the swap
@@ -255,7 +255,7 @@ export interface SpvVaultContract<
      * @param withdrawalData Withdrawal to claim
      * @param feeRate Optional fee rate (fetched on-demand if not provided)
      */
-    getFrontFee(signer: string, vault: Data, withdrawalData: WithdrawalTX, feeRate?: string): Promise<bigint>;
+    getFrontFee(signer: string, vault?: Data, withdrawalData?: WithdrawalTX, feeRate?: string): Promise<bigint>;
 
     /**
      * Returns raw fee (not including any refunds we might get that would make the getClaimFee negative) for claiming the swap
@@ -265,6 +265,6 @@ export interface SpvVaultContract<
      * @param withdrawalData Withdrawal to claim
      * @param feeRate Optional fee rate (fetched on-demand if not provided)
      */
-    getRawFrontFee?(signer: string, vault: Data, withdrawalData: WithdrawalTX, feeRate?: string): Promise<bigint>;
+    getRawFrontFee?(signer: string, vault?: Data, withdrawalData?: WithdrawalTX, feeRate?: string): Promise<bigint>;
 
 }
