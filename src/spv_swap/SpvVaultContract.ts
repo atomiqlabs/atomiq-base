@@ -225,7 +225,7 @@ export interface SpvVaultContract<
      *
      * @param data data as specified in the OP_RETURN output of the transaction
      */
-    fromOpReturnData(data: Buffer): {recipient: string, rawAmounts: bigint[], executionHash: string};
+    fromOpReturnData(data: Buffer): {recipient: string, rawAmounts: bigint[], executionHash?: string};
 
     /**
      * Returns the fee in native token base units to claim the swap

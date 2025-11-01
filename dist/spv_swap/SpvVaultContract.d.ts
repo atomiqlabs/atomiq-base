@@ -217,7 +217,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
     fromOpReturnData(data: Buffer): {
         recipient: string;
         rawAmounts: bigint[];
-        executionHash: string;
+        executionHash?: string;
     };
     /**
      * Returns the fee in native token base units to claim the swap
