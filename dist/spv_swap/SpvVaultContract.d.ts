@@ -7,7 +7,7 @@ import { RelaySynchronizer } from "../btcrelay/synchronizer/RelaySynchronizer";
 import { SpvWithdrawalState } from "./SpvWithdrawalState";
 import { Buffer } from "buffer";
 import { BtcTx } from "../btc/rpc/BitcoinRpc";
-export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = AbstractSigner, ChainId extends string = string, Data extends SpvVaultData = SpvVaultData, WithdrawalTX extends SpvWithdrawalTransactionData = SpvWithdrawalTransactionData> {
+export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = AbstractSigner, ChainId extends string = string, WithdrawalTX extends SpvWithdrawalTransactionData = SpvWithdrawalTransactionData, Data extends SpvVaultData<WithdrawalTX> = SpvVaultData<WithdrawalTX>> {
     readonly chainId: ChainId;
     /**
      * Signs & sends transactions for opening a specific spv vault

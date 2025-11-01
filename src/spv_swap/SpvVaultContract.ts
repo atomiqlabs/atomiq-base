@@ -12,8 +12,8 @@ export interface SpvVaultContract<
     TX = any,
     Signer extends AbstractSigner = AbstractSigner,
     ChainId extends string = string,
-    Data extends SpvVaultData = SpvVaultData,
-    WithdrawalTX extends SpvWithdrawalTransactionData = SpvWithdrawalTransactionData
+    WithdrawalTX extends SpvWithdrawalTransactionData = SpvWithdrawalTransactionData,
+    Data extends SpvVaultData<WithdrawalTX> = SpvVaultData<WithdrawalTX>,
 > {
 
     readonly chainId: ChainId;
