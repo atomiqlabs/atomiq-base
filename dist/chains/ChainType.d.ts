@@ -11,6 +11,7 @@ export type ChainType<ChainId extends string = string, PreFetchData = any, PreFe
     PreFetchData: PreFetchData;
     PreFetchVerification: PreFetchVerification;
     TX: TXType;
+    SignedTXType: SignedTXType;
     Signer: Signer;
     ChainInterface: I;
     Data: T;

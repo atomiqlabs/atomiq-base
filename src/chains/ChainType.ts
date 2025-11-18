@@ -28,6 +28,7 @@ export type ChainType<
     PreFetchData: PreFetchData,
     PreFetchVerification: PreFetchVerification,
     TX: TXType,
+    SignedTXType: SignedTXType,
     Signer: Signer,
     ChainInterface: I,
     Data: T,
