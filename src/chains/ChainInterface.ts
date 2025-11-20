@@ -97,6 +97,20 @@ export interface ChainInterface<
     deserializeTx(txData: string): Promise<TX>;
 
     /**
+     * Serializes a given transaction to a string
+     *
+     * @param signedTX Transaction to serialize
+     */
+    serializeSignedTx(signedTX: SignedTX): Promise<string>;
+
+    /**
+     * Deserializes a transaction from string
+     *
+     * @param txData Serialized transaction data string
+     */
+    deserializeSignedTx(txData: string): Promise<SignedTX>;
+
+    /**
      * Returns the status of the given serialized transaction
      *
      * @param tx Serialized transaction
