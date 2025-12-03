@@ -42,7 +42,7 @@ export abstract class SwapData implements StorageObject {
 
     abstract getEscrowHash(): string;
 
-    abstract getSequence?(): bigint;
+    abstract getSequence(): bigint;
 
     abstract getExtraData(): string | null;
     abstract getConfirmationsHint(): number | null;
