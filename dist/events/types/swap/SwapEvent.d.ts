@@ -5,8 +5,8 @@ export declare enum SwapEventType {
     REFUND = 1,
     CLAIM = 2
 }
-export declare class SwapEvent<T extends SwapData, C extends SwapEventType = SwapEventType> extends ChainEvent<T> {
-    readonly eventType: C;
+export declare abstract class SwapEvent<T extends SwapData, C extends SwapEventType = SwapEventType> extends ChainEvent<T> {
+    abstract readonly eventType: C;
     escrowHash: string;
     constructor(escrowHash: string);
 }

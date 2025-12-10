@@ -20,8 +20,8 @@ export type BtcVin = {
     txinwitness: string[];
 };
 export type BtcTx = {
-    blockhash: string;
-    confirmations: number;
+    blockhash?: string;
+    confirmations?: number;
     vsize: number;
     txid: string;
     hex: string;
@@ -44,16 +44,16 @@ export type BtcSyncInfo = {
 };
 export interface BitcoinRpc<T extends BtcBlock> {
     isInMainChain(blockhash: string): Promise<boolean>;
-    getBlockHeader(blockhash: string): Promise<T>;
+    getBlockHeader(blockhash: string): Promise<T | null>;
     getMerkleProof(txId: string, blockhash: string): Promise<{
         reversedTxId: Buffer;
         pos: number;
         merkle: Buffer[];
         blockheight: number;
-    }>;
-    getTransaction(txId: string): Promise<BtcTx>;
-    getBlockhash(height: number): Promise<string>;
-    getBlockWithTransactions(blockhash: string): Promise<BtcBlockWithTxs>;
+    } | null>;
+    getTransaction(txId: string): Promise<BtcTx | null>;
+    getBlockhash(height: number): Promise<string | null>;
+    getBlockWithTransactions(blockhash: string): Promise<BtcBlockWithTxs | null>;
     sendRawTransaction(rawTx: string): Promise<string>;
     sendRawPackage(rawTx: string[]): Promise<string[]>;
     getTipHeight(): Promise<number>;

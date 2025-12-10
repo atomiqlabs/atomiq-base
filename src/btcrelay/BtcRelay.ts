@@ -19,18 +19,18 @@ export interface BtcRelay<
         blockhash: string,
         commitHash: string,
         chainWork: Buffer
-    }>;
+    } | null>;
 
     retrieveLogAndBlockheight(blockData: {blockhash: string, height: number}, requiredBlockheight?: number): Promise<{
         header: V,
         height: number
-    }>;
-    retrieveLogByCommitHash(commitHash: string, blockData: {blockhash: string, height: number}): Promise<V>;
+    } | null>;
+    retrieveLogByCommitHash(commitHash: string, blockData: {blockhash: string, height: number}): Promise<V | null>;
 
     retrieveLatestKnownBlockLog(): Promise<{
         resultStoredHeader: V,
         resultBitcoinHeader: B
-    }>;
+    } | null>;
     //retrieveOnchainTip(): Promise<B>;
 
     saveInitialHeader(signer: string, header: B, epochStart: number, pastBlocksTimestamps: number[], feeRate?: string): Promise<T>;
@@ -59,8 +59,8 @@ export interface BtcRelay<
         computedCommitedHeaders: V[]
     }>;
 
-    getMainFeeRate?(signer: string): Promise<string>;
-    getForkFeeRate?(signer: string, forkId: number): Promise<string>;
+    getMainFeeRate(signer: string): Promise<string>;
+    getForkFeeRate(signer: string, forkId: number): Promise<string>;
 
     estimateSynchronizeFee(requiredBlockheight: number, feeRate?: string): Promise<bigint>;
 
