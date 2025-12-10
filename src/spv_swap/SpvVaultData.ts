@@ -25,6 +25,7 @@ export abstract class SpvVaultData<T extends SpvWithdrawalTransactionData = SpvW
         if (SpvVaultData.deserializers[data.type] != null) {
             return new SpvVaultData.deserializers[data.type](data) as unknown as T;
         }
+        throw new Error(`No deserializer found for spv vault data type: ${data.type}`);
     }
 
     abstract serialize(): any;
