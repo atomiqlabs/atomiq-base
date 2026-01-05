@@ -17,6 +17,7 @@ export function isAbstractSigner(val: any): val is AbstractSigner {
 
 export interface ChainInterface<
     TX = any,
+    SignedTX = any,
     Signer extends AbstractSigner = AbstractSigner,
     ChainId extends string = string,
     NativeSigner = any
@@ -96,6 +97,20 @@ export interface ChainInterface<
     deserializeTx(txData: string): Promise<TX>;
 
     /**
+     * Serializes a given transaction to a string
+     *
+     * @param signedTX Transaction to serialize
+     */
+    serializeSignedTx(signedTX: SignedTX): Promise<string>;
+
+    /**
+     * Deserializes a transaction from string
+     *
+     * @param txData Serialized transaction data string
+     */
+    deserializeSignedTx(txData: string): Promise<SignedTX>;
+
+    /**
      * Returns the status of the given serialized transaction
      *
      * @param tx Serialized transaction
@@ -138,7 +153,7 @@ export interface ChainInterface<
      * @param parallel Whether to send all transactions in parallel or one by one (always waiting for the previous TX to confirm)
      * @param onBeforePublish Callback called before a tx is broadcast
      */
-    sendSignedAndConfirm?(signedTxs: TX[], waitForConfirmation?: boolean, abortSignal?: AbortSignal, parallel?: boolean, onBeforePublish?: (txId: string, rawTx: string) => Promise<void>): Promise<string[]>;
+    sendSignedAndConfirm(signedTxs: SignedTX[], waitForConfirmation?: boolean, abortSignal?: AbortSignal, parallel?: boolean, onBeforePublish?: (txId: string, rawTx: string) => Promise<void>): Promise<string[]>;
 
     /**
      * Callback called when transaction is being replaced (used for EVM, when fee is bumped on an unconfirmed tx)
