@@ -12,22 +12,22 @@ export interface BtcRelay<V extends BtcStoredHeader<any>, T, B extends BtcBlock,
         blockhash: string;
         commitHash: string;
         chainWork: Buffer;
-    }>;
+    } | null>;
     retrieveLogAndBlockheight(blockData: {
         blockhash: string;
         height: number;
     }, requiredBlockheight?: number): Promise<{
         header: V;
         height: number;
-    }>;
+    } | null>;
     retrieveLogByCommitHash(commitHash: string, blockData: {
         blockhash: string;
         height: number;
-    }): Promise<V>;
+    }): Promise<V | null>;
     retrieveLatestKnownBlockLog(): Promise<{
         resultStoredHeader: V;
         resultBitcoinHeader: B;
-    }>;
+    } | null>;
     saveInitialHeader(signer: string, header: B, epochStart: number, pastBlocksTimestamps: number[], feeRate?: string): Promise<T>;
     saveMainHeaders(signer: string, mainHeaders: B[], storedHeader: V, feeRate?: string): Promise<{
         forkId: number;
@@ -53,8 +53,8 @@ export interface BtcRelay<V extends BtcStoredHeader<any>, T, B extends BtcBlock,
         tx: T;
         computedCommitedHeaders: V[];
     }>;
-    getMainFeeRate?(signer: string): Promise<string>;
-    getForkFeeRate?(signer: string, forkId: number): Promise<string>;
+    getMainFeeRate(signer: string): Promise<string>;
+    getForkFeeRate(signer: string, forkId: number): Promise<string>;
     estimateSynchronizeFee(requiredBlockheight: number, feeRate?: string): Promise<bigint>;
     getFeePerBlock(feeRate?: any): Promise<bigint>;
     sweepForkData?(signer: Signer, lastSweepTimestamp?: number): Promise<number | null>;
