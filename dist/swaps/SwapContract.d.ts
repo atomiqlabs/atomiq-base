@@ -202,6 +202,28 @@ export interface SwapContract<T extends SwapData = SwapData, TX = any, PreFetchD
         [escrowHash: string]: SwapCommitState;
     }>;
     /**
+     * Returns the full history as fetched from the chain for a specific signer
+     *
+     * @param signer
+     * @param startBlockheight
+     */
+    getHistoricalSwaps?(signer: string, startBlockheight?: number): Promise<{
+        swaps: {
+            [escrowHash: string]: {
+                init?: {
+                    data: T;
+                    getInitTxId: () => Promise<string>;
+                    getTxBlock: () => Promise<{
+                        blockTime: number;
+                        blockHeight: number;
+                    }>;
+                };
+                state: SwapCommitState;
+            };
+        };
+        latestBlockheight: number;
+    }>;
+    /**
      * Checks whether a given swap is refundable by us, i.e. it is already expired, we are offerer & swap is committed on-chain
      *
      * @param signer

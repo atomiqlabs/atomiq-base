@@ -26,6 +26,7 @@ export declare abstract class SwapData implements StorageObject {
     abstract getConfirmationsHint(): number;
     abstract getNonceHint(): bigint;
     abstract getTxoHashHint(): string;
+    getHTLCHashHint(): string;
     abstract setExtraData(extraData: string): void;
     abstract getSecurityDeposit(): bigint;
     abstract getClaimerBounty(): bigint;
