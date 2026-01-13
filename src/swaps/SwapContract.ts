@@ -265,7 +265,7 @@ export interface SwapContract<
                 state: SwapCommitState
             }
         },
-        latestBlockheight: number
+        latestBlockheight?: number
     }>;
 
     /**

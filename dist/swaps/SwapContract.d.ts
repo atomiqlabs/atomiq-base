@@ -221,7 +221,7 @@ export interface SwapContract<T extends SwapData = SwapData, TX = any, PreFetchD
                 state: SwapCommitState;
             };
         };
-        latestBlockheight: number;
+        latestBlockheight?: number;
     }>;
     /**
      * Checks whether a given swap is refundable by us, i.e. it is already expired, we are offerer & swap is committed on-chain
