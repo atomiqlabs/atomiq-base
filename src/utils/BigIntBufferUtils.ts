@@ -4,7 +4,7 @@ export const BigIntBufferUtils: {
     toBuffer: (value: bigint, endianness?: "be" | "le", length?: number) => Buffer
     fromBuffer: (value: Buffer, endianness?: "be" | "le") => bigint
 } = {
-    toBuffer: (value: bigint, endianness: "be" | "le" = "be", length: number) => {
+    toBuffer: (value: bigint, endianness: "be" | "le" = "be", length: number = 32) => {
         let values: number[] = Array(length);
         for(let i=0;i<length;i++) {
             values[i] = Number(value & 0xffn);

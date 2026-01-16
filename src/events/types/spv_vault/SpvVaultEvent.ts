@@ -9,9 +9,8 @@ export enum SpvVaultEventType {
     FRONT = 4
 }
 
-export class SpvVaultEvent<C extends SpvVaultEventType = SpvVaultEventType> extends ChainEvent<SwapData> {
-
-    readonly eventType: C;
+export abstract class SpvVaultEvent<C extends SpvVaultEventType = SpvVaultEventType> extends ChainEvent<SwapData> {
+    abstract readonly eventType: C;
 
     owner: string;
     vaultId: bigint;
