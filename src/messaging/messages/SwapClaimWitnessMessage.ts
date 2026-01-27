@@ -4,7 +4,7 @@ import {Message, MessageType} from "./Message";
 
 export class SwapClaimWitnessMessage<T extends SwapData> extends Message {
 
-    type = MessageType.SWAP_CLAIM_WITNESS;
+    readonly type = MessageType.SWAP_CLAIM_WITNESS;
     swapData: T;
     witness: string;
 
@@ -14,7 +14,7 @@ export class SwapClaimWitnessMessage<T extends SwapData> extends Message {
         this.witness = witness;
     }
 
-    serialize() {
+    serialize(): any {
         return {
             ...super.serialize(),
             swapData: this.swapData.serialize(),
@@ -22,7 +22,7 @@ export class SwapClaimWitnessMessage<T extends SwapData> extends Message {
         }
     }
 
-    static deserialize(obj: any) {
+    static deserialize<T extends SwapData>(obj: any): SwapClaimWitnessMessage<T> {
         if(obj==null || typeof(obj.witness)!=="string" || typeof(obj.swapData)!=="object") {
             throw new Error("Invalid format!");
         }

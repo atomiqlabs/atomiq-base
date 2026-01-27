@@ -6,7 +6,7 @@ export enum MessageType {
 
 export abstract class Message {
 
-    abstract type: MessageType;
+    abstract readonly type: MessageType;
 
     static deserializers: {[type: number]: (obj: any) => Message} = {};
 
