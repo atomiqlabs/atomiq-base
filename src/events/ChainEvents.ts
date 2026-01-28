@@ -18,8 +18,11 @@ export interface ChainEvents<T extends SwapData, S extends any = any> {
     /**
      * Initializes the chains event listener, by default this initiates a websocket events subscription or
      *  HTTP polling for new events.
+     *
+     * @param noAutomaticPoll When this flag is passed the listener doesn't initiate the websocket events subscription
+     *  or HTTP polling, instead it relies on the implementor calling the {@link ChainEvents.poll} to fetch new events
      */
-    init(): Promise<void>;
+    init(noAutomaticPoll?: boolean): Promise<void>;
 
     /**
      * Registers a new listener to listen for on-chain events
@@ -39,5 +42,14 @@ export interface ChainEvents<T extends SwapData, S extends any = any> {
      * Stops the event listener's polling and websocket subscription
      */
     stop(): Promise<void>;
+
+    /**
+     * Triggers a single poll on the events instance, usually ran automatically, but should be called manually
+     *  when initiated with `noAutomaticPoll`=`true`
+     *
+     * @param currentState The current state of the chain events
+     * @returns The new state that should be saved, persisted and pasted to the subsequent `poll()` call
+     */
+    poll(currentState?: S): Promise<S>;
 
 }
