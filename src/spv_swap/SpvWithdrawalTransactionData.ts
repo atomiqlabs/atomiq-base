@@ -44,15 +44,15 @@ export abstract class SpvWithdrawalTransactionData implements StorageObject {
      */
     protected abstract fromOpReturnData(data: Buffer): {recipient: string, rawAmounts: bigint[], executionHash?: string};
 
-    protected readonly recipient: string;
-    protected readonly rawAmounts: bigint[];
+    readonly recipient: string;
+    readonly rawAmounts: bigint[];
 
-    protected readonly callerFeeRate: bigint;
-    protected readonly executionFeeRate: bigint;
-    protected readonly frontingFeeRate: bigint;
+    readonly callerFeeRate: bigint;
+    readonly executionFeeRate: bigint;
+    readonly frontingFeeRate: bigint;
 
-    protected readonly executionHash?: string;
-    protected readonly executionExpiry: number;
+    readonly executionHash?: string;
+    readonly executionExpiry: number;
 
     /**
      * A bitcoin transaction which contains this vault withdrawal data

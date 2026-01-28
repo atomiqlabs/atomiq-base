@@ -38,13 +38,13 @@ export declare abstract class SpvWithdrawalTransactionData implements StorageObj
         rawAmounts: bigint[];
         executionHash?: string;
     };
-    protected readonly recipient: string;
-    protected readonly rawAmounts: bigint[];
-    protected readonly callerFeeRate: bigint;
-    protected readonly executionFeeRate: bigint;
-    protected readonly frontingFeeRate: bigint;
-    protected readonly executionHash?: string;
-    protected readonly executionExpiry: number;
+    readonly recipient: string;
+    readonly rawAmounts: bigint[];
+    readonly callerFeeRate: bigint;
+    readonly executionFeeRate: bigint;
+    readonly frontingFeeRate: bigint;
+    readonly executionHash?: string;
+    readonly executionExpiry: number;
     /**
      * A bitcoin transaction which contains this vault withdrawal data
      */
