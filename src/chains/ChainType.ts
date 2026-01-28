@@ -7,6 +7,11 @@ import {SpvVaultData} from "../spv_swap/SpvVaultData";
 import {SpvVaultContract} from "../spv_swap/SpvVaultContract";
 import {SpvWithdrawalTransactionData} from "../spv_swap/SpvWithdrawalTransactionData";
 
+/**
+ * A comprehensive unified type struct for a given chain, contains all the type definitions of a given chain
+ *
+ * @category Chains
+ */
 export type ChainType<
     ChainId extends string = string,
     PreFetchData = any,

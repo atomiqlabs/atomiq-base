@@ -2,6 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SpvVaultClaimEvent = void 0;
 const SpvVaultEvent_1 = require("./SpvVaultEvent");
+/**
+ * SPV vault (UTXO-controlled vault) Claim event representation, a valid withdrawal from an SPV vault
+ *
+ * @category Events
+ */
 class SpvVaultClaimEvent extends SpvVaultEvent_1.SpvVaultEvent {
     constructor(owner, vaultId, btcTxId, recipient, executionHash, amounts, caller, frontingAddress, withdrawCount) {
         super(owner, vaultId);

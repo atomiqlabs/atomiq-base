@@ -2,6 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BigIntBufferUtils = void 0;
 const buffer_1 = require("buffer");
+/**
+ * A helper for serializing and deserializing bigints from/to buffers
+ *
+ * @internal
+ */
 exports.BigIntBufferUtils = {
     toBuffer: (value, endianness = "be", length = 32) => {
         let values = Array(length);

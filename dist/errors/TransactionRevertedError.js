@@ -1,6 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TransactionRevertedError = void 0;
+/**
+ * Indicates that the sent transaction has reverted (i.e. was confirmed but the execution failed)
+ *
+ * @category Errors
+ */
 class TransactionRevertedError extends Error {
     constructor(msg) {
         super(msg);

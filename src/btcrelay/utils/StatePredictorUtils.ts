@@ -1,6 +1,11 @@
 import {Buffer} from "buffer";
 import {BigIntBufferUtils} from "../../utils/BigIntBufferUtils";
 
+/**
+ * Big integer arithmetic helpers for block difficulty calculations
+ *
+ * @internal
+ */
 export class StatePredictorUtils {
 
     static readonly DIFF_ADJUSTMENT_PERIOD = 2016;

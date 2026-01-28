@@ -3,9 +3,23 @@ import { BtcStoredHeader } from "./types/BtcStoredHeader";
 import { BtcBlock } from "./types/BtcBlock";
 import { Buffer } from "buffer";
 import { AbstractSigner } from "../chains/ChainInterface";
+/**
+ * Represents a BTC relay bitcoin light client contract, which verifies the bitcoin blockheaders on smart chains
+ *
+ * @category BTC Relay
+ */
 export interface BtcRelay<V extends BtcStoredHeader<any>, T, B extends BtcBlock, Signer extends AbstractSigner = AbstractSigner> {
+    /**
+     * Maximum blockheaders that fit in a single transaction
+     */
     maxHeadersPerTx: number;
+    /**
+     * Maximum amount of fork headers that fit in a single transactions
+     */
     maxForkHeadersPerTx: number;
+    /**
+     * Maximum amount of fork headers that can be submitted at once using the short fork method
+     */
     maxShortForkHeadersPerTx?: number;
     /**
      * Returns data about current main chain tip stored in the btc relay

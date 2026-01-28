@@ -3,6 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SwapClaimWitnessMessage = void 0;
 const SwapData_1 = require("../../swaps/SwapData");
 const Message_1 = require("./Message");
+/**
+ * Representation of an HTLC claim message, providing a swap pre-image in the `witness` field for a specific
+ *  escrow {@link SwapData}
+ *
+ * @category Messenger
+ */
 class SwapClaimWitnessMessage extends Message_1.Message {
     constructor(swapData, witness) {
         super();
@@ -10,6 +16,9 @@ class SwapClaimWitnessMessage extends Message_1.Message {
         this.swapData = swapData;
         this.witness = witness;
     }
+    /**
+     * @inheritDoc
+     */
     serialize() {
         return {
             ...super.serialize(),
@@ -17,6 +26,9 @@ class SwapClaimWitnessMessage extends Message_1.Message {
             witness: this.witness
         };
     }
+    /**
+     * @internal
+     */
     static deserialize(obj) {
         if (obj == null || typeof (obj.witness) !== "string" || typeof (obj.swapData) !== "object") {
             throw new Error("Invalid format!");

@@ -7,7 +7,15 @@ import { RelaySynchronizer } from "../btcrelay/synchronizer/RelaySynchronizer";
 import { SpvWithdrawalState } from "./SpvWithdrawalState";
 import { Buffer } from "buffer";
 import { BtcTx } from "../btc/rpc/BitcoinRpc";
+/**
+ * Represents an SPV vault (UTXO-controlled vault) contract, exposes operations on the vaults
+ *
+ * @category Swaps
+ */
 export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = AbstractSigner, ChainId extends string = string, WithdrawalTX extends SpvWithdrawalTransactionData = SpvWithdrawalTransactionData, Data extends SpvVaultData<WithdrawalTX> = SpvVaultData<WithdrawalTX>> {
+    /**
+     * Chain identifier string
+     */
     readonly chainId: ChainId;
     /**
      * Signs & sends transactions for opening a specific spv vault

@@ -1,4 +1,8 @@
-
+/**
+ * Represents a signature verification error
+ *
+ * @category Errors
+ */
 export class SignatureVerificationError extends Error {
 
     constructor(msg: string) {

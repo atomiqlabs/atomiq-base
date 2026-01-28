@@ -7,7 +7,11 @@ import {SpvWithdrawalState} from "./SpvWithdrawalState";
 import {Buffer} from "buffer";
 import {BtcTx} from "../btc/rpc/BitcoinRpc";
 
-
+/**
+ * Represents an SPV vault (UTXO-controlled vault) contract, exposes operations on the vaults
+ *
+ * @category Swaps
+ */
 export interface SpvVaultContract<
     TX = any,
     Signer extends AbstractSigner = AbstractSigner,
@@ -16,6 +20,9 @@ export interface SpvVaultContract<
     Data extends SpvVaultData<WithdrawalTX> = SpvVaultData<WithdrawalTX>,
 > {
 
+    /**
+     * Chain identifier string
+     */
     readonly chainId: ChainId;
 
     /**
