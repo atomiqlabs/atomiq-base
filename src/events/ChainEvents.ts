@@ -48,8 +48,8 @@ export interface ChainEvents<T extends SwapData, S extends any = any> {
      *  when initiated with `noAutomaticPoll`=`true`
      *
      * @param currentState The current state of the chain events
-     * @returns The new state that should be saved, persisted and pasted to the subsequent `poll()` call
+     * @returns The new state that should be saved, persisted and passed to the subsequent `poll()` call
      */
-    poll(currentState?: S): Promise<S>;
+    poll(currentState?: S): Promise<S | null>;
 
 }

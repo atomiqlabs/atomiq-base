@@ -114,7 +114,7 @@ export abstract class SwapData implements StorageObject {
     abstract isPayIn(): boolean;
 
     /**
-     * Whether the outcome of this escrow should be used to track reputation of the offerer
+     * Whether the outcome of this escrow should be used to track reputation of the claimer
      */
     abstract isTrackingReputation(): boolean;
 
