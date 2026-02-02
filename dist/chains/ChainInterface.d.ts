@@ -1,16 +1,36 @@
+/**
+ * @category Chain
+ */
 export type TransactionConfirmationOptions = {
     waitForConfirmation?: boolean;
     abortSignal?: AbortSignal;
     feeRate?: string;
 };
+/**
+ * Defines of a signer, contains an address getter and optionally init() & stop() functions
+ *  to initiate internal processes inside the signer (if required and exposed)
+ *
+ * @category Signer
+ */
 export type AbstractSigner = {
     type: "AtomiqAbstractSigner";
     getAddress: () => string;
     init?: () => Promise<void>;
     stop?: () => Promise<void>;
 };
+/**
+ * Type guard for the {@link AbstractSigner} type
+ *
+ * @param val
+ */
 export declare function isAbstractSigner(val: any): val is AbstractSigner;
-export interface ChainInterface<TX = any, Signer extends AbstractSigner = AbstractSigner, ChainId extends string = string, NativeSigner = any> {
+/**
+ * An interface representing a smart chain, allowing basic operations on the chain and reading chain data
+ */
+export interface ChainInterface<TX = any, SignedTX = any, Signer extends AbstractSigner = AbstractSigner, ChainId extends string = string, NativeSigner = any> {
+    /**
+     * Chain identifier string
+     */
     readonly chainId: ChainId;
     /**
      * Returns the token balance of a specific address
@@ -75,6 +95,18 @@ export interface ChainInterface<TX = any, Signer extends AbstractSigner = Abstra
      */
     deserializeTx(txData: string): Promise<TX>;
     /**
+     * Serializes a given transaction to a string
+     *
+     * @param signedTX Transaction to serialize
+     */
+    serializeSignedTx(signedTX: SignedTX): Promise<string>;
+    /**
+     * Deserializes a transaction from string
+     *
+     * @param txData Serialized transaction data string
+     */
+    deserializeSignedTx(txData: string): Promise<SignedTX>;
+    /**
      * Returns the status of the given serialized transaction
      *
      * @param tx Serialized transaction
@@ -106,6 +138,17 @@ export interface ChainInterface<TX = any, Signer extends AbstractSigner = Abstra
      * @param onBeforePublish Callback called before a tx is broadcast
      */
     sendAndConfirm(signer: Signer, txs: TX[], waitForConfirmation?: boolean, abortSignal?: AbortSignal, parallel?: boolean, onBeforePublish?: (txId: string, rawTx: string) => Promise<void>): Promise<string[]>;
+    /**
+     * Sends already signed transactions and optionally waits for their confirmation
+     *
+     * @param signedTxs Signed transactions to be sent
+     * @param waitForConfirmation Whether to wait for transaction confirmation (if parallel is not specified,
+     *  every transaction's confirmation except the last one is awaited)
+     * @param abortSignal Abort signal
+     * @param parallel Whether to send all transactions in parallel or one by one (always waiting for the previous TX to confirm)
+     * @param onBeforePublish Callback called before a tx is broadcast
+     */
+    sendSignedAndConfirm(signedTxs: SignedTX[], waitForConfirmation?: boolean, abortSignal?: AbortSignal, parallel?: boolean, onBeforePublish?: (txId: string, rawTx: string) => Promise<void>): Promise<string[]>;
     /**
      * Callback called when transaction is being replaced (used for EVM, when fee is bumped on an unconfirmed tx)
      *

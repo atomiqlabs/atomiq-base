@@ -7,7 +7,15 @@ import { RelaySynchronizer } from "../btcrelay/synchronizer/RelaySynchronizer";
 import { SpvWithdrawalState } from "./SpvWithdrawalState";
 import { Buffer } from "buffer";
 import { BtcTx } from "../btc/rpc/BitcoinRpc";
-export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = AbstractSigner, ChainId extends string = string, Data extends SpvVaultData = SpvVaultData, WithdrawalTX extends SpvWithdrawalTransactionData = SpvWithdrawalTransactionData> {
+/**
+ * Represents an SPV vault (UTXO-controlled vault) contract, exposes operations on the vaults
+ *
+ * @category Swaps
+ */
+export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = AbstractSigner, ChainId extends string = string, WithdrawalTX extends SpvWithdrawalTransactionData = SpvWithdrawalTransactionData, Data extends SpvVaultData<WithdrawalTX> = SpvVaultData<WithdrawalTX>> {
+    /**
+     * Chain identifier string
+     */
     readonly chainId: ChainId;
     /**
      * Signs & sends transactions for opening a specific spv vault
@@ -129,7 +137,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
      * @param owner Owner of the vault
      * @param vaultId Vault ID
      */
-    getVaultData(owner: string, vaultId: bigint): Promise<Data>;
+    getVaultData(owner: string, vaultId: bigint): Promise<Data | null>;
     /**
      * Returns current vault data for multiple vaults
      *
@@ -140,7 +148,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
         vaultId: bigint;
     }[]): Promise<{
         [owner: string]: {
-            [vaultId: string]: Data;
+            [vaultId: string]: Data | null;
         };
     }>;
     /**
@@ -175,7 +183,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
      * @param withdrawalTx
      * @param scStartBlockheight
      */
-    getWithdrawalState(withdrawalTx: WithdrawalTX, scStartBlockheight?: number): Promise<SpvWithdrawalState>;
+    getWithdrawalState(withdrawalTx: WithdrawalTX, scStartBlockheight?: number): Promise<SpvWithdrawalState | null>;
     /**
      * Returns current state of the withdrawals, optionally
      *  only check withdrawals from the provided block height
@@ -186,7 +194,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
         withdrawal: WithdrawalTX;
         scStartBlockheight?: number;
     }[]): Promise<{
-        [btcTxId: string]: SpvWithdrawalState;
+        [btcTxId: string]: SpvWithdrawalState | null;
     }>;
     /**
      * Parses withdrawal data from the parsed bitcoin transaction
@@ -217,7 +225,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
     fromOpReturnData(data: Buffer): {
         recipient: string;
         rawAmounts: bigint[];
-        executionHash: string;
+        executionHash?: string;
     };
     /**
      * Returns the fee in native token base units to claim the swap
@@ -227,7 +235,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
      * @param withdrawalData Withdrawal to claim
      * @param feeRate Optional fee rate (fetched on-demand if not provided)
      */
-    getClaimFee(signer: string, vault: Data, withdrawalData: WithdrawalTX, feeRate?: string): Promise<bigint>;
+    getClaimFee(signer: string, vault?: Data, withdrawalData?: WithdrawalTX, feeRate?: string): Promise<bigint>;
     /**
      * Returns raw fee (not including any refunds we might get that would make the getClaimFee negative) for claiming the swap
      *
@@ -236,7 +244,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
      * @param withdrawalData Withdrawal to claim
      * @param feeRate Optional fee rate (fetched on-demand if not provided)
      */
-    getRawClaimFee?(signer: string, vault: Data, withdrawalData: WithdrawalTX, feeRate?: string): Promise<bigint>;
+    getRawClaimFee?(signer: string, vault?: Data, withdrawalData?: WithdrawalTX, feeRate?: string): Promise<bigint>;
     /**
      * Returns the fee in native token base units to claim the swap
      *
@@ -245,7 +253,7 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
      * @param withdrawalData Withdrawal to claim
      * @param feeRate Optional fee rate (fetched on-demand if not provided)
      */
-    getFrontFee(signer: string, vault: Data, withdrawalData: WithdrawalTX, feeRate?: string): Promise<bigint>;
+    getFrontFee(signer: string, vault?: Data, withdrawalData?: WithdrawalTX, feeRate?: string): Promise<bigint>;
     /**
      * Returns raw fee (not including any refunds we might get that would make the getClaimFee negative) for claiming the swap
      *
@@ -254,5 +262,5 @@ export interface SpvVaultContract<TX = any, Signer extends AbstractSigner = Abst
      * @param withdrawalData Withdrawal to claim
      * @param feeRate Optional fee rate (fetched on-demand if not provided)
      */
-    getRawFrontFee?(signer: string, vault: Data, withdrawalData: WithdrawalTX, feeRate?: string): Promise<bigint>;
+    getRawFrontFee?(signer: string, vault?: Data, withdrawalData?: WithdrawalTX, feeRate?: string): Promise<bigint>;
 }

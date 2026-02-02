@@ -3,6 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StatePredictorUtils = void 0;
 const buffer_1 = require("buffer");
 const BigIntBufferUtils_1 = require("../../utils/BigIntBufferUtils");
+/**
+ * Big integer arithmetic helpers for block difficulty calculations
+ *
+ * @internal
+ */
 class StatePredictorUtils {
     static gtBuffer(a, b) {
         for (let i = 0; i < a.length; i++) {

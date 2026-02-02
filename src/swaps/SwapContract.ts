@@ -6,6 +6,9 @@ import {Buffer} from "buffer";
 import {AbstractSigner, TransactionConfirmationOptions} from "../chains/ChainInterface";
 import {SwapCommitState} from "./SwapCommitState";
 
+/**
+ * Represents intermediary (LP) reputation across different swap types
+ */
 export type IntermediaryReputationType = {
     [key in ChainSwapType]: {
         successVolume: bigint,
@@ -17,20 +20,46 @@ export type IntermediaryReputationType = {
     }
 };
 
+/**
+ * Signature authorization data
+ */
 export type SignatureData = {
     prefix: string,
     timeout: string,
     signature: string
 };
 
+/**
+ * Simplified bitcoin transaction data
+ */
 export type BitcoinTransactionData = {
+    /**
+     * Blockhash of a block which contains this transaction
+     */
     blockhash: string,
+    /**
+     * The number of confirmations of a block containing this transaction
+     */
     confirmations: number,
+    /**
+     * Transaction ID identifier of the transaction
+     */
     txid: string,
+    /**
+     * A hexadecimal serialized representation of the transaction with witness data stripped (legacy transaction format)
+     */
     hex: string,
+    /**
+     * The blockheight of a block containing this transaction
+     */
     height: number
 };
 
+/**
+ * A contract for interacting with escrow manager swaps - escrow based swaps like HTLCs and PrTLCs
+ *
+ * @category Swaps
+ */
 export interface SwapContract<
     T extends SwapData = SwapData,
     TX = any,
@@ -40,10 +69,28 @@ export interface SwapContract<
     ChainId extends string = string
 > {
 
+    /**
+     * Chain identifier string
+     */
     readonly chainId: ChainId;
+    /**
+     * A timeout to be used when claiming the escrow with a secret (HTLC), recommended to wait at least this long after
+     *  sending a transaction before considering it a failure
+     */
     readonly claimWithSecretTimeout: number;
+    /**
+     * A timeout to be used when claiming the escrow with bitcoin transaction data (PrTLC), recommended to wait at
+     *  least this long after sending a transaction before considering it a failure
+     */
     readonly claimWithTxDataTimeout: number;
+    /**
+     * A timeout to be used when refunding the escrow, recommended to wait at
+     *  least this long after sending a transaction before considering it a failure
+     */
     readonly refundTimeout: number;
+    /**
+     * Whether this chain supports sending initialization without a direct authorization by the claimer
+     */
     readonly supportsInitWithoutClaimer?: boolean;
 
     /**
@@ -265,7 +312,7 @@ export interface SwapContract<
                 state: SwapCommitState
             }
         },
-        latestBlockheight: number
+        latestBlockheight?: number
     }>;
 
     /**
@@ -410,7 +457,7 @@ export interface SwapContract<
      * @param address
      * @param token
      */
-    getIntermediaryReputation(address: string, token: string): Promise<IntermediaryReputationType>;
+    getIntermediaryReputation(address: string, token: string): Promise<IntermediaryReputationType | null>;
 
     /**
      * Returns the fee in native token base units to commit (initiate) the swap
@@ -501,6 +548,15 @@ export interface SwapContract<
      */
     getClaimFeeRate(signer: string, swapData: T): Promise<string>;
 
+    /**
+     * Returns additional data to be included in the data-carrier (extra data) part of the PrTLC escrow initialization
+     *  this provides helpers for 3rd party claimers
+     *
+     * @param outputScript A bitcoin output script required in the bitcoin transaction to claim the escrow
+     * @param amount An amount of bitcoin (in satoshis) required in the bitcoin transaction to claim the escrow
+     * @param confirmations Confirmations of the bitcoin transaction required for claiming the escrow
+     * @param nonce An optional nonce applied to the transaction
+     */
     getExtraData(outputScript: Buffer, amount: bigint, confirmations: number, nonce?: bigint): Buffer;
 
     /**

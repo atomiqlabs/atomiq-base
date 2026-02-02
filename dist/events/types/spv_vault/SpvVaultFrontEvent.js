@@ -2,6 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SpvVaultFrontEvent = void 0;
 const SpvVaultEvent_1 = require("./SpvVaultEvent");
+/**
+ * SPV vault (UTXO-controlled vault) Front event representation, an SPV vault withdrawal was fronted
+ *
+ * @category Events
+ */
 class SpvVaultFrontEvent extends SpvVaultEvent_1.SpvVaultEvent {
     constructor(owner, vaultId, btcTxId, recipient, executionHash, amounts, frontingAddress) {
         super(owner, vaultId);

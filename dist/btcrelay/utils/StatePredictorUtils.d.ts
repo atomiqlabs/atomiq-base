@@ -1,5 +1,10 @@
 /// <reference types="node" />
 import { Buffer } from "buffer";
+/**
+ * Big integer arithmetic helpers for block difficulty calculations
+ *
+ * @internal
+ */
 export declare class StatePredictorUtils {
     static readonly DIFF_ADJUSTMENT_PERIOD = 2016;
     static gtBuffer(a: Buffer, b: Buffer): boolean;
