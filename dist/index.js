@@ -16,6 +16,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./btcrelay/BtcRelay"), exports);
 __exportStar(require("./btc/rpc/BitcoinRpc"), exports);
+__exportStar(require("./btc/rpc/BitcoinRpcWithAddressIndex"), exports);
+__exportStar(require("./btc/lightning/LightningNetworkApi"), exports);
 __exportStar(require("./btcrelay/synchronizer/RelaySynchronizer"), exports);
 __exportStar(require("./btcrelay/types/BtcBlock"), exports);
 __exportStar(require("./btcrelay/types/BtcHeader"), exports);

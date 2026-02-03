@@ -1,5 +1,7 @@
 export * from "./btcrelay/BtcRelay";
 export * from "./btc/rpc/BitcoinRpc";
+export * from "./btc/rpc/BitcoinRpcWithAddressIndex";
+export * from "./btc/lightning/LightningNetworkApi";
 export * from "./btcrelay/synchronizer/RelaySynchronizer";
 export * from "./btcrelay/types/BtcBlock";
 export * from "./btcrelay/types/BtcHeader";
