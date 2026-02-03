@@ -29,6 +29,9 @@ export * from "./chains/ChainType";
 export * from "./chains/ChainData";
 
 export * from "./utils/BigIntBufferUtils";
+export * from "./utils/Logger";
+export * from "./utils/RetryUtils";
+export * from "./utils/TimeoutUtils";
 
 export * from "./btc/BitcoinNetwork";
 
