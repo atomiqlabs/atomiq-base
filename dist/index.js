@@ -30,6 +30,7 @@ __exportStar(require("./events/types/swap/RefundEvent"), exports);
 __exportStar(require("./events/types/swap/SwapEvent"), exports);
 __exportStar(require("./lockable/Lockable"), exports);
 __exportStar(require("./storage/IStorageManager"), exports);
+__exportStar(require("./storage/VoidStorageManager"), exports);
 __exportStar(require("./storage/StorageObject"), exports);
 __exportStar(require("./swaps/SwapContract"), exports);
 __exportStar(require("./swaps/SwapData"), exports);
