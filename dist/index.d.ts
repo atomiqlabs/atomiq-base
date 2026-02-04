@@ -14,6 +14,7 @@ export * from "./events/types/swap/RefundEvent";
 export * from "./events/types/swap/SwapEvent";
 export * from "./lockable/Lockable";
 export * from "./storage/IStorageManager";
+export * from "./storage/VoidStorageManager";
 export * from "./storage/StorageObject";
 export * from "./swaps/SwapContract";
 export * from "./swaps/SwapData";
