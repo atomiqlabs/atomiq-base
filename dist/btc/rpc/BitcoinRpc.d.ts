@@ -226,4 +226,10 @@ export interface BitcoinRpc<T extends BtcBlock> {
         fee: number;
         feeRate: number;
     }>;
+    /**
+     * Parses a bitcoin address from the passed output script in hexadecimal format
+     *
+     * @param outputScriptHex
+     */
+    outputScriptToAddress?(outputScriptHex: string): Promise<string>;
 }
