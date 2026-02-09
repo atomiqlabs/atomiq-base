@@ -215,7 +215,10 @@ export interface SpvVaultContract<
      * @param startBlockheight
      */
     getHistoricalWithdrawalStates?(recipient: string, startBlockheight?: number): Promise<{
-        [btcTxId: string]: SpvWithdrawalClaimedState | SpvWithdrawalFrontedState
+        withdrawals: {
+            [btcTxId: string]: SpvWithdrawalClaimedState | SpvWithdrawalFrontedState
+        },
+        latestBlockheight?: number
     }>;
 
     /**
