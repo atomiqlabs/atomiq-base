@@ -49,7 +49,9 @@ export type SpvWithdrawalClaimedState = {
     type: SpvWithdrawalStateType.CLAIMED,
     recipient: string,
     claimer: string,
-    fronter: string
+    fronter: string,
+    getClaimTxId?: () => Promise<string>,
+    getTxBlock?: () => Promise<{blockHeight: number, blockTime: number}>
 } & SpvWithdrawalStateCommon;
 
 /**
@@ -60,7 +62,9 @@ export type SpvWithdrawalClaimedState = {
 export type SpvWithdrawalFrontedState = {
     type: SpvWithdrawalStateType.FRONTED,
     recipient: string,
-    fronter: string
+    fronter: string,
+    getFrontTxId?: () => Promise<string>,
+    getTxBlock?: () => Promise<{blockHeight: number, blockTime: number}>
 } & SpvWithdrawalStateCommon;
 
 /**
@@ -71,7 +75,9 @@ export type SpvWithdrawalFrontedState = {
  */
 export type SpvWithdrawalClosedState = {
     type: SpvWithdrawalStateType.CLOSED,
-    error: string
+    error: string,
+    getClosedTxId?: () => Promise<string>,
+    getTxBlock?: () => Promise<{blockHeight: number, blockTime: number}>
 } & SpvWithdrawalStateCommon;
 
 /**
