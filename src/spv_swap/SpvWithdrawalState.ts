@@ -38,6 +38,8 @@ type SpvWithdrawalStateCommon = {
     txId: string,
     owner: string,
     vaultId: bigint,
+    btcTxId?: string,
+    getTxBlock?: () => Promise<{blockHeight: number, blockTime: number}>
 };
 
 /**
@@ -49,9 +51,7 @@ export type SpvWithdrawalClaimedState = {
     type: SpvWithdrawalStateType.CLAIMED,
     recipient: string,
     claimer: string,
-    fronter: string,
-    getClaimTxId?: () => Promise<string>,
-    getTxBlock?: () => Promise<{blockHeight: number, blockTime: number}>
+    fronter: string
 } & SpvWithdrawalStateCommon;
 
 /**
@@ -62,9 +62,7 @@ export type SpvWithdrawalClaimedState = {
 export type SpvWithdrawalFrontedState = {
     type: SpvWithdrawalStateType.FRONTED,
     recipient: string,
-    fronter: string,
-    getFrontTxId?: () => Promise<string>,
-    getTxBlock?: () => Promise<{blockHeight: number, blockTime: number}>
+    fronter: string
 } & SpvWithdrawalStateCommon;
 
 /**
@@ -75,9 +73,7 @@ export type SpvWithdrawalFrontedState = {
  */
 export type SpvWithdrawalClosedState = {
     type: SpvWithdrawalStateType.CLOSED,
-    error: string,
-    getClosedTxId?: () => Promise<string>,
-    getTxBlock?: () => Promise<{blockHeight: number, blockTime: number}>
+    error: string
 } & SpvWithdrawalStateCommon;
 
 /**

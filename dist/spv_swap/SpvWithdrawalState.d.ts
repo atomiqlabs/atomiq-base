@@ -36,6 +36,11 @@ type SpvWithdrawalStateCommon = {
     txId: string;
     owner: string;
     vaultId: bigint;
+    btcTxId?: string;
+    getTxBlock?: () => Promise<{
+        blockHeight: number;
+        blockTime: number;
+    }>;
 };
 /**
  * The withdrawal was successfully processed on the smart chain side
@@ -47,11 +52,6 @@ export type SpvWithdrawalClaimedState = {
     recipient: string;
     claimer: string;
     fronter: string;
-    getClaimTxId?: () => Promise<string>;
-    getTxBlock?: () => Promise<{
-        blockHeight: number;
-        blockTime: number;
-    }>;
 } & SpvWithdrawalStateCommon;
 /**
  * The withdrawal has been fronted by some 3rd party
@@ -62,11 +62,6 @@ export type SpvWithdrawalFrontedState = {
     type: SpvWithdrawalStateType.FRONTED;
     recipient: string;
     fronter: string;
-    getFrontTxId?: () => Promise<string>;
-    getTxBlock?: () => Promise<{
-        blockHeight: number;
-        blockTime: number;
-    }>;
 } & SpvWithdrawalStateCommon;
 /**
  * An SPV vault (UTXO-controlled vault), has been closed as a result of the claim (withdrawal) transaction,
@@ -77,11 +72,6 @@ export type SpvWithdrawalFrontedState = {
 export type SpvWithdrawalClosedState = {
     type: SpvWithdrawalStateType.CLOSED;
     error: string;
-    getClosedTxId?: () => Promise<string>;
-    getTxBlock?: () => Promise<{
-        blockHeight: number;
-        blockTime: number;
-    }>;
 } & SpvWithdrawalStateCommon;
 /**
  * A union type for the state of the spv vault claim (withdrawal)
