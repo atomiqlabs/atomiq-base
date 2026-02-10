@@ -3,7 +3,12 @@ import {SpvVaultData, SpvVaultTokenData} from "./SpvVaultData";
 import {SpvWithdrawalTransactionData} from "./SpvWithdrawalTransactionData";
 import {BtcStoredHeader} from "../btcrelay/types/BtcStoredHeader";
 import {RelaySynchronizer} from "../btcrelay/synchronizer/RelaySynchronizer";
-import {SpvWithdrawalState} from "./SpvWithdrawalState";
+import {
+    SpvWithdrawalClaimedState,
+    SpvWithdrawalClosedState,
+    SpvWithdrawalFrontedState,
+    SpvWithdrawalState
+} from "./SpvWithdrawalState";
 import {Buffer} from "buffer";
 import {BtcTx} from "../btc/rpc/BitcoinRpc";
 
@@ -202,6 +207,19 @@ export interface SpvVaultContract<
      * @param withdrawalTxs Object with the withdrawal tx to check + an optional start blockheight
      */
     getWithdrawalStates(withdrawalTxs: {withdrawal: WithdrawalTX, scStartBlockheight?: number}[]): Promise<{[btcTxId: string]: SpvWithdrawalState | null}>;
+
+    /**
+     * Returns the full history as fetched from the chain for a specific recipient
+     *
+     * @param recipient A recipient to check the history for
+     * @param startBlockheight
+     */
+    getHistoricalWithdrawalStates?(recipient: string, startBlockheight?: number): Promise<{
+        withdrawals: {
+            [btcTxId: string]: SpvWithdrawalClaimedState | SpvWithdrawalFrontedState
+        },
+        latestBlockheight?: number
+    }>;
 
     /**
      * Parses withdrawal data from the parsed bitcoin transaction

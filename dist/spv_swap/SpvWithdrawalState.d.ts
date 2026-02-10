@@ -36,6 +36,11 @@ type SpvWithdrawalStateCommon = {
     txId: string;
     owner: string;
     vaultId: bigint;
+    btcTxId?: string;
+    getTxBlock?: () => Promise<{
+        blockHeight: number;
+        blockTime: number;
+    }>;
 };
 /**
  * The withdrawal was successfully processed on the smart chain side
