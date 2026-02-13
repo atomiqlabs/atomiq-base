@@ -15,7 +15,7 @@ import {BtcTx} from "../btc/rpc/BitcoinRpc";
 /**
  * Represents an SPV vault (UTXO-controlled vault) contract, exposes operations on the vaults
  *
- * @category Swaps
+ * @category Chains
  */
 export interface SpvVaultContract<
     TX = any,

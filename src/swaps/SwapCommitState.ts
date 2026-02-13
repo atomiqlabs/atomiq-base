@@ -1,7 +1,7 @@
 /**
  * Possible on-chain states of the swap escrow
  *
- * @category Swaps
+ * @category Chains
  */
 export enum SwapCommitStateType {
     /**

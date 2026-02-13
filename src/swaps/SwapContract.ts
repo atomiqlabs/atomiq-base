@@ -58,7 +58,7 @@ export type BitcoinTransactionData = {
 /**
  * A contract for interacting with escrow manager swaps - escrow based swaps like HTLCs and PrTLCs
  *
- * @category Swaps
+ * @category Chains
  */
 export interface SwapContract<
     T extends SwapData = SwapData,

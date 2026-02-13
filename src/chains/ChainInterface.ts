@@ -1,5 +1,5 @@
 /**
- * @category Chain
+ * @category Chains
  */
 export type TransactionConfirmationOptions = {
     waitForConfirmation?: boolean,
@@ -31,6 +31,8 @@ export function isAbstractSigner(val: any): val is AbstractSigner {
 
 /**
  * An interface representing a smart chain, allowing basic operations on the chain and reading chain data
+ *
+ * @category Chains
  */
 export interface ChainInterface<
     TX = any,

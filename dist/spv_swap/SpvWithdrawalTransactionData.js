@@ -5,7 +5,7 @@ const buffer_1 = require("buffer");
 /**
  * Represents the data of a single SPV vault (UTXO-controlled) vault withdrawal
  *
- * @category Swaps
+ * @category Chains
  */
 class SpvWithdrawalTransactionData {
     /**

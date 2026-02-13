@@ -7,7 +7,7 @@ import { SpvVaultDepositEvent } from "../events/types/spv_vault/SpvVaultDepositE
 /**
  * Balance for a specific token inside a vault
  *
- * @category Swaps
+ * @category Chains
  */
 export type SpvVaultTokenBalance = SpvVaultTokenData & {
     /**

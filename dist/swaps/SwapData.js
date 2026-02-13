@@ -4,7 +4,7 @@ exports.SwapData = void 0;
 /**
  * Represents full escrow swap data and parameters
  *
- * @category Swaps
+ * @category Chains
  */
 class SwapData {
     /**
