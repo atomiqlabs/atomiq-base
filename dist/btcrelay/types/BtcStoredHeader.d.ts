@@ -5,7 +5,7 @@ import { Buffer } from "buffer";
  * Represents a bitcoin blockheader that has already been synchronized and saved (committed) in the BTC relay
  *  contract
  *
- * @category Bitcoin
+ * @category Chains
  */
 export interface BtcStoredHeader<T extends BtcHeader> {
     /**

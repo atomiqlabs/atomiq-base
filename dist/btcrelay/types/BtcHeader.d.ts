@@ -3,7 +3,7 @@ import { Buffer } from "buffer";
 /**
  * Represents a raw bitcoin header (80-bytes) that can be synchronized to the underlying BTC relay light client contract
  *
- * @category Bitcoin
+ * @category Chains
  */
 export interface BtcHeader {
     /**
