@@ -40,7 +40,7 @@ export type SpvVaultTokenData = {
 /**
  * Represents the state of a single SPV vault (UTXO-controlled vault)
  *
- * @category Swaps
+ * @category Chains
  */
 export abstract class SpvVaultData<T extends SpvWithdrawalTransactionData = SpvWithdrawalTransactionData> implements StorageObject {
 
