@@ -24,7 +24,7 @@ export type SpvVaultTokenBalance = SpvVaultTokenData & {
 /**
  * Configuration for a specific token inside an SPV vault (UTXO-controlled vault)
  *
- * @category Swaps
+ * @category Chains
  */
 export type SpvVaultTokenData = {
     /**
