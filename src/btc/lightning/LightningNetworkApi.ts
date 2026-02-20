@@ -2,7 +2,7 @@
 /**
  * A type defining total capacity of a given lightning network node
  *
- * @category Bitcoin
+ * @category Lightning
  */
 export type LNNodeLiquidity = {
     publicKey: string,
@@ -13,7 +13,7 @@ export type LNNodeLiquidity = {
 /**
  * An interface for Lightning API, provides view of the public lightning network data like channel graph
  *
- * @category Bitcoin
+ * @category Lightning
  */
 export interface LightningNetworkApi {
 
