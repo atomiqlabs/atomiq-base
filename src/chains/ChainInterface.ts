@@ -16,7 +16,7 @@ export type TransactionConfirmationOptions = {
 export type AbstractSigner = {
     type: "AtomiqAbstractSigner",
     getAddress: () => string,
-    getReproducibleEntropy?: (appName: string) => Buffer,
+    getReproducibleEntropy?: (appName: string) => Promise<Buffer>,
     init?: () => Promise<void>,
     stop?: () => Promise<void>
 };
