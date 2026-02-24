@@ -43,7 +43,7 @@ export type SynchronizationResponse<V extends BtcStoredHeader<any>, T, B extends
  *  necessary to synchronize the underlying relay contract to the current tip of the canonical chain,
  *  automatically handles forking if necessary
  *
- * @category BTC Relay
+ * @category Chains
  */
 export interface RelaySynchronizer<V extends BtcStoredHeader<any>, T, B extends BtcBlock> {
     /**

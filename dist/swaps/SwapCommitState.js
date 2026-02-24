@@ -4,7 +4,7 @@ exports.SwapCommitStateType = void 0;
 /**
  * Possible on-chain states of the swap escrow
  *
- * @category Swaps
+ * @category Chains
  */
 var SwapCommitStateType;
 (function (SwapCommitStateType) {

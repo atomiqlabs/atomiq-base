@@ -3,13 +3,13 @@ import { ChainEvent } from "./types/ChainEvent";
 /**
  * A type of the on-chain event listener callback
  *
- * @category Events
+ * @category Chains
  */
 export type EventListener<T extends SwapData> = (obj: ChainEvent<T>[]) => Promise<boolean>;
 /**
  * An interface defining an on-chain events listener, allowing registering callbacks to receive on-chain events
  *
- * @category Events
+ * @category Chains
  */
 export interface ChainEvents<T extends SwapData, S extends any = any> {
     /**

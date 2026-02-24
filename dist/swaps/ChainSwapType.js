@@ -4,7 +4,7 @@ exports.ChainSwapType = void 0;
 /**
  * Smart chain escrow swap types
  *
- * @category Swaps
+ * @category Chains
  */
 var ChainSwapType;
 (function (ChainSwapType) {

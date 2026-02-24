@@ -1,5 +1,5 @@
 /**
- * @category Chain
+ * @category Chains
  */
 export type TransactionConfirmationOptions = {
     waitForConfirmation?: boolean;
@@ -10,7 +10,7 @@ export type TransactionConfirmationOptions = {
  * Defines of a signer, contains an address getter and optionally init() & stop() functions
  *  to initiate internal processes inside the signer (if required and exposed)
  *
- * @category Signer
+ * @category Chains
  */
 export type AbstractSigner = {
     type: "AtomiqAbstractSigner";
@@ -26,6 +26,8 @@ export type AbstractSigner = {
 export declare function isAbstractSigner(val: any): val is AbstractSigner;
 /**
  * An interface representing a smart chain, allowing basic operations on the chain and reading chain data
+ *
+ * @category Chains
  */
 export interface ChainInterface<TX = any, SignedTX = any, Signer extends AbstractSigner = AbstractSigner, ChainId extends string = string, NativeSigner = any> {
     /**

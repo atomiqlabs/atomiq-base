@@ -7,7 +7,7 @@ import { SpvVaultDepositEvent } from "../events/types/spv_vault/SpvVaultDepositE
 /**
  * Balance for a specific token inside a vault
  *
- * @category Swaps
+ * @category Chains
  */
 export type SpvVaultTokenBalance = SpvVaultTokenData & {
     /**
@@ -22,7 +22,7 @@ export type SpvVaultTokenBalance = SpvVaultTokenData & {
 /**
  * Configuration for a specific token inside an SPV vault (UTXO-controlled vault)
  *
- * @category Swaps
+ * @category Chains
  */
 export type SpvVaultTokenData = {
     /**
@@ -37,7 +37,7 @@ export type SpvVaultTokenData = {
 /**
  * Represents the state of a single SPV vault (UTXO-controlled vault)
  *
- * @category Swaps
+ * @category Chains
  */
 export declare abstract class SpvVaultData<T extends SpvWithdrawalTransactionData = SpvWithdrawalTransactionData> implements StorageObject {
     /**

@@ -4,6 +4,8 @@ import {StorageObject} from "../storage/StorageObject";
 
 /**
  * Execution data assigned to the withdrawal
+ *
+ * @category Chains
  */
 export type ExecutionData = {
     executionHash: string,
@@ -13,7 +15,7 @@ export type ExecutionData = {
 /**
  * Represents the data of a single SPV vault (UTXO-controlled) vault withdrawal
  *
- * @category Swaps
+ * @category Chains
  */
 export abstract class SpvWithdrawalTransactionData implements StorageObject {
 

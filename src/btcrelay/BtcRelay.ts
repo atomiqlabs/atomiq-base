@@ -6,7 +6,7 @@ import {AbstractSigner} from "../chains/ChainInterface";
 /**
  * Represents a BTC relay bitcoin light client contract, which verifies the bitcoin blockheaders on smart chains
  *
- * @category BTC Relay
+ * @category Chains
  */
 export interface BtcRelay<
     V extends BtcStoredHeader<any>,

@@ -3,7 +3,7 @@ import { StorageObject } from "../storage/StorageObject";
 /**
  * Represents full escrow swap data and parameters
  *
- * @category Swaps
+ * @category Chains
  */
 export declare abstract class SwapData implements StorageObject {
     /**

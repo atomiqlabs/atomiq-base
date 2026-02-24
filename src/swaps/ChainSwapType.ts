@@ -1,7 +1,7 @@
 /**
  * Smart chain escrow swap types
  *
- * @category Swaps
+ * @category Chains
  */
 export enum ChainSwapType {
     /**

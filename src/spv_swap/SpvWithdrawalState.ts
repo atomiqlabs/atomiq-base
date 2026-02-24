@@ -1,7 +1,7 @@
 /**
  * Possible states of a vault withdrawal (claim) transaction
  *
- * @category Swaps
+ * @category Chains
  */
 export enum SpvWithdrawalStateType {
     /**

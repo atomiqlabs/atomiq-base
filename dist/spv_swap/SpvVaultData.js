@@ -4,7 +4,7 @@ exports.SpvVaultData = void 0;
 /**
  * Represents the state of a single SPV vault (UTXO-controlled vault)
  *
- * @category Swaps
+ * @category Chains
  */
 class SpvVaultData {
     /**

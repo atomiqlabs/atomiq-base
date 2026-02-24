@@ -4,7 +4,7 @@ exports.SpvWithdrawalStateType = void 0;
 /**
  * Possible states of a vault withdrawal (claim) transaction
  *
- * @category Swaps
+ * @category Chains
  */
 var SpvWithdrawalStateType;
 (function (SpvWithdrawalStateType) {
