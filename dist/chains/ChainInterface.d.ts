@@ -1,3 +1,4 @@
+/// <reference types="node" />
 /**
  * @category Chains
  */
@@ -15,6 +16,7 @@ export type TransactionConfirmationOptions = {
 export type AbstractSigner = {
     type: "AtomiqAbstractSigner";
     getAddress: () => string;
+    getReproducibleEntropy?: (appName: string) => Buffer;
     init?: () => Promise<void>;
     stop?: () => Promise<void>;
 };
