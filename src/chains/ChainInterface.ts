@@ -106,6 +106,15 @@ export interface ChainInterface<
     txsTransfer(signer: string, token: string, amount: bigint, dstAddress: string, feeRate?: string): Promise<TX[]>;
 
     /**
+     * Prepares transaction for signing, by assigning a nonce, or a last valid blockhash
+     *
+     * @remarks Ensure that all transactions are using the same signer, else this function might throw!
+     *
+     * @param txs Transactions to prepare
+     */
+    prepareTxs?(txs: TX[]): Promise<TX[]>;
+
+    /**
      * Serializes a given transaction to a string
      *
      * @param tx Transaction to serialize
