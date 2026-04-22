@@ -221,5 +221,13 @@ export abstract class SwapData implements StorageObject {
         return false;
     }
 
+    /**
+     * Returns the JSON-serialization safe representation of the underlying swap escrow struct committed (or
+     *  to-be-committed) on-chain
+     */
+    getEscrowStruct(): any {
+        return null;
+    }
+
 }
 

@@ -32,6 +32,13 @@ class SwapData {
     hasSuccessAction() {
         return false;
     }
+    /**
+     * Returns the JSON-serialization safe representation of the underlying swap escrow struct committed (or
+     *  to-be-committed) on-chain
+     */
+    getEscrowStruct() {
+        return null;
+    }
 }
 exports.SwapData = SwapData;
 /**

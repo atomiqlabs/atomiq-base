@@ -176,4 +176,9 @@ export declare abstract class SwapData implements StorageObject {
      * Checks whether the escrow contains an execution action (swap+)
      */
     hasSuccessAction(): boolean;
+    /**
+     * Returns the JSON-serialization safe representation of the underlying swap escrow struct committed (or
+     *  to-be-committed) on-chain
+     */
+    getEscrowStruct(): any;
 }
