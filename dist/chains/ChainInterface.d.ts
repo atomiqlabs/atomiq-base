@@ -1,4 +1,5 @@
 /// <reference types="node" />
+import { BitcoinNetwork } from "../btc/BitcoinNetwork";
 /**
  * @category Chains
  */
@@ -185,4 +186,11 @@ export interface ChainInterface<TX = any, SignedTX = any, Signer extends Abstrac
      * Wraps a native chain signer object to an atomiq-understandable AbstractSigner
      */
     wrapSigner(signer: NativeSigner): Promise<Signer>;
+    /**
+     * Verifies whether the set network of this chain interface matches the passed bitcoin network (i.e. mainnet should
+     *  use mainnet networks and testnets should use testnet networks)
+     *
+     * @throws {Error} When the underlying network doesn't match
+     */
+    verifyNetwork?(bitcoinNetwork: BitcoinNetwork): Promise<void>;
 }
