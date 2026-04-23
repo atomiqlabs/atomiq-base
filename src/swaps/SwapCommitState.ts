@@ -33,6 +33,7 @@ export enum SwapCommitStateType {
  */
 export type SwapNotCommitedState = {
     type: SwapCommitStateType.NOT_COMMITED,
+    getInitTxId?: () => Promise<string>,
     getRefundTxId?: () => Promise<string>,
     getTxBlock?: () => Promise<{blockHeight: number, blockTime: number}>
 };
@@ -44,6 +45,7 @@ export type SwapNotCommitedState = {
  */
 export type SwapExpiredState = {
     type: SwapCommitStateType.EXPIRED,
+    getInitTxId?: () => Promise<string>,
     getRefundTxId?: () => Promise<string>,
     getTxBlock?: () => Promise<{blockHeight: number, blockTime: number}>
 };
@@ -54,7 +56,8 @@ export type SwapExpiredState = {
  * @category Swaps
  */
 export type SwapRefundableState = {
-    type: SwapCommitStateType.REFUNDABLE
+    type: SwapCommitStateType.REFUNDABLE,
+    getInitTxId?: () => Promise<string>
 };
 
 /**
@@ -63,7 +66,8 @@ export type SwapRefundableState = {
  * @category Swaps
  */
 export type SwapCommitedState = {
-    type: SwapCommitStateType.COMMITED
+    type: SwapCommitStateType.COMMITED,
+    getInitTxId?: () => Promise<string>
 };
 
 /**
@@ -73,6 +77,7 @@ export type SwapCommitedState = {
  */
 export type SwapPaidState = {
     type: SwapCommitStateType.PAID,
+    getInitTxId?: () => Promise<string>,
     getClaimTxId: () => Promise<string>,
     getClaimResult: () => Promise<string>,
     getTxBlock: () => Promise<{blockHeight: number, blockTime: number}>

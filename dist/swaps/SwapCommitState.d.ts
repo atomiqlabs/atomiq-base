@@ -32,6 +32,7 @@ export declare enum SwapCommitStateType {
  */
 export type SwapNotCommitedState = {
     type: SwapCommitStateType.NOT_COMMITED;
+    getInitTxId?: () => Promise<string>;
     getRefundTxId?: () => Promise<string>;
     getTxBlock?: () => Promise<{
         blockHeight: number;
@@ -45,6 +46,7 @@ export type SwapNotCommitedState = {
  */
 export type SwapExpiredState = {
     type: SwapCommitStateType.EXPIRED;
+    getInitTxId?: () => Promise<string>;
     getRefundTxId?: () => Promise<string>;
     getTxBlock?: () => Promise<{
         blockHeight: number;
@@ -58,6 +60,7 @@ export type SwapExpiredState = {
  */
 export type SwapRefundableState = {
     type: SwapCommitStateType.REFUNDABLE;
+    getInitTxId?: () => Promise<string>;
 };
 /**
  * The escrow is active on-chain and can be claimed
@@ -66,6 +69,7 @@ export type SwapRefundableState = {
  */
 export type SwapCommitedState = {
     type: SwapCommitStateType.COMMITED;
+    getInitTxId?: () => Promise<string>;
 };
 /**
  * The escrow has been finalized and funds claimed by the claimer
@@ -74,6 +78,7 @@ export type SwapCommitedState = {
  */
 export type SwapPaidState = {
     type: SwapCommitStateType.PAID;
+    getInitTxId?: () => Promise<string>;
     getClaimTxId: () => Promise<string>;
     getClaimResult: () => Promise<string>;
     getTxBlock: () => Promise<{
