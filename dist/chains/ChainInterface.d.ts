@@ -120,6 +120,12 @@ export interface ChainInterface<TX = any, SignedTX = any, Signer extends Abstrac
      */
     deserializeSignedTx(txData: string): Promise<SignedTX>;
     /**
+     * Returns the transaction ID of the signed transaction
+     *
+     * @param signedTX Signed transaction to get the transaction ID of
+     */
+    getTxId?(signedTX: SignedTX): Promise<string>;
+    /**
      * Returns the status of the given serialized transaction
      *
      * @param tx Serialized transaction
