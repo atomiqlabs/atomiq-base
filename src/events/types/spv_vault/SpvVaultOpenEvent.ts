@@ -19,8 +19,8 @@ export class SpvVaultOpenEvent extends SpvVaultEvent<SpvVaultEventType.OPEN> {
      */
     vout: number;
 
-    constructor(owner: string, vaultId: bigint, btcTxId: string, vout: number) {
-        super(owner, vaultId);
+    constructor(owner: string, vaultId: bigint, btcTxId: string, vout: number, contractVersion?: string) {
+        super(owner, vaultId, contractVersion);
         this.btcTxId = btcTxId;
         this.vout = vout;
     }

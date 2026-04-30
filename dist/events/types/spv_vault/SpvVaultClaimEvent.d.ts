@@ -37,5 +37,5 @@ export declare class SpvVaultClaimEvent extends SpvVaultEvent<SpvVaultEventType.
      * The sequence of this claim (withdrawal) - i.e. the total number of deposits done before this one
      */
     withdrawCount: number;
-    constructor(owner: string, vaultId: bigint, btcTxId: string, recipient: string, executionHash: string, amounts: bigint[], caller: string, frontingAddress: string, withdrawCount: number);
+    constructor(owner: string, vaultId: bigint, btcTxId: string, recipient: string, executionHash: string, amounts: bigint[], caller: string, frontingAddress: string, withdrawCount: number, contractVersion?: string);
 }

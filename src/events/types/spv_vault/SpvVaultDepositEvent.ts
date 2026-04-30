@@ -21,8 +21,8 @@ export class SpvVaultDepositEvent extends SpvVaultEvent<SpvVaultEventType.DEPOSI
      */
     depositCount: number;
 
-    constructor(owner: string, vaultId: bigint, amounts: bigint[], depositCount: number) {
-        super(owner, vaultId);
+    constructor(owner: string, vaultId: bigint, amounts: bigint[], depositCount: number, contractVersion?: string) {
+        super(owner, vaultId, contractVersion);
         this.amounts = amounts;
         this.depositCount = depositCount;
     }

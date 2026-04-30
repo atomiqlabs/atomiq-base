@@ -14,8 +14,8 @@ export class ClaimEvent<T extends SwapData> extends SwapEvent<T, SwapEventType.C
      */
     result: string;
 
-    constructor(escrowHash: string, result: string) {
-        super(escrowHash);
+    constructor(escrowHash: string, result: string, contractVersion?: string) {
+        super(escrowHash, contractVersion);
         this.result = result;
     }
 

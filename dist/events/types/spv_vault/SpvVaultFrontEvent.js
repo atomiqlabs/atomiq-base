@@ -8,8 +8,8 @@ const SpvVaultEvent_1 = require("./SpvVaultEvent");
  * @category Events
  */
 class SpvVaultFrontEvent extends SpvVaultEvent_1.SpvVaultEvent {
-    constructor(owner, vaultId, btcTxId, recipient, executionHash, amounts, frontingAddress) {
-        super(owner, vaultId);
+    constructor(owner, vaultId, btcTxId, recipient, executionHash, amounts, frontingAddress, contractVersion) {
+        super(owner, vaultId, contractVersion);
         this.eventType = SpvVaultEvent_1.SpvVaultEventType.FRONT;
         this.btcTxId = btcTxId;
         this.recipient = recipient;

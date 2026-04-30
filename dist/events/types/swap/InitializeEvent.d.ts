@@ -16,5 +16,5 @@ export declare class InitializeEvent<T extends SwapData> extends SwapEvent<T, Sw
      * A getter for the actual full swap data that was used to initialize the escrow swap
      */
     swapData: () => Promise<T | null>;
-    constructor(escrowHash: string, swapType: ChainSwapType, swapData: () => Promise<T | null>);
+    constructor(escrowHash: string, swapType: ChainSwapType, swapData: () => Promise<T | null>, contractVersion?: string);
 }

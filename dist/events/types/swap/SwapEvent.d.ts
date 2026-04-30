@@ -21,5 +21,5 @@ export declare abstract class SwapEvent<T extends SwapData, C extends SwapEventT
      * Identifier of the escrow, usually a hash of the full escrow swap data
      */
     escrowHash: string;
-    constructor(escrowHash: string);
+    constructor(escrowHash: string, contractVersion?: string);
 }

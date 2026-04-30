@@ -19,8 +19,8 @@ var SwapEventType;
  * @category Events
  */
 class SwapEvent extends ChainEvent_1.ChainEvent {
-    constructor(escrowHash) {
-        super();
+    constructor(escrowHash, contractVersion) {
+        super(contractVersion);
         this.escrowHash = escrowHash;
     }
 }

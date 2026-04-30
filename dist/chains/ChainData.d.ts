@@ -30,6 +30,17 @@ export type ChainData<T extends ChainType> = {
     spvVaultContract: T["SpvVaultContract"];
     spvVaultDataConstructor: new (data: any) => T["SpvVaultData"];
     spvVaultWithdrawalDataConstructor: new (data: any) => T["SpvVaultWithdrawalData"];
+    defaultVersion?: string;
+    versions?: {
+        [contractVersion: string]: {
+            btcRelay: T["BtcRelay"];
+            swapContract: T["Contract"];
+            swapDataConstructor: new (data: any) => T["Data"];
+            spvVaultContract: T["SpvVaultContract"];
+            spvVaultDataConstructor: new (data: any) => T["SpvVaultData"];
+            spvVaultWithdrawalDataConstructor: new (data: any) => T["SpvVaultWithdrawalData"];
+        };
+    };
 };
 /**
  * An initializer function that returns populated {@link ChainData} for a given chain based on the passed

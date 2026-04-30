@@ -28,5 +28,5 @@ export declare class SpvVaultFrontEvent extends SpvVaultEvent<SpvVaultEventType.
      * Address of the party which fronted the withdrawal
      */
     frontingAddress: string;
-    constructor(owner: string, vaultId: bigint, btcTxId: string, recipient: string, executionHash: string, amounts: bigint[], frontingAddress: string);
+    constructor(owner: string, vaultId: bigint, btcTxId: string, recipient: string, executionHash: string, amounts: bigint[], frontingAddress: string, contractVersion?: string);
 }
