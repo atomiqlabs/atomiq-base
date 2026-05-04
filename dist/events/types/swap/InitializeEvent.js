@@ -8,8 +8,8 @@ const SwapEvent_1 = require("./SwapEvent");
  * @category Events
  */
 class InitializeEvent extends SwapEvent_1.SwapEvent {
-    constructor(escrowHash, swapType, swapData) {
-        super(escrowHash);
+    constructor(escrowHash, swapType, swapData, contractVersion) {
+        super(escrowHash, contractVersion);
         this.eventType = SwapEvent_1.SwapEventType.INITIALIZE;
         this.swapType = swapType;
         this.swapData = swapData;

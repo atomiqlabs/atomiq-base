@@ -15,5 +15,5 @@ export declare class SpvVaultDepositEvent extends SpvVaultEvent<SpvVaultEventTyp
      * The sequence of this deposit - i.e. the total number of deposits done before this one
      */
     depositCount: number;
-    constructor(owner: string, vaultId: bigint, amounts: bigint[], depositCount: number);
+    constructor(owner: string, vaultId: bigint, amounts: bigint[], depositCount: number, contractVersion?: string);
 }

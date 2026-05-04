@@ -36,9 +36,9 @@ export class SpvVaultFrontEvent extends SpvVaultEvent<SpvVaultEventType.FRONT> {
     constructor(
         owner: string, vaultId: bigint,
         btcTxId: string, recipient: string, executionHash: string, amounts: bigint[],
-        frontingAddress: string
+        frontingAddress: string, contractVersion?: string
     ) {
-        super(owner, vaultId);
+        super(owner, vaultId, contractVersion);
         this.btcTxId = btcTxId;
         this.recipient = recipient;
         this.executionHash = executionHash;

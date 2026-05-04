@@ -12,4 +12,9 @@ export declare class ChainEvent<T extends SwapData> {
         blockTime: number;
         txId: string;
     };
+    /**
+     * Version of the contract that emitted the event
+     */
+    contractVersion?: string;
+    constructor(contractVersion?: string);
 }

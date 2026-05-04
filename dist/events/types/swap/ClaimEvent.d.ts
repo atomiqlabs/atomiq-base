@@ -11,5 +11,5 @@ export declare class ClaimEvent<T extends SwapData> extends SwapEvent<T, SwapEve
      * The result of the Claim event, usually either a secret pre-image or transaction hash
      */
     result: string;
-    constructor(escrowHash: string, result: string);
+    constructor(escrowHash: string, result: string, contractVersion?: string);
 }

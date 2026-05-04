@@ -8,8 +8,8 @@ const SpvVaultEvent_1 = require("./SpvVaultEvent");
  * @category Events
  */
 class SpvVaultDepositEvent extends SpvVaultEvent_1.SpvVaultEvent {
-    constructor(owner, vaultId, amounts, depositCount) {
-        super(owner, vaultId);
+    constructor(owner, vaultId, amounts, depositCount, contractVersion) {
+        super(owner, vaultId, contractVersion);
         this.eventType = SpvVaultEvent_1.SpvVaultEventType.DEPOSIT;
         this.amounts = amounts;
         this.depositCount = depositCount;

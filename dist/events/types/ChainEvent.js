@@ -7,5 +7,8 @@ exports.ChainEvent = void 0;
  * @category Events
  */
 class ChainEvent {
+    constructor(contractVersion) {
+        this.contractVersion = contractVersion;
+    }
 }
 exports.ChainEvent = ChainEvent;

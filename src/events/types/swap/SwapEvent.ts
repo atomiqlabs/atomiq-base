@@ -25,8 +25,8 @@ export abstract class SwapEvent<T extends SwapData, C extends SwapEventType = Sw
      */
     escrowHash: string;
 
-    constructor(escrowHash: string) {
-        super();
+    constructor(escrowHash: string, contractVersion?: string) {
+        super(contractVersion);
         this.escrowHash = escrowHash;
     }
 

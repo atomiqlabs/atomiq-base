@@ -15,4 +15,13 @@ export class ChainEvent<T extends SwapData> {
         txId: string
     };
 
+    /**
+     * Version of the contract that emitted the event
+     */
+    contractVersion?: string;
+
+    constructor(contractVersion?: string) {
+        this.contractVersion = contractVersion;
+    }
+
 }

@@ -31,7 +31,19 @@ export type ChainData<T extends ChainType> = {
     swapDataConstructor: new (data: any) => T["Data"],
     spvVaultContract: T["SpvVaultContract"],
     spvVaultDataConstructor: new (data: any) => T["SpvVaultData"],
-    spvVaultWithdrawalDataConstructor: new (data: any) => T["SpvVaultWithdrawalData"]
+    spvVaultWithdrawalDataConstructor: new (data: any) => T["SpvVaultWithdrawalData"],
+
+    defaultVersion?: string,
+    versions?: {
+        [contractVersion: string]: {
+            btcRelay: T["BtcRelay"],
+            swapContract: T["Contract"],
+            swapDataConstructor: new (data: any) => T["Data"],
+            spvVaultContract: T["SpvVaultContract"],
+            spvVaultDataConstructor: new (data: any) => T["SpvVaultData"],
+            spvVaultWithdrawalDataConstructor: new (data: any) => T["SpvVaultWithdrawalData"],
+        }
+    }
 };
 
 /**

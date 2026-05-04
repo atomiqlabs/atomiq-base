@@ -21,8 +21,8 @@ var SpvVaultEventType;
  * @category Events
  */
 class SpvVaultEvent extends ChainEvent_1.ChainEvent {
-    constructor(owner, vaultId) {
-        super();
+    constructor(owner, vaultId, contractVersion) {
+        super(contractVersion);
         this.owner = owner;
         this.vaultId = vaultId;
     }

@@ -14,5 +14,5 @@ export declare class SpvVaultOpenEvent extends SpvVaultEvent<SpvVaultEventType.O
      * Vault ownership utxo transaction vout
      */
     vout: number;
-    constructor(owner: string, vaultId: bigint, btcTxId: string, vout: number);
+    constructor(owner: string, vaultId: bigint, btcTxId: string, vout: number, contractVersion?: string);
 }

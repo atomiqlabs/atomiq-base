@@ -16,5 +16,5 @@ export declare class SpvVaultCloseEvent extends SpvVaultEvent<SpvVaultEventType.
      * A representation of the actual error that has happened
      */
     error: string;
-    constructor(owner: string, vaultId: bigint, btcTxId: string, error: string);
+    constructor(owner: string, vaultId: bigint, btcTxId: string, error: string, contractVersion?: string);
 }

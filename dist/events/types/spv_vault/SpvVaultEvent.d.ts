@@ -27,5 +27,5 @@ export declare abstract class SpvVaultEvent<C extends SpvVaultEventType = SpvVau
      * ID of the SPV vault (UTXO-controlled vault)
      */
     vaultId: bigint;
-    constructor(owner: string, vaultId: bigint);
+    constructor(owner: string, vaultId: bigint, contractVersion?: string);
 }

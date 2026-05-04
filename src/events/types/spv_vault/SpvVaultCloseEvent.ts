@@ -21,8 +21,8 @@ export class SpvVaultCloseEvent extends SpvVaultEvent<SpvVaultEventType.CLOSE> {
      */
     error: string;
 
-    constructor(owner: string, vaultId: bigint, btcTxId: string, error: string) {
-        super(owner, vaultId);
+    constructor(owner: string, vaultId: bigint, btcTxId: string, error: string, contractVersion?: string) {
+        super(owner, vaultId, contractVersion);
         this.btcTxId = btcTxId;
         this.error = error;
     }

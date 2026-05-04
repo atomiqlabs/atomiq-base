@@ -31,8 +31,8 @@ export abstract class SpvVaultEvent<C extends SpvVaultEventType = SpvVaultEventT
      */
     vaultId: bigint;
 
-    constructor(owner: string, vaultId: bigint) {
-        super();
+    constructor(owner: string, vaultId: bigint, contractVersion?: string) {
+        super(contractVersion);
         this.owner = owner;
         this.vaultId = vaultId;
     }

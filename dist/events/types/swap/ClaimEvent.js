@@ -8,8 +8,8 @@ const SwapEvent_1 = require("./SwapEvent");
  * @category Events
  */
 class ClaimEvent extends SwapEvent_1.SwapEvent {
-    constructor(escrowHash, result) {
-        super(escrowHash);
+    constructor(escrowHash, result, contractVersion) {
+        super(escrowHash, contractVersion);
         this.eventType = SwapEvent_1.SwapEventType.CLAIM;
         this.result = result;
     }

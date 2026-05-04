@@ -19,8 +19,8 @@ export class InitializeEvent<T extends SwapData> extends SwapEvent<T, SwapEventT
      */
     swapData: () => Promise<T | null>;
 
-    constructor(escrowHash: string, swapType: ChainSwapType, swapData: () => Promise<T | null>) {
-        super(escrowHash);
+    constructor(escrowHash: string, swapType: ChainSwapType, swapData: () => Promise<T | null>, contractVersion?: string) {
+        super(escrowHash, contractVersion);
         this.swapType = swapType;
         this.swapData = swapData;
     }
