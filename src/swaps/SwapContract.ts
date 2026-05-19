@@ -483,8 +483,9 @@ export interface SwapContract<
      * @param signer Signer claiming the swap
      * @param swapData Swap to claim
      * @param feeRate Optional fee rate (fetched on-demand if not provided)
+     * @param witnessByteLength Optional length of the witness to better estimate the fee
      */
-    getClaimFee(signer: string, swapData: T, feeRate?: string): Promise<bigint>;
+    getClaimFee(signer: string, swapData: T, feeRate?: string, witnessByteLength?: number): Promise<bigint>;
 
     /**
      * Returns raw fee (not including any refunds we might get that would make the getClaimFee negative) for claiming the swap
@@ -492,8 +493,9 @@ export interface SwapContract<
      * @param signer Signer claiming the swap
      * @param swapData Swap to claim
      * @param feeRate Optional fee rate (fetched on-demand if not provided)
+     * @param witnessByteLength Optional length of the witness to better estimate the fee
      */
-    getRawClaimFee?(signer: string, swapData: T, feeRate?: string): Promise<bigint>;
+    getRawClaimFee?(signer: string, swapData: T, feeRate?: string, witnessByteLength?: number): Promise<bigint>;
 
     /**
      * Returns the fee in native token base units to refund the swap
