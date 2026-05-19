@@ -49,6 +49,13 @@ export interface ChainInterface<TX = any, SignedTX = any, Signer extends Abstrac
      */
     getNativeCurrencyAddress(): string;
     /**
+     * Whether a possibility for the user to get a native token "gas drop" should be provided if swapping to
+     *  the provided token.
+     *
+     * @param tokenAddress
+     */
+    shouldGetNativeTokenDrop?(tokenAddress: string): boolean;
+    /**
      * Checks if a given string is a valid wallet address
      *
      * @param address
