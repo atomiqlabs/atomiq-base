@@ -1,4 +1,4 @@
-import {SpvVaultEvent, SpvVaultEventType} from "./SpvVaultEvent";
+import {SpvVaultEvent, SpvVaultEventType} from "./SpvVaultEvent.js";
 
 
 /**

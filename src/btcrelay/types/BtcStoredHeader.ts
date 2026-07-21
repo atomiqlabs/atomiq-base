@@ -1,4 +1,4 @@
-import {BtcHeader} from "./BtcHeader";
+import {BtcHeader} from "./BtcHeader.js";
 import {Buffer} from "buffer";
 
 /**

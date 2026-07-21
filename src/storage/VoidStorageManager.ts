@@ -1,4 +1,4 @@
-import {IStorageManager} from "./IStorageManager";
+import {IStorageManager} from "./IStorageManager.js";
 
 /**
  * A dummy storage manager that doesn't store anything, and should be only used as a placeholder

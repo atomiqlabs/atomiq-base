@@ -1,5 +1,5 @@
-import {SwapData} from "../../../swaps/SwapData";
-import {ChainEvent} from "../ChainEvent";
+import {SwapData} from "../../../swaps/SwapData.js";
+import {ChainEvent} from "../ChainEvent.js";
 
 /**
  * Enum of the different types of escrow-swap specific events

@@ -1,5 +1,5 @@
 import { Buffer } from "buffer";
-import { BigIntBufferUtils } from "../../utils/BigIntBufferUtils";
+import { BigIntBufferUtils } from "../../utils/BigIntBufferUtils.js";
 /**
  * Big integer arithmetic helpers for block difficulty calculations
  *

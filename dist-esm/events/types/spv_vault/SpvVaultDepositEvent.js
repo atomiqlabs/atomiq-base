@@ -1,4 +1,4 @@
-import { SpvVaultEvent, SpvVaultEventType } from "./SpvVaultEvent";
+import { SpvVaultEvent, SpvVaultEventType } from "./SpvVaultEvent.js";
 /**
  * SPV vault (UTXO-controlled vault) Deposit event representation, additional funds have been deposited to the SPV vault
  *

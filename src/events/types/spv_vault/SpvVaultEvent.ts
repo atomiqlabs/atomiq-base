@@ -1,5 +1,5 @@
-import {ChainEvent} from "../ChainEvent";
-import {SwapData} from "../../../swaps/SwapData";
+import {ChainEvent} from "../ChainEvent.js";
+import {SwapData} from "../../../swaps/SwapData.js";
 
 /**
  * Enum of the various types of SPV vault (UTXO-controlled vault) related events

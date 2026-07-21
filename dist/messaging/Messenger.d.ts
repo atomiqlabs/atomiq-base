@@ -1,4 +1,4 @@
-import { Message } from "./messages/Message";
+import { Message } from "./messages/Message.js";
 /**
  * An interface of a messenger, this is a generic data propagation layer, where parties can broadcast messages
  *  and others can listen to these broadcasted messages

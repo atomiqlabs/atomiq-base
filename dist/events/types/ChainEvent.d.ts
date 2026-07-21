@@ -1,4 +1,4 @@
-import { SwapData } from "../../swaps/SwapData";
+import { SwapData } from "../../swaps/SwapData.js";
 /**
  * Represents a processed on-chain event
  *

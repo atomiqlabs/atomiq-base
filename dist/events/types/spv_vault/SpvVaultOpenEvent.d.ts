@@ -1,4 +1,4 @@
-import { SpvVaultEvent, SpvVaultEventType } from "./SpvVaultEvent";
+import { SpvVaultEvent, SpvVaultEventType } from "./SpvVaultEvent.js";
 /**
  * SPV vault (UTXO-controlled vault) Open event representation, new SPV vault was opened
  *

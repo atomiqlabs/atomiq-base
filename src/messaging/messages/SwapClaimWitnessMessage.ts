@@ -1,5 +1,5 @@
-import {SwapData} from "../../swaps/SwapData";
-import {Message, MessageType} from "./Message";
+import {SwapData} from "../../swaps/SwapData.js";
+import {Message, MessageType} from "./Message.js";
 
 /**
  * Representation of an HTLC claim message, providing a swap pre-image in the `witness` field for a specific

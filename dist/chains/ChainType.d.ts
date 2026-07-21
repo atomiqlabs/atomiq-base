@@ -1,11 +1,11 @@
-import { SwapData } from "../swaps/SwapData";
-import { ChainEvents } from "../events/ChainEvents";
-import { SwapContract } from "../swaps/SwapContract";
-import { BtcRelay } from "../btcrelay/BtcRelay";
-import { AbstractSigner, ChainInterface } from "./ChainInterface";
-import { SpvVaultData } from "../spv_swap/SpvVaultData";
-import { SpvVaultContract } from "../spv_swap/SpvVaultContract";
-import { SpvWithdrawalTransactionData } from "../spv_swap/SpvWithdrawalTransactionData";
+import { SwapData } from "../swaps/SwapData.js";
+import { ChainEvents } from "../events/ChainEvents.js";
+import { SwapContract } from "../swaps/SwapContract.js";
+import { BtcRelay } from "../btcrelay/BtcRelay.js";
+import { AbstractSigner, ChainInterface } from "./ChainInterface.js";
+import { SpvVaultData } from "../spv_swap/SpvVaultData.js";
+import { SpvVaultContract } from "../spv_swap/SpvVaultContract.js";
+import { SpvWithdrawalTransactionData } from "../spv_swap/SpvWithdrawalTransactionData.js";
 /**
  * A comprehensive unified type struct for a given chain, contains all the type definitions of a given chain
  *

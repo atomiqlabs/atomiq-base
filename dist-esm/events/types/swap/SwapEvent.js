@@ -1,4 +1,4 @@
-import { ChainEvent } from "../ChainEvent";
+import { ChainEvent } from "../ChainEvent.js";
 /**
  * Enum of the different types of escrow-swap specific events
  *

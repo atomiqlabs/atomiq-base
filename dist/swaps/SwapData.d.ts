@@ -1,5 +1,5 @@
-import { ChainSwapType } from "./ChainSwapType";
-import { StorageObject } from "../storage/StorageObject";
+import { ChainSwapType } from "./ChainSwapType.js";
+import { StorageObject } from "../storage/StorageObject.js";
 /**
  * Represents full escrow swap data and parameters
  *

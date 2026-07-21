@@ -1,16 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SpvVaultClaimEvent = void 0;
-const SpvVaultEvent_1 = require("./SpvVaultEvent");
+const SpvVaultEvent_js_1 = require("./SpvVaultEvent.js");
 /**
  * SPV vault (UTXO-controlled vault) Claim event representation, a valid withdrawal from an SPV vault
  *
  * @category Events
  */
-class SpvVaultClaimEvent extends SpvVaultEvent_1.SpvVaultEvent {
+class SpvVaultClaimEvent extends SpvVaultEvent_js_1.SpvVaultEvent {
     constructor(owner, vaultId, btcTxId, recipient, executionHash, amounts, caller, frontingAddress, withdrawCount, contractVersion) {
         super(owner, vaultId, contractVersion);
-        this.eventType = SpvVaultEvent_1.SpvVaultEventType.CLAIM;
+        this.eventType = SpvVaultEvent_js_1.SpvVaultEventType.CLAIM;
         this.btcTxId = btcTxId;
         this.recipient = recipient;
         this.executionHash = executionHash;

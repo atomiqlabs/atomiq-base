@@ -1,7 +1,7 @@
 /// <reference types="node" />
 import { Buffer } from "buffer";
-import { BitcoinRpc, BtcTx } from "./BitcoinRpc";
-import { BtcBlock } from "../../btcrelay/types/BtcBlock";
+import { BitcoinRpc, BtcTx } from "./BitcoinRpc.js";
+import { BtcBlock } from "../../btcrelay/types/BtcBlock.js";
 /**
  * A type defining a bitcoin transaction with its blockheight and optional input addresses populated
  *

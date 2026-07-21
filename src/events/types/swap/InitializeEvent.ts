@@ -1,6 +1,6 @@
-import {SwapEvent, SwapEventType} from "./SwapEvent";
-import {SwapData} from "../../../swaps/SwapData";
-import {ChainSwapType} from "../../../swaps/ChainSwapType";
+import {SwapEvent, SwapEventType} from "./SwapEvent.js";
+import {SwapData} from "../../../swaps/SwapData.js";
+import {ChainSwapType} from "../../../swaps/ChainSwapType.js";
 
 /**
  * Escrow swap Initialization event representation, emitted when an escrow is created

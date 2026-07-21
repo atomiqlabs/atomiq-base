@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { BtcBlock } from "../../btcrelay/types/BtcBlock";
+import { BtcBlock } from "../../btcrelay/types/BtcBlock.js";
 import { Buffer } from "buffer";
 /**
  * A type defining a bitcoin transaction output

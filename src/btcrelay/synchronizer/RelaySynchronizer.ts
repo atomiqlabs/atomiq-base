@@ -1,5 +1,5 @@
-import {BtcStoredHeader} from "../types/BtcStoredHeader";
-import {BtcBlock} from "../types/BtcBlock";
+import {BtcStoredHeader} from "../types/BtcStoredHeader.js";
+import {BtcBlock} from "../types/BtcBlock.js";
 
 export type SynchronizationResponse<V extends BtcStoredHeader<any>, T, B extends BtcBlock> = {
     /**

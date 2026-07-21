@@ -1,5 +1,5 @@
-import { SwapData } from "../swaps/SwapData";
-import { ChainEvent } from "./types/ChainEvent";
+import { SwapData } from "../swaps/SwapData.js";
+import { ChainEvent } from "./types/ChainEvent.js";
 /**
  * A type of the on-chain event listener callback
  *

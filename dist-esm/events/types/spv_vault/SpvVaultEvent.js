@@ -1,4 +1,4 @@
-import { ChainEvent } from "../ChainEvent";
+import { ChainEvent } from "../ChainEvent.js";
 /**
  * Enum of the various types of SPV vault (UTXO-controlled vault) related events
  *

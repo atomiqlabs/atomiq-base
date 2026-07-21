@@ -1,4 +1,4 @@
-import { SwapEvent, SwapEventType } from "./SwapEvent";
+import { SwapEvent, SwapEventType } from "./SwapEvent.js";
 /**
  * Escrow swap Initialization event representation, emitted when an escrow is created
  *

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SpvVaultEvent = exports.SpvVaultEventType = void 0;
-const ChainEvent_1 = require("../ChainEvent");
+const ChainEvent_js_1 = require("../ChainEvent.js");
 /**
  * Enum of the various types of SPV vault (UTXO-controlled vault) related events
  *
@@ -20,7 +20,7 @@ var SpvVaultEventType;
  *
  * @category Events
  */
-class SpvVaultEvent extends ChainEvent_1.ChainEvent {
+class SpvVaultEvent extends ChainEvent_js_1.ChainEvent {
     constructor(owner, vaultId, contractVersion) {
         super(contractVersion);
         this.owner = owner;

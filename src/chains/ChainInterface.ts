@@ -1,4 +1,4 @@
-import {BitcoinNetwork} from "../btc/BitcoinNetwork";
+import {BitcoinNetwork} from "../btc/BitcoinNetwork.js";
 
 /**
  * @category Chains

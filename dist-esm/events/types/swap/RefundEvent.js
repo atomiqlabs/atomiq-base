@@ -1,4 +1,4 @@
-import { SwapEvent, SwapEventType } from "./SwapEvent";
+import { SwapEvent, SwapEventType } from "./SwapEvent.js";
 /**
  * Escrow swap Refund event representation, offerer refunded funds from the escrow
  *

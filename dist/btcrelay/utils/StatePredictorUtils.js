@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StatePredictorUtils = void 0;
 const buffer_1 = require("buffer");
-const BigIntBufferUtils_1 = require("../../utils/BigIntBufferUtils");
+const BigIntBufferUtils_js_1 = require("../../utils/BigIntBufferUtils.js");
 /**
  * Big integer arithmetic helpers for block difficulty calculations
  *
@@ -77,8 +77,8 @@ class StatePredictorUtils {
     }
     static getChainwork(nbits) {
         const target = StatePredictorUtils.nbitsToTarget(nbits);
-        const targetBN = BigIntBufferUtils_1.BigIntBufferUtils.fromBuffer(target);
-        return BigIntBufferUtils_1.BigIntBufferUtils.toBuffer(((~targetBN & 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffn) / (targetBN + 1n)) + 1n, "be", 32);
+        const targetBN = BigIntBufferUtils_js_1.BigIntBufferUtils.fromBuffer(target);
+        return BigIntBufferUtils_js_1.BigIntBufferUtils.toBuffer(((~targetBN & 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffn) / (targetBN + 1n)) + 1n, "be", 32);
     }
 }
 exports.StatePredictorUtils = StatePredictorUtils;

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SwapEvent = exports.SwapEventType = void 0;
-const ChainEvent_1 = require("../ChainEvent");
+const ChainEvent_js_1 = require("../ChainEvent.js");
 /**
  * Enum of the different types of escrow-swap specific events
  *
@@ -18,7 +18,7 @@ var SwapEventType;
  *
  * @category Events
  */
-class SwapEvent extends ChainEvent_1.ChainEvent {
+class SwapEvent extends ChainEvent_js_1.ChainEvent {
     constructor(escrowHash, contractVersion) {
         super(contractVersion);
         this.escrowHash = escrowHash;
