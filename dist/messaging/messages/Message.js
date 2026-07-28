@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Message = exports.MessageType = void 0;
+const MESSAGE_DESERIALIZER_REGISTRY = Symbol.for("@atomiqlabs/base/Message.deserializers/v1");
+const globalScope = globalThis;
+const messageDeserializerRegistry = (globalScope[MESSAGE_DESERIALIZER_REGISTRY] ?? (globalScope[MESSAGE_DESERIALIZER_REGISTRY] = {}));
 /**
  * Currently defined types of the data propagation messages
  *
@@ -42,4 +45,4 @@ exports.Message = Message;
  *
  * @internal
  */
-Message.deserializers = {};
+Message.deserializers = messageDeserializerRegistry;

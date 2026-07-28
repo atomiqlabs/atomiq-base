@@ -1,3 +1,6 @@
+const MESSAGE_DESERIALIZER_REGISTRY = Symbol.for("@atomiqlabs/base/Message.deserializers/v1");
+const globalScope = globalThis;
+const messageDeserializerRegistry = (globalScope[MESSAGE_DESERIALIZER_REGISTRY] ?? (globalScope[MESSAGE_DESERIALIZER_REGISTRY] = {}));
 /**
  * Currently defined types of the data propagation messages
  *
@@ -38,4 +41,4 @@ export class Message {
  *
  * @internal
  */
-Message.deserializers = {};
+Message.deserializers = messageDeserializerRegistry;

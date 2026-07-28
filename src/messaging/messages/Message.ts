@@ -1,3 +1,13 @@
+type MessageDeserializerRegistry = {
+    [type: number]: (obj: any) => Message,
+};
+
+const MESSAGE_DESERIALIZER_REGISTRY = Symbol.for("@atomiqlabs/base/Message.deserializers/v1");
+const globalScope = globalThis as typeof globalThis & {
+    [MESSAGE_DESERIALIZER_REGISTRY]: MessageDeserializerRegistry | undefined,
+};
+const messageDeserializerRegistry = (globalScope[MESSAGE_DESERIALIZER_REGISTRY] ??= {});
+
 /**
  * Currently defined types of the data propagation messages
  *
@@ -21,7 +31,7 @@ export abstract class Message {
      *
      * @internal
      */
-    static deserializers: {[type: number]: (obj: any) => Message} = {};
+    static deserializers: {[type: number]: (obj: any) => Message} = messageDeserializerRegistry;
 
     /**
      * Serializes the message to a format that can be JSON serialized (i.e. no bigints, functions, etc.)

@@ -2,6 +2,16 @@ import {BtcTx} from "../btc/rpc/BitcoinRpc.js";
 import {Buffer} from "buffer";
 import {StorageObject} from "../storage/StorageObject.js";
 
+type SpvWithdrawalTransactionDataDeserializerRegistry = {
+    [type: string]: new (serialized: any) => any,
+};
+
+const SPV_WITHDRAWAL_TRANSACTION_DATA_DESERIALIZER_REGISTRY = Symbol.for("@atomiqlabs/base/SpvWithdrawalTransactionData.deserializers/v1");
+const globalScope = globalThis as typeof globalThis & {
+    [SPV_WITHDRAWAL_TRANSACTION_DATA_DESERIALIZER_REGISTRY]: SpvWithdrawalTransactionDataDeserializerRegistry | undefined,
+};
+const spvWithdrawalTransactionDataDeserializerRegistry = (globalScope[SPV_WITHDRAWAL_TRANSACTION_DATA_DESERIALIZER_REGISTRY] ??= {});
+
 /**
  * Execution data assigned to the withdrawal
  *
@@ -24,7 +34,7 @@ export abstract class SpvWithdrawalTransactionData implements StorageObject {
      */
     static deserializers: {
         [type: string]: new (serialized: any) => any,
-    } = {};
+    } = spvWithdrawalTransactionDataDeserializerRegistry;
 
     /**
      * Deserializer parsing the chain-specific spv vault withdrawal data from a JSON-compatible object representation

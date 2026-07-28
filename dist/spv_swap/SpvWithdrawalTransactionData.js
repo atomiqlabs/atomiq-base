@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SpvWithdrawalTransactionData = void 0;
 const buffer_1 = require("buffer");
+const SPV_WITHDRAWAL_TRANSACTION_DATA_DESERIALIZER_REGISTRY = Symbol.for("@atomiqlabs/base/SpvWithdrawalTransactionData.deserializers/v1");
+const globalScope = globalThis;
+const spvWithdrawalTransactionDataDeserializerRegistry = (globalScope[SPV_WITHDRAWAL_TRANSACTION_DATA_DESERIALIZER_REGISTRY] ?? (globalScope[SPV_WITHDRAWAL_TRANSACTION_DATA_DESERIALIZER_REGISTRY] = {}));
 /**
  * Represents the data of a single SPV vault (UTXO-controlled) vault withdrawal
  *
@@ -219,4 +222,4 @@ exports.SpvWithdrawalTransactionData = SpvWithdrawalTransactionData;
 /**
  * A mapping of deserializers for different spv vault withdrawal data types coming from different smart chain implementations
  */
-SpvWithdrawalTransactionData.deserializers = {};
+SpvWithdrawalTransactionData.deserializers = spvWithdrawalTransactionDataDeserializerRegistry;
