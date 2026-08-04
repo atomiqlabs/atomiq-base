@@ -1,5 +1,12 @@
 import { SpvVaultEvent, SpvVaultEventType } from "./SpvVaultEvent.js";
 /**
+ * Type guard for SPV vault deposit events
+ *
+ * @param event
+ * @category Events
+ */
+export declare function isSpvVaultDepositEvent(event: unknown): event is SpvVaultDepositEvent;
+/**
  * SPV vault (UTXO-controlled vault) Deposit event representation, additional funds have been deposited to the SPV vault
  *
  * @category Events

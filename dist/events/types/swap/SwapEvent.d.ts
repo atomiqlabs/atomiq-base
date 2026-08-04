@@ -11,6 +11,13 @@ export declare enum SwapEventType {
     CLAIM = 2
 }
 /**
+ * Type guard for escrow-specific on-chain events
+ *
+ * @param event
+ * @category Events
+ */
+export declare function isSwapEvent<T extends SwapData>(event: unknown): event is SwapEvent<T>;
+/**
  * Represents an escrow-specific event
  *
  * @category Events

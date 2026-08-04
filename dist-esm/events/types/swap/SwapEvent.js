@@ -11,6 +11,21 @@ export var SwapEventType;
     SwapEventType[SwapEventType["CLAIM"] = 2] = "CLAIM";
 })(SwapEventType || (SwapEventType = {}));
 /**
+ * Type guard for escrow-specific on-chain events
+ *
+ * @param event
+ * @category Events
+ */
+export function isSwapEvent(event) {
+    if (event == null || typeof (event) !== "object")
+        return false;
+    const swapEvent = event;
+    return typeof (swapEvent.escrowHash) === "string" &&
+        (swapEvent.eventType === SwapEventType.INITIALIZE ||
+            swapEvent.eventType === SwapEventType.REFUND ||
+            swapEvent.eventType === SwapEventType.CLAIM);
+}
+/**
  * Represents an escrow-specific event
  *
  * @category Events

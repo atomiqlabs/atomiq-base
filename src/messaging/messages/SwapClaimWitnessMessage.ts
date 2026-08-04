@@ -2,6 +2,21 @@ import {SwapData} from "../../swaps/SwapData.js";
 import {Message, MessageType} from "./Message.js";
 
 /**
+ * Type guard for swap claim witness messages
+ *
+ * @param message
+ * @category Messenger
+ */
+export function isSwapClaimWitnessMessage<T extends SwapData>(message: unknown): message is SwapClaimWitnessMessage<T> {
+    if(message==null || typeof(message)!=="object") return false;
+    const claimWitnessMessage = message as Partial<SwapClaimWitnessMessage<T>>;
+    return claimWitnessMessage.type===MessageType.SWAP_CLAIM_WITNESS &&
+        claimWitnessMessage.swapData!=null &&
+        typeof(claimWitnessMessage.swapData)==="object" &&
+        typeof(claimWitnessMessage.witness)==="string";
+}
+
+/**
  * Representation of an HTLC claim message, providing a swap pre-image in the `witness` field for a specific
  *  escrow {@link SwapData}
  *

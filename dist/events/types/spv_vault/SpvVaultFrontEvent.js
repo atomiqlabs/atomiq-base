@@ -1,7 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SpvVaultFrontEvent = void 0;
+exports.SpvVaultFrontEvent = exports.isSpvVaultFrontEvent = void 0;
 const SpvVaultEvent_js_1 = require("./SpvVaultEvent.js");
+/**
+ * Type guard for SPV vault front events
+ *
+ * @param event
+ * @category Events
+ */
+function isSpvVaultFrontEvent(event) {
+    if (!(0, SpvVaultEvent_js_1.isSpvVaultEvent)(event))
+        return false;
+    const frontEvent = event;
+    return frontEvent.eventType === SpvVaultEvent_js_1.SpvVaultEventType.FRONT &&
+        typeof (frontEvent.btcTxId) === "string" &&
+        typeof (frontEvent.recipient) === "string" &&
+        typeof (frontEvent.executionHash) === "string" &&
+        Array.isArray(frontEvent.amounts) &&
+        frontEvent.amounts.every(amount => typeof (amount) === "bigint") &&
+        typeof (frontEvent.frontingAddress) === "string";
+}
+exports.isSpvVaultFrontEvent = isSpvVaultFrontEvent;
 /**
  * SPV vault (UTXO-controlled vault) Front event representation, an SPV vault withdrawal was fronted
  *

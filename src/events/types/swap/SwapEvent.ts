@@ -13,6 +13,21 @@ export enum SwapEventType {
 }
 
 /**
+ * Type guard for escrow-specific on-chain events
+ *
+ * @param event
+ * @category Events
+ */
+export function isSwapEvent<T extends SwapData>(event: unknown): event is SwapEvent<T> {
+    if(event==null || typeof(event)!=="object") return false;
+    const swapEvent = event as Partial<SwapEvent<T>>;
+    return typeof(swapEvent.escrowHash)==="string" &&
+        (swapEvent.eventType===SwapEventType.INITIALIZE ||
+            swapEvent.eventType===SwapEventType.REFUND ||
+            swapEvent.eventType===SwapEventType.CLAIM);
+}
+
+/**
  * Represents an escrow-specific event
  *
  * @category Events

@@ -1,4 +1,22 @@
-import {SpvVaultEvent, SpvVaultEventType} from "./SpvVaultEvent.js";
+import {isSpvVaultEvent, SpvVaultEvent, SpvVaultEventType} from "./SpvVaultEvent.js";
+
+/**
+ * Type guard for SPV vault front events
+ *
+ * @param event
+ * @category Events
+ */
+export function isSpvVaultFrontEvent(event: unknown): event is SpvVaultFrontEvent {
+    if(!isSpvVaultEvent(event)) return false;
+    const frontEvent = event as Partial<SpvVaultFrontEvent>;
+    return frontEvent.eventType===SpvVaultEventType.FRONT &&
+        typeof(frontEvent.btcTxId)==="string" &&
+        typeof(frontEvent.recipient)==="string" &&
+        typeof(frontEvent.executionHash)==="string" &&
+        Array.isArray(frontEvent.amounts) &&
+        frontEvent.amounts.every(amount => typeof(amount)==="bigint") &&
+        typeof(frontEvent.frontingAddress)==="string";
+}
 
 
 /**

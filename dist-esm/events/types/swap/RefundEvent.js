@@ -1,4 +1,13 @@
-import { SwapEvent, SwapEventType } from "./SwapEvent.js";
+import { isSwapEvent, SwapEvent, SwapEventType } from "./SwapEvent.js";
+/**
+ * Type guard for escrow swap refund events
+ *
+ * @param event
+ * @category Events
+ */
+export function isRefundEvent(event) {
+    return isSwapEvent(event) && event.eventType === SwapEventType.REFUND;
+}
 /**
  * Escrow swap Refund event representation, offerer refunded funds from the escrow
  *

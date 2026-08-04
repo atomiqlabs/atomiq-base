@@ -15,6 +15,24 @@ export enum SpvVaultEventType {
 }
 
 /**
+ * Type guard for SPV vault on-chain events
+ *
+ * @param event
+ * @category Events
+ */
+export function isSpvVaultEvent(event: unknown): event is SpvVaultEvent {
+    if(event==null || typeof(event)!=="object") return false;
+    const vaultEvent = event as Partial<SpvVaultEvent>;
+    return typeof(vaultEvent.owner)==="string" &&
+        typeof(vaultEvent.vaultId)==="bigint" &&
+        (vaultEvent.eventType===SpvVaultEventType.OPEN ||
+            vaultEvent.eventType===SpvVaultEventType.DEPOSIT ||
+            vaultEvent.eventType===SpvVaultEventType.CLAIM ||
+            vaultEvent.eventType===SpvVaultEventType.CLOSE ||
+            vaultEvent.eventType===SpvVaultEventType.FRONT);
+}
+
+/**
  * Represents an SPV vault (UTXO-controlled vault) on-chain event
  *
  * @category Events

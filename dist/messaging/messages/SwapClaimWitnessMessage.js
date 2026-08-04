@@ -1,8 +1,24 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SwapClaimWitnessMessage = void 0;
+exports.SwapClaimWitnessMessage = exports.isSwapClaimWitnessMessage = void 0;
 const SwapData_js_1 = require("../../swaps/SwapData.js");
 const Message_js_1 = require("./Message.js");
+/**
+ * Type guard for swap claim witness messages
+ *
+ * @param message
+ * @category Messenger
+ */
+function isSwapClaimWitnessMessage(message) {
+    if (message == null || typeof (message) !== "object")
+        return false;
+    const claimWitnessMessage = message;
+    return claimWitnessMessage.type === Message_js_1.MessageType.SWAP_CLAIM_WITNESS &&
+        claimWitnessMessage.swapData != null &&
+        typeof (claimWitnessMessage.swapData) === "object" &&
+        typeof (claimWitnessMessage.witness) === "string";
+}
+exports.isSwapClaimWitnessMessage = isSwapClaimWitnessMessage;
 /**
  * Representation of an HTLC claim message, providing a swap pre-image in the `witness` field for a specific
  *  escrow {@link SwapData}

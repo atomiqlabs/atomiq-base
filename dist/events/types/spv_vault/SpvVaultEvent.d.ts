@@ -13,6 +13,13 @@ export declare enum SpvVaultEventType {
     FRONT = 4
 }
 /**
+ * Type guard for SPV vault on-chain events
+ *
+ * @param event
+ * @category Events
+ */
+export declare function isSpvVaultEvent(event: unknown): event is SpvVaultEvent;
+/**
  * Represents an SPV vault (UTXO-controlled vault) on-chain event
  *
  * @category Events

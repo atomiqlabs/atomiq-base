@@ -1,4 +1,16 @@
-import { SwapEvent, SwapEventType } from "./SwapEvent.js";
+import { isSwapEvent, SwapEvent, SwapEventType } from "./SwapEvent.js";
+/**
+ * Type guard for escrow swap claim events
+ *
+ * @param event
+ * @category Events
+ */
+export function isClaimEvent(event) {
+    if (!isSwapEvent(event))
+        return false;
+    const claimEvent = event;
+    return claimEvent.eventType === SwapEventType.CLAIM && typeof (claimEvent.result) === "string";
+}
 /**
  * Escrow swap Claim event representation, claimer claimed funds from the escrow
  *
