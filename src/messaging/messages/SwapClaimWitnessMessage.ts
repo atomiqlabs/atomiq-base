@@ -63,4 +63,9 @@ export class SwapClaimWitnessMessage<T extends SwapData> extends Message {
 
 }
 
+// Deserializer registration must stay in this module (registering from Message.ts would create a circular
+//  import, as this class extends Message). This module is therefore listed in the package.json "sideEffects"
+//  array so bundlers keep this top-level registration even when no export of this module is referenced.
+//  Note: Rollup/webpack honor sideEffects arrays (verified, incl. Vite dev + production paths); raw esbuild
+//  ignores array form and may still drop this module if no export of it is used.
 Message.deserializers[MessageType.SWAP_CLAIM_WITNESS] = SwapClaimWitnessMessage.deserialize;

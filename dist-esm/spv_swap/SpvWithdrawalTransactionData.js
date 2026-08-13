@@ -58,15 +58,17 @@ export class SpvWithdrawalTransactionData {
             const dataLength = opReturnData.at(2);
             if (dataLength == null)
                 throw new Error("Output 1 OP_RETURN OP_PUSHDATA1 invalid length!");
-            data = opReturnData.subarray(3, 3 + dataLength);
-            if (data.length !== dataLength)
+            if (dataLength < 0x4c)
+                throw new Error("Output 1 OP_RETURN non-minimal push!");
+            if (3 + dataLength !== opReturnData.length)
                 throw new Error("Output 1 OP_RETURN data length mismatch!");
+            data = opReturnData.subarray(3, 3 + dataLength);
         }
         else if (secondByte <= 0x4b) { //OP_PUSH<length>
             const dataLength = secondByte;
-            data = opReturnData.subarray(2, 2 + dataLength);
-            if (data.length !== dataLength)
+            if (2 + dataLength !== opReturnData.length)
                 throw new Error("Output 1 OP_RETURN data length mismatch!");
+            data = opReturnData.subarray(2, 2 + dataLength);
         }
         else {
             throw new Error("Output 1 invalid push opcode");
