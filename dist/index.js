@@ -53,6 +53,7 @@ __exportStar(require("./spv_swap/SpvVaultData.js"), exports);
 __exportStar(require("./spv_swap/SpvWithdrawalState.js"), exports);
 __exportStar(require("./spv_swap/SpvWithdrawalTransactionData.js"), exports);
 __exportStar(require("./events/types/ChainEvent.js"), exports);
+__exportStar(require("./events/types/typeguards.js"), exports);
 __exportStar(require("./events/types/spv_vault/SpvVaultEvent.js"), exports);
 __exportStar(require("./events/types/spv_vault/SpvVaultCloseEvent.js"), exports);
 __exportStar(require("./events/types/spv_vault/SpvVaultClaimEvent.js"), exports);

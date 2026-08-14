@@ -37,6 +37,7 @@ export * from "./spv_swap/SpvVaultData.js";
 export * from "./spv_swap/SpvWithdrawalState.js";
 export * from "./spv_swap/SpvWithdrawalTransactionData.js";
 export * from "./events/types/ChainEvent.js";
+export * from "./events/types/typeguards.js";
 export * from "./events/types/spv_vault/SpvVaultEvent.js";
 export * from "./events/types/spv_vault/SpvVaultCloseEvent.js";
 export * from "./events/types/spv_vault/SpvVaultClaimEvent.js";
