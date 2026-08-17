@@ -1,6 +1,13 @@
-import { SwapEvent, SwapEventType } from "./SwapEvent";
-import { SwapData } from "../../../swaps/SwapData";
-import { ChainSwapType } from "../../../swaps/ChainSwapType";
+import { SwapEvent, SwapEventType } from "./SwapEvent.js";
+import { SwapData } from "../../../swaps/SwapData.js";
+import { ChainSwapType } from "../../../swaps/ChainSwapType.js";
+/**
+ * Type guard for escrow swap initialization events
+ *
+ * @param event
+ * @category Events
+ */
+export declare function isInitializeEvent<T extends SwapData>(event: unknown): event is InitializeEvent<T>;
 /**
  * Escrow swap Initialization event representation, emitted when an escrow is created
  *

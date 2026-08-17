@@ -1,4 +1,24 @@
-import {SpvVaultEvent, SpvVaultEventType} from "./SpvVaultEvent";
+import {isSpvVaultEvent, SpvVaultEvent, SpvVaultEventType} from "./SpvVaultEvent.js";
+
+/**
+ * Type guard for SPV vault claim events
+ *
+ * @param event
+ * @category Events
+ */
+export function isSpvVaultClaimEvent(event: unknown): event is SpvVaultClaimEvent {
+    if(!isSpvVaultEvent(event)) return false;
+    const claimEvent = event as Partial<SpvVaultClaimEvent>;
+    return claimEvent.eventType===SpvVaultEventType.CLAIM &&
+        typeof(claimEvent.btcTxId)==="string" &&
+        typeof(claimEvent.recipient)==="string" &&
+        typeof(claimEvent.executionHash)==="string" &&
+        Array.isArray(claimEvent.amounts) &&
+        claimEvent.amounts.every(amount => typeof(amount)==="bigint") &&
+        typeof(claimEvent.caller)==="string" &&
+        typeof(claimEvent.frontingAddress)==="string" &&
+        typeof(claimEvent.withdrawCount)==="number";
+}
 
 
 /**

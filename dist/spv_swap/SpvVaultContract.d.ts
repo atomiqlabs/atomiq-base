@@ -1,12 +1,12 @@
 /// <reference types="node" />
-import { AbstractSigner, TransactionConfirmationOptions } from "../chains/ChainInterface";
-import { SpvVaultData, SpvVaultTokenData } from "./SpvVaultData";
-import { SpvWithdrawalTransactionData } from "./SpvWithdrawalTransactionData";
-import { BtcStoredHeader } from "../btcrelay/types/BtcStoredHeader";
-import { RelaySynchronizer } from "../btcrelay/synchronizer/RelaySynchronizer";
-import { SpvWithdrawalClaimedState, SpvWithdrawalFrontedState, SpvWithdrawalState } from "./SpvWithdrawalState";
+import { AbstractSigner, TransactionConfirmationOptions } from "../chains/ChainInterface.js";
+import { SpvVaultData, SpvVaultTokenData } from "./SpvVaultData.js";
+import { SpvWithdrawalTransactionData } from "./SpvWithdrawalTransactionData.js";
+import { BtcStoredHeader } from "../btcrelay/types/BtcStoredHeader.js";
+import { RelaySynchronizer } from "../btcrelay/synchronizer/RelaySynchronizer.js";
+import { SpvWithdrawalClaimedState, SpvWithdrawalFrontedState, SpvWithdrawalState } from "./SpvWithdrawalState.js";
 import { Buffer } from "buffer";
-import { BtcTx } from "../btc/rpc/BitcoinRpc";
+import { BtcTx } from "../btc/rpc/BitcoinRpc.js";
 /**
  * Represents an SPV vault (UTXO-controlled vault) contract, exposes operations on the vaults
  *

@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SpvWithdrawalTransactionData = void 0;
 const buffer_1 = require("buffer");
+const SPV_WITHDRAWAL_TRANSACTION_DATA_DESERIALIZER_REGISTRY = Symbol.for("@atomiqlabs/base/SpvWithdrawalTransactionData.deserializers/v1");
+const globalScope = globalThis;
+const spvWithdrawalTransactionDataDeserializerRegistry = (globalScope[SPV_WITHDRAWAL_TRANSACTION_DATA_DESERIALIZER_REGISTRY] ?? (globalScope[SPV_WITHDRAWAL_TRANSACTION_DATA_DESERIALIZER_REGISTRY] = {}));
 /**
  * Represents the data of a single SPV vault (UTXO-controlled) vault withdrawal
  *
@@ -58,15 +61,17 @@ class SpvWithdrawalTransactionData {
             const dataLength = opReturnData.at(2);
             if (dataLength == null)
                 throw new Error("Output 1 OP_RETURN OP_PUSHDATA1 invalid length!");
-            data = opReturnData.subarray(3, 3 + dataLength);
-            if (data.length !== dataLength)
+            if (dataLength < 0x4c)
+                throw new Error("Output 1 OP_RETURN non-minimal push!");
+            if (3 + dataLength !== opReturnData.length)
                 throw new Error("Output 1 OP_RETURN data length mismatch!");
+            data = opReturnData.subarray(3, 3 + dataLength);
         }
         else if (secondByte <= 0x4b) { //OP_PUSH<length>
             const dataLength = secondByte;
-            data = opReturnData.subarray(2, 2 + dataLength);
-            if (data.length !== dataLength)
+            if (2 + dataLength !== opReturnData.length)
                 throw new Error("Output 1 OP_RETURN data length mismatch!");
+            data = opReturnData.subarray(2, 2 + dataLength);
         }
         else {
             throw new Error("Output 1 invalid push opcode");
@@ -217,4 +222,4 @@ exports.SpvWithdrawalTransactionData = SpvWithdrawalTransactionData;
 /**
  * A mapping of deserializers for different spv vault withdrawal data types coming from different smart chain implementations
  */
-SpvWithdrawalTransactionData.deserializers = {};
+SpvWithdrawalTransactionData.deserializers = spvWithdrawalTransactionDataDeserializerRegistry;

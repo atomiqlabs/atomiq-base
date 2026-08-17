@@ -1,5 +1,5 @@
-import {SwapData} from "../../../swaps/SwapData";
-import {ChainEvent} from "../ChainEvent";
+import {SwapData} from "../../../swaps/SwapData.js";
+import {ChainEvent} from "../ChainEvent.js";
 
 /**
  * Enum of the different types of escrow-swap specific events
@@ -10,6 +10,21 @@ export enum SwapEventType {
     INITIALIZE = 0,
     REFUND = 1,
     CLAIM = 2
+}
+
+/**
+ * Type guard for escrow-specific on-chain events
+ *
+ * @param event
+ * @category Events
+ */
+export function isSwapEvent<T extends SwapData>(event: unknown): event is SwapEvent<T> {
+    if(event==null || typeof(event)!=="object") return false;
+    const swapEvent = event as Partial<SwapEvent<T>>;
+    return typeof(swapEvent.escrowHash)==="string" &&
+        (swapEvent.eventType===SwapEventType.INITIALIZE ||
+            swapEvent.eventType===SwapEventType.REFUND ||
+            swapEvent.eventType===SwapEventType.CLAIM);
 }
 
 /**

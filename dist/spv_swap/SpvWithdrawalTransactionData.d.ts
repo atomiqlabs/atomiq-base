@@ -1,7 +1,7 @@
 /// <reference types="node" />
-import { BtcTx } from "../btc/rpc/BitcoinRpc";
+import { BtcTx } from "../btc/rpc/BitcoinRpc.js";
 import { Buffer } from "buffer";
-import { StorageObject } from "../storage/StorageObject";
+import { StorageObject } from "../storage/StorageObject.js";
 /**
  * Execution data assigned to the withdrawal
  *

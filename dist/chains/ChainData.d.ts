@@ -1,8 +1,8 @@
-import { ChainType } from "./ChainType";
-import { BitcoinRpc } from "../btc/rpc/BitcoinRpc";
-import { BitcoinNetwork } from "../btc/BitcoinNetwork";
-import { IStorageManager } from "../storage/IStorageManager";
-import { StorageObject } from "../storage/StorageObject";
+import { ChainType } from "./ChainType.js";
+import { BitcoinRpc } from "../btc/rpc/BitcoinRpc.js";
+import { BitcoinNetwork } from "../btc/BitcoinNetwork.js";
+import { IStorageManager } from "../storage/IStorageManager.js";
+import { StorageObject } from "../storage/StorageObject.js";
 /**
  * A type defining tokens available on the selected chain, indexed by ticker
  *

@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { BtcHeader } from "./BtcHeader";
+import { BtcHeader } from "./BtcHeader.js";
 import { Buffer } from "buffer";
 /**
  * Represents a bitcoin blockheader that has already been synchronized and saved (committed) in the BTC relay

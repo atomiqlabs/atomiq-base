@@ -1,4 +1,11 @@
-import { SpvVaultEvent, SpvVaultEventType } from "./SpvVaultEvent";
+import { SpvVaultEvent, SpvVaultEventType } from "./SpvVaultEvent.js";
+/**
+ * Type guard for SPV vault open events
+ *
+ * @param event
+ * @category Events
+ */
+export declare function isSpvVaultOpenEvent(event: unknown): event is SpvVaultOpenEvent;
 /**
  * SPV vault (UTXO-controlled vault) Open event representation, new SPV vault was opened
  *

@@ -1,8 +1,8 @@
 /// <reference types="node" />
-import { BtcStoredHeader } from "./types/BtcStoredHeader";
-import { BtcBlock } from "./types/BtcBlock";
+import { BtcStoredHeader } from "./types/BtcStoredHeader.js";
+import { BtcBlock } from "./types/BtcBlock.js";
 import { Buffer } from "buffer";
-import { AbstractSigner } from "../chains/ChainInterface";
+import { AbstractSigner } from "../chains/ChainInterface.js";
 /**
  * Represents a BTC relay bitcoin light client contract, which verifies the bitcoin blockheaders on smart chains
  *

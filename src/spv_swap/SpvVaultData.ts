@@ -1,9 +1,19 @@
-import {StorageObject} from "../storage/StorageObject";
-import {SpvWithdrawalTransactionData} from "./SpvWithdrawalTransactionData";
-import {SpvVaultClaimEvent} from "../events/types/spv_vault/SpvVaultClaimEvent";
-import {SpvVaultCloseEvent} from "../events/types/spv_vault/SpvVaultCloseEvent";
-import {SpvVaultOpenEvent} from "../events/types/spv_vault/SpvVaultOpenEvent";
-import {SpvVaultDepositEvent} from "../events/types/spv_vault/SpvVaultDepositEvent";
+import {StorageObject} from "../storage/StorageObject.js";
+import {SpvWithdrawalTransactionData} from "./SpvWithdrawalTransactionData.js";
+import {SpvVaultClaimEvent} from "../events/types/spv_vault/SpvVaultClaimEvent.js";
+import {SpvVaultCloseEvent} from "../events/types/spv_vault/SpvVaultCloseEvent.js";
+import {SpvVaultOpenEvent} from "../events/types/spv_vault/SpvVaultOpenEvent.js";
+import {SpvVaultDepositEvent} from "../events/types/spv_vault/SpvVaultDepositEvent.js";
+
+type SpvVaultDataDeserializerRegistry = {
+    [type: string]: new (serialized: any) => any,
+};
+
+const SPV_VAULT_DATA_DESERIALIZER_REGISTRY = Symbol.for("@atomiqlabs/base/SpvVaultData.deserializers/v1");
+const globalScope = globalThis as typeof globalThis & {
+    [SPV_VAULT_DATA_DESERIALIZER_REGISTRY]: SpvVaultDataDeserializerRegistry | undefined,
+};
+const spvVaultDataDeserializerRegistry = (globalScope[SPV_VAULT_DATA_DESERIALIZER_REGISTRY] ??= {});
 
 /**
  * Balance for a specific token inside a vault
@@ -49,7 +59,7 @@ export abstract class SpvVaultData<T extends SpvWithdrawalTransactionData = SpvW
      */
     static deserializers: {
         [type: string]: new (serialized: any) => any,
-    } = {};
+    } = spvVaultDataDeserializerRegistry;
 
     /**
      * Deserializer parsing the chain-specific spv vault data from a JSON-compatible object representation

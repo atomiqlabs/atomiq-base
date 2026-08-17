@@ -1,8 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Message = exports.MessageType = void 0;
+const MESSAGE_DESERIALIZER_REGISTRY = Symbol.for("@atomiqlabs/base/Message.deserializers/v1");
+const globalScope = globalThis;
+const messageDeserializerRegistry = (globalScope[MESSAGE_DESERIALIZER_REGISTRY] ?? (globalScope[MESSAGE_DESERIALIZER_REGISTRY] = {}));
 /**
  * Currently defined types of the data propagation messages
+ *
+ * When adding a new message type: register its deserializer at the bottom of the message's own module
+ *  (see {@link SwapClaimWitnessMessage}) AND list that module in the package.json "sideEffects" array
+ *  (both the root package.json and the dist-esm marker written by the build script), otherwise bundlers
+ *  are allowed to drop the module - and with it the registration - when none of its exports are used.
+ *  The registration cannot live in this file: the message classes extend {@link Message}, so importing
+ *  them here creates a circular import that crashes at load time.
  *
  * @category Messenger
  */
@@ -42,4 +52,4 @@ exports.Message = Message;
  *
  * @internal
  */
-Message.deserializers = {};
+Message.deserializers = messageDeserializerRegistry;

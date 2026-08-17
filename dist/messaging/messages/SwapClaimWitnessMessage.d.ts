@@ -1,5 +1,12 @@
-import { SwapData } from "../../swaps/SwapData";
-import { Message, MessageType } from "./Message";
+import { SwapData } from "../../swaps/SwapData.js";
+import { Message, MessageType } from "./Message.js";
+/**
+ * Type guard for swap claim witness messages
+ *
+ * @param message
+ * @category Messenger
+ */
+export declare function isSwapClaimWitnessMessage<T extends SwapData>(message: unknown): message is SwapClaimWitnessMessage<T>;
 /**
  * Representation of an HTLC claim message, providing a swap pre-image in the `witness` field for a specific
  *  escrow {@link SwapData}

@@ -1,4 +1,4 @@
-import {StorageObject} from "./StorageObject";
+import {StorageObject} from "./StorageObject.js";
 
 /**
  * Interface for storage managers that persist StorageObject instances.

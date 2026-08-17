@@ -1,6 +1,6 @@
 import {Buffer} from "buffer";
-import {BitcoinRpc, BtcTx} from "./BitcoinRpc";
-import {BtcBlock} from "../../btcrelay/types/BtcBlock";
+import {BitcoinRpc, BtcTx} from "./BitcoinRpc.js";
+import {BtcBlock} from "../../btcrelay/types/BtcBlock.js";
 
 
 /**

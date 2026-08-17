@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SpvVaultData = void 0;
+const SPV_VAULT_DATA_DESERIALIZER_REGISTRY = Symbol.for("@atomiqlabs/base/SpvVaultData.deserializers/v1");
+const globalScope = globalThis;
+const spvVaultDataDeserializerRegistry = (globalScope[SPV_VAULT_DATA_DESERIALIZER_REGISTRY] ?? (globalScope[SPV_VAULT_DATA_DESERIALIZER_REGISTRY] = {}));
 /**
  * Represents the state of a single SPV vault (UTXO-controlled vault)
  *
@@ -53,4 +56,4 @@ exports.SpvVaultData = SpvVaultData;
 /**
  * A mapping of deserializers for different spv vault data types coming from different smart chain implementations
  */
-SpvVaultData.deserializers = {};
+SpvVaultData.deserializers = spvVaultDataDeserializerRegistry;

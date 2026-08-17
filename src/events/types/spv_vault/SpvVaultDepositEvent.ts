@@ -1,4 +1,19 @@
-import {SpvVaultEvent, SpvVaultEventType} from "./SpvVaultEvent";
+import {isSpvVaultEvent, SpvVaultEvent, SpvVaultEventType} from "./SpvVaultEvent.js";
+
+/**
+ * Type guard for SPV vault deposit events
+ *
+ * @param event
+ * @category Events
+ */
+export function isSpvVaultDepositEvent(event: unknown): event is SpvVaultDepositEvent {
+    if(!isSpvVaultEvent(event)) return false;
+    const depositEvent = event as Partial<SpvVaultDepositEvent>;
+    return depositEvent.eventType===SpvVaultEventType.DEPOSIT &&
+        Array.isArray(depositEvent.amounts) &&
+        depositEvent.amounts.every(amount => typeof(amount)==="bigint") &&
+        typeof(depositEvent.depositCount)==="number";
+}
 
 
 /**

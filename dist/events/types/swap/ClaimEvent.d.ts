@@ -1,5 +1,12 @@
-import { SwapEvent, SwapEventType } from "./SwapEvent";
-import { SwapData } from "../../../swaps/SwapData";
+import { SwapEvent, SwapEventType } from "./SwapEvent.js";
+import { SwapData } from "../../../swaps/SwapData.js";
+/**
+ * Type guard for escrow swap claim events
+ *
+ * @param event
+ * @category Events
+ */
+export declare function isClaimEvent<T extends SwapData>(event: unknown): event is ClaimEvent<T>;
 /**
  * Escrow swap Claim event representation, claimer claimed funds from the escrow
  *

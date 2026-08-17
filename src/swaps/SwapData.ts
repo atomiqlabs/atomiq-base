@@ -1,5 +1,15 @@
-import {ChainSwapType} from "./ChainSwapType";
-import {StorageObject} from "../storage/StorageObject";
+import {ChainSwapType} from "./ChainSwapType.js";
+import {StorageObject} from "../storage/StorageObject.js";
+
+type SwapDataDeserializerRegistry = {
+    [type: string]: new (serialized: any) => any,
+};
+
+const SWAP_DATA_DESERIALIZER_REGISTRY = Symbol.for("@atomiqlabs/base/SwapData.deserializers/v1");
+const globalScope = globalThis as typeof globalThis & {
+    [SWAP_DATA_DESERIALIZER_REGISTRY]: SwapDataDeserializerRegistry | undefined,
+};
+const swapDataDeserializerRegistry = (globalScope[SWAP_DATA_DESERIALIZER_REGISTRY] ??= {});
 
 /**
  * Represents full escrow swap data and parameters
@@ -13,7 +23,7 @@ export abstract class SwapData implements StorageObject {
      */
     static deserializers: {
         [type: string]: new (serialized: any) => any,
-    } = {};
+    } = swapDataDeserializerRegistry;
 
     /**
      * Deserializer parsing the chain-specific escrow swap data from a JSON-compatible object representation
@@ -230,4 +240,3 @@ export abstract class SwapData implements StorageObject {
     }
 
 }
-

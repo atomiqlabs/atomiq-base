@@ -1,6 +1,16 @@
-import {BtcTx} from "../btc/rpc/BitcoinRpc";
+import {BtcTx} from "../btc/rpc/BitcoinRpc.js";
 import {Buffer} from "buffer";
-import {StorageObject} from "../storage/StorageObject";
+import {StorageObject} from "../storage/StorageObject.js";
+
+type SpvWithdrawalTransactionDataDeserializerRegistry = {
+    [type: string]: new (serialized: any) => any,
+};
+
+const SPV_WITHDRAWAL_TRANSACTION_DATA_DESERIALIZER_REGISTRY = Symbol.for("@atomiqlabs/base/SpvWithdrawalTransactionData.deserializers/v1");
+const globalScope = globalThis as typeof globalThis & {
+    [SPV_WITHDRAWAL_TRANSACTION_DATA_DESERIALIZER_REGISTRY]: SpvWithdrawalTransactionDataDeserializerRegistry | undefined,
+};
+const spvWithdrawalTransactionDataDeserializerRegistry = (globalScope[SPV_WITHDRAWAL_TRANSACTION_DATA_DESERIALIZER_REGISTRY] ??= {});
 
 /**
  * Execution data assigned to the withdrawal
@@ -24,7 +34,7 @@ export abstract class SpvWithdrawalTransactionData implements StorageObject {
      */
     static deserializers: {
         [type: string]: new (serialized: any) => any,
-    } = {};
+    } = spvWithdrawalTransactionDataDeserializerRegistry;
 
     /**
      * Deserializer parsing the chain-specific spv vault withdrawal data from a JSON-compatible object representation
@@ -94,12 +104,13 @@ export abstract class SpvWithdrawalTransactionData implements StorageObject {
         if(secondByte === 0x4c) { //OP_PUSHDATA1
             const dataLength = opReturnData.at(2);
             if(dataLength==null) throw new Error("Output 1 OP_RETURN OP_PUSHDATA1 invalid length!");
+            if(dataLength < 0x4c) throw new Error("Output 1 OP_RETURN non-minimal push!");
+            if(3 + dataLength !== opReturnData.length) throw new Error("Output 1 OP_RETURN data length mismatch!");
             data = opReturnData.subarray(3, 3+dataLength);
-            if(data.length !== dataLength) throw new Error("Output 1 OP_RETURN data length mismatch!");
         } else if(secondByte <= 0x4b) { //OP_PUSH<length>
             const dataLength = secondByte;
+            if(2 + dataLength !== opReturnData.length) throw new Error("Output 1 OP_RETURN data length mismatch!");
             data = opReturnData.subarray(2, 2+dataLength);
-            if(data.length !== dataLength) throw new Error("Output 1 OP_RETURN data length mismatch!");
         } else {
             throw new Error("Output 1 invalid push opcode");
         }

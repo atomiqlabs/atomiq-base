@@ -1,4 +1,18 @@
-import {SpvVaultEvent, SpvVaultEventType} from "./SpvVaultEvent";
+import {isSpvVaultEvent, SpvVaultEvent, SpvVaultEventType} from "./SpvVaultEvent.js";
+
+/**
+ * Type guard for SPV vault open events
+ *
+ * @param event
+ * @category Events
+ */
+export function isSpvVaultOpenEvent(event: unknown): event is SpvVaultOpenEvent {
+    if(!isSpvVaultEvent(event)) return false;
+    const openEvent = event as Partial<SpvVaultOpenEvent>;
+    return openEvent.eventType===SpvVaultEventType.OPEN &&
+        typeof(openEvent.btcTxId)==="string" &&
+        typeof(openEvent.vout)==="number";
+}
 
 
 /**

@@ -1,4 +1,11 @@
-import { SpvVaultEvent, SpvVaultEventType } from "./SpvVaultEvent";
+import { SpvVaultEvent, SpvVaultEventType } from "./SpvVaultEvent.js";
+/**
+ * Type guard for SPV vault claim events
+ *
+ * @param event
+ * @category Events
+ */
+export declare function isSpvVaultClaimEvent(event: unknown): event is SpvVaultClaimEvent;
 /**
  * SPV vault (UTXO-controlled vault) Claim event representation, a valid withdrawal from an SPV vault
  *

@@ -1,11 +1,11 @@
 /// <reference types="node" />
-import { SwapData } from "./SwapData";
-import { BtcStoredHeader } from "../btcrelay/types/BtcStoredHeader";
-import { ChainSwapType } from "./ChainSwapType";
-import { RelaySynchronizer } from "../btcrelay/synchronizer/RelaySynchronizer";
+import { SwapData } from "./SwapData.js";
+import { BtcStoredHeader } from "../btcrelay/types/BtcStoredHeader.js";
+import { ChainSwapType } from "./ChainSwapType.js";
+import { RelaySynchronizer } from "../btcrelay/synchronizer/RelaySynchronizer.js";
 import { Buffer } from "buffer";
-import { AbstractSigner, TransactionConfirmationOptions } from "../chains/ChainInterface";
-import { SwapCommitState } from "./SwapCommitState";
+import { AbstractSigner, TransactionConfirmationOptions } from "../chains/ChainInterface.js";
+import { SwapCommitState } from "./SwapCommitState.js";
 /**
  * Represents intermediary (LP) reputation across different swap types
  */

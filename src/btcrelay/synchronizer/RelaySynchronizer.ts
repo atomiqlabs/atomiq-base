@@ -1,5 +1,5 @@
-import {BtcStoredHeader} from "../types/BtcStoredHeader";
-import {BtcBlock} from "../types/BtcBlock";
+import {BtcStoredHeader} from "../types/BtcStoredHeader.js";
+import {BtcBlock} from "../types/BtcBlock.js";
 
 export type SynchronizationResponse<V extends BtcStoredHeader<any>, T, B extends BtcBlock> = {
     /**
@@ -53,7 +53,9 @@ export interface RelaySynchronizer<V extends BtcStoredHeader<any>, T, B extends 
      *
      * @param signer Transactions signer's address
      * @param feeRate Optional fee rate to use for the transactions
+     * @param targetBlockheight Optional target blockheight to synchronize to, if not passed it will synchronize to
+     *  current chain tip
      */
-    syncToLatestTxs(signer: string, feeRate?: string): Promise<SynchronizationResponse<V, T, B>>;
+    syncToLatestTxs(signer: string, feeRate?: string, targetBlockheight?: number): Promise<SynchronizationResponse<V, T, B>>;
 
 }

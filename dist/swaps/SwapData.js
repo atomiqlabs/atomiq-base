@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SwapData = void 0;
+const SWAP_DATA_DESERIALIZER_REGISTRY = Symbol.for("@atomiqlabs/base/SwapData.deserializers/v1");
+const globalScope = globalThis;
+const swapDataDeserializerRegistry = (globalScope[SWAP_DATA_DESERIALIZER_REGISTRY] ?? (globalScope[SWAP_DATA_DESERIALIZER_REGISTRY] = {}));
 /**
  * Represents full escrow swap data and parameters
  *
@@ -44,4 +47,4 @@ exports.SwapData = SwapData;
 /**
  * A mapping of deserializers for different escrow swap data types coming from different smart chain implementations
  */
-SwapData.deserializers = {};
+SwapData.deserializers = swapDataDeserializerRegistry;

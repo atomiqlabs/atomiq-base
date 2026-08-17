@@ -1,4 +1,11 @@
-import { SpvVaultEvent, SpvVaultEventType } from "./SpvVaultEvent";
+import { SpvVaultEvent, SpvVaultEventType } from "./SpvVaultEvent.js";
+/**
+ * Type guard for SPV vault close events
+ *
+ * @param event
+ * @category Events
+ */
+export declare function isSpvVaultCloseEvent(event: unknown): event is SpvVaultCloseEvent;
 /**
  * SPV vault (UTXO-controlled vault) Close event representation, a withdrawal with invalid transaction
  *  spending the vault UTXO but not correctly comitting the data has been made, this returns the full

@@ -6,3 +6,10 @@
 export declare class TransactionRevertedError extends Error {
     constructor(msg: string);
 }
+/**
+ * Type guard for reverted transaction errors
+ *
+ * @param error
+ * @category Errors
+ */
+export declare function isTransactionRevertedError(error: unknown): error is TransactionRevertedError;

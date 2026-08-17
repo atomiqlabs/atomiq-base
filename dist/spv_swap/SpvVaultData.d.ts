@@ -1,9 +1,9 @@
-import { StorageObject } from "../storage/StorageObject";
-import { SpvWithdrawalTransactionData } from "./SpvWithdrawalTransactionData";
-import { SpvVaultClaimEvent } from "../events/types/spv_vault/SpvVaultClaimEvent";
-import { SpvVaultCloseEvent } from "../events/types/spv_vault/SpvVaultCloseEvent";
-import { SpvVaultOpenEvent } from "../events/types/spv_vault/SpvVaultOpenEvent";
-import { SpvVaultDepositEvent } from "../events/types/spv_vault/SpvVaultDepositEvent";
+import { StorageObject } from "../storage/StorageObject.js";
+import { SpvWithdrawalTransactionData } from "./SpvWithdrawalTransactionData.js";
+import { SpvVaultClaimEvent } from "../events/types/spv_vault/SpvVaultClaimEvent.js";
+import { SpvVaultCloseEvent } from "../events/types/spv_vault/SpvVaultCloseEvent.js";
+import { SpvVaultOpenEvent } from "../events/types/spv_vault/SpvVaultOpenEvent.js";
+import { SpvVaultDepositEvent } from "../events/types/spv_vault/SpvVaultDepositEvent.js";
 /**
  * Balance for a specific token inside a vault
  *

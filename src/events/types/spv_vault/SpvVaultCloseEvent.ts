@@ -1,4 +1,18 @@
-import {SpvVaultEvent, SpvVaultEventType} from "./SpvVaultEvent";
+import {isSpvVaultEvent, SpvVaultEvent, SpvVaultEventType} from "./SpvVaultEvent.js";
+
+/**
+ * Type guard for SPV vault close events
+ *
+ * @param event
+ * @category Events
+ */
+export function isSpvVaultCloseEvent(event: unknown): event is SpvVaultCloseEvent {
+    if(!isSpvVaultEvent(event)) return false;
+    const closeEvent = event as Partial<SpvVaultCloseEvent>;
+    return closeEvent.eventType===SpvVaultEventType.CLOSE &&
+        typeof(closeEvent.btcTxId)==="string" &&
+        typeof(closeEvent.error)==="string";
+}
 
 
 /**

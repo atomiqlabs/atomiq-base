@@ -1,5 +1,5 @@
-import { ChainEvent } from "../ChainEvent";
-import { SwapData } from "../../../swaps/SwapData";
+import { ChainEvent } from "../ChainEvent.js";
+import { SwapData } from "../../../swaps/SwapData.js";
 /**
  * Enum of the various types of SPV vault (UTXO-controlled vault) related events
  *
@@ -12,6 +12,13 @@ export declare enum SpvVaultEventType {
     CLOSE = 3,
     FRONT = 4
 }
+/**
+ * Type guard for SPV vault on-chain events
+ *
+ * @param event
+ * @category Events
+ */
+export declare function isSpvVaultEvent(event: unknown): event is SpvVaultEvent;
 /**
  * Represents an SPV vault (UTXO-controlled vault) on-chain event
  *

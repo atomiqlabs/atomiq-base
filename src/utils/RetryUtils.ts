@@ -1,5 +1,5 @@
-import {getLogger} from "./Logger";
-import {timeoutPromise} from "./TimeoutUtils";
+import {getLogger} from "./Logger.js";
+import {timeoutPromise} from "./TimeoutUtils.js";
 
 const logger = getLogger("RetryUtils: ");
 
