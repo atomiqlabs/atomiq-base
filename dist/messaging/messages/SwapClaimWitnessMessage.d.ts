@@ -23,7 +23,11 @@ export declare class SwapClaimWitnessMessage<T extends SwapData> extends Message
      * A witness allowing the claim of the escrow (i.e. a hash pre-image)
      */
     readonly witness: string;
-    constructor(swapData: T, witness: string);
+    /**
+     * Optional smart chain chainId on which the escrow should be claimed
+     */
+    readonly chainId?: string;
+    constructor(swapData: T, witness: string, chainId?: string);
     /**
      * @inheritDoc
      */

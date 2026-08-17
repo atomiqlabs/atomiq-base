@@ -16,7 +16,8 @@ function isSwapClaimWitnessMessage(message) {
     return claimWitnessMessage.type === Message_js_1.MessageType.SWAP_CLAIM_WITNESS &&
         claimWitnessMessage.swapData != null &&
         typeof (claimWitnessMessage.swapData) === "object" &&
-        typeof (claimWitnessMessage.witness) === "string";
+        typeof (claimWitnessMessage.witness) === "string" &&
+        (claimWitnessMessage.chainId == null || typeof (claimWitnessMessage.chainId) === "string");
 }
 exports.isSwapClaimWitnessMessage = isSwapClaimWitnessMessage;
 /**
@@ -26,11 +27,12 @@ exports.isSwapClaimWitnessMessage = isSwapClaimWitnessMessage;
  * @category Messenger
  */
 class SwapClaimWitnessMessage extends Message_js_1.Message {
-    constructor(swapData, witness) {
+    constructor(swapData, witness, chainId) {
         super();
         this.type = Message_js_1.MessageType.SWAP_CLAIM_WITNESS;
         this.swapData = swapData;
         this.witness = witness;
+        this.chainId = chainId;
     }
     /**
      * @inheritDoc
@@ -39,7 +41,8 @@ class SwapClaimWitnessMessage extends Message_js_1.Message {
         return {
             ...super.serialize(),
             swapData: this.swapData.serialize(),
-            witness: this.witness
+            witness: this.witness,
+            chainId: this.chainId
         };
     }
     /**
@@ -49,7 +52,7 @@ class SwapClaimWitnessMessage extends Message_js_1.Message {
         if (obj == null || typeof (obj.witness) !== "string" || typeof (obj.swapData) !== "object") {
             throw new Error("Invalid format!");
         }
-        return new SwapClaimWitnessMessage(SwapData_js_1.SwapData.deserialize(obj.swapData), obj.witness);
+        return new SwapClaimWitnessMessage(SwapData_js_1.SwapData.deserialize(obj.swapData), obj.witness, obj.chainId);
     }
 }
 exports.SwapClaimWitnessMessage = SwapClaimWitnessMessage;

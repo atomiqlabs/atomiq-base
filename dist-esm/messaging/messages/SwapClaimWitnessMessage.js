@@ -13,7 +13,8 @@ export function isSwapClaimWitnessMessage(message) {
     return claimWitnessMessage.type === MessageType.SWAP_CLAIM_WITNESS &&
         claimWitnessMessage.swapData != null &&
         typeof (claimWitnessMessage.swapData) === "object" &&
-        typeof (claimWitnessMessage.witness) === "string";
+        typeof (claimWitnessMessage.witness) === "string" &&
+        (claimWitnessMessage.chainId == null || typeof (claimWitnessMessage.chainId) === "string");
 }
 /**
  * Representation of an HTLC claim message, providing a swap pre-image in the `witness` field for a specific
@@ -22,11 +23,12 @@ export function isSwapClaimWitnessMessage(message) {
  * @category Messenger
  */
 export class SwapClaimWitnessMessage extends Message {
-    constructor(swapData, witness) {
+    constructor(swapData, witness, chainId) {
         super();
         this.type = MessageType.SWAP_CLAIM_WITNESS;
         this.swapData = swapData;
         this.witness = witness;
+        this.chainId = chainId;
     }
     /**
      * @inheritDoc
@@ -35,7 +37,8 @@ export class SwapClaimWitnessMessage extends Message {
         return {
             ...super.serialize(),
             swapData: this.swapData.serialize(),
-            witness: this.witness
+            witness: this.witness,
+            chainId: this.chainId
         };
     }
     /**
@@ -45,7 +48,7 @@ export class SwapClaimWitnessMessage extends Message {
         if (obj == null || typeof (obj.witness) !== "string" || typeof (obj.swapData) !== "object") {
             throw new Error("Invalid format!");
         }
-        return new SwapClaimWitnessMessage(SwapData.deserialize(obj.swapData), obj.witness);
+        return new SwapClaimWitnessMessage(SwapData.deserialize(obj.swapData), obj.witness, obj.chainId);
     }
 }
 // Deserializer registration must stay in this module (registering from Message.ts would create a circular
